@@ -41,7 +41,8 @@ Per RFC-009:
 |------|---------|
 | `generate_workload.py` | Deterministic operation-stream + failure-schedule generator |
 | `workloads/failure.json` | Declared workload fixture |
-| `run_benchmark.py` | Validation harness |
+| `run_benchmark.py` | Validation harness (deterministic stream) |
+| `run_opencode.py` | Real-model validation harness (model proposes transitions) |
 | `results/<run-id>/report.json` | Full artifacts per run |
 | `prototype/coordinator.py` | StateCoordinator (intent log, atomic commit, recovery, idempotency) |
 
@@ -52,6 +53,7 @@ Per RFC-009:
 ```text
 python benchmark/failure-recovery/generate_workload.py --fields 20 --operations 60 --fail-fraction 0.4 --out workloads/failure.json
 python benchmark/failure-recovery/run_benchmark.py
+python benchmark/failure-recovery/run_opencode.py --limit 40   # real-model validation
 ```
 
 ---
@@ -76,6 +78,24 @@ Workload: 20 fields, 60 operations, 23 injected failures (13 before_commit, 10 a
 
 Verdict: **H1 + H2 + H3 supported** — 23/23 interruptions resolved, 0 duplicate commits, 0 intermediate states observed, final State identical to no-failure run.
 
+### Real-model validation (opencode CLI, deepseek-v4-flash-free)
+
+Run: 20260807-170233 (40 operations, model-proposed transitions)
+
+| Metric | Result |
+|--------|--------|
+| proposal_quality (exact key+value match) | 1.0 (40/40) |
+| pipeline_ops | 40 |
+| Interruptions (injected) | 15 |
+| final_state_equal + version_equal | true / true |
+| observed_intermediate_states | 0 |
+| unresolved_operations | 0 |
+| duplicate_commits | 0 |
+
+Verdict: **H1 + H2 + H3 supported** — a real model proposed every transition correctly
+(40/40), and the StateCoordinator preserved continuity, atomicity, idempotency and
+recovery through 15 injected interruptions on the model-proposed stream.
+
 ---
 
 ## Interpretation
@@ -83,6 +103,7 @@ Verdict: **H1 + H2 + H3 supported** — 23/23 interruptions resolved, 0 duplicat
 - **Continuity holds:** after 23 interruptions at two different failure points, the organization converges to exactly the same State (values and version) as a failure-free run.
 - **Atomicity holds:** a pending (intent-recorded, uncommitted) transition never exposed a partial State — version and values changed together on commit.
 - **Idempotency holds:** misinformed retries of already-committed operations were blocked (10 cases); no operation_id was committed twice.
+- **Real-model run confirms the same guarantees with model-proposed transitions:** the deepseek proposer produced the correct key/value 40/40 times, and the coordinator still converged identically (clean vs failure), with zero intermediate states and zero duplicates across 15 injected interruptions. The guarantees live in the coordinator, not in the executor.
 - **Scope of validity:** single-coordinator, single-organization model. Distributed consensus, network partitions and replica recovery (RFC-003 §36) are out of scope for this benchmark.
 - **Negative results are valid** (benchmark/README.md, Principle 2).
 
