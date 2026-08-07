@@ -23,3 +23,4 @@ Thumbs.db
 *.log
 benchmark/results/raw/
 benchmark/selective-context/results/
+benchmark/cognitive-reuse/results/

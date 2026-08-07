@@ -112,6 +112,7 @@ Benchmarks SHALL measure success according to the dimensions defined in FCP-004 
 | Benchmark | Description | Status |
 |-----------|-------------|--------|
 | Selective Context | Validates RFC-007 hypothesis (Full vs Selective context) | Active |
+| Cognitive Reuse | Validates RFC-008 hypothesis (reuse + invalidation) | Active |
 | Conformance (planned) | RFC-003/004 conformance checks | Planned |
 
 ---
