@@ -833,8 +833,14 @@ Architecture
   ↓
 Protocol
   ↓
-Implementation
+RFC Hypotheses
+  ↓
+Prototype
+  ↓
+Benchmark
 ```
+
+Minimal prototypes and reference implementations live under `prototype/`, hypothesis validation benchmarks under `benchmark/`.
 
 ---
 
@@ -855,9 +861,9 @@ Contributors are encouraged to challenge assumptions with evidence.
 
 # 38. Project Status
 
-VIAL is currently in the **Foundation and Architecture Definition phase**.
+VIAL is currently in the **Foundation, Architecture and Early Validation phase**.
 
-The conceptual model is being established before implementation is treated as normative.
+The conceptual model is established. Hypothesis-driven RFCs are now validated through minimal prototypes and reproducible benchmarks before any implementation is treated as normative.
 
 Current priority:
 
@@ -868,12 +874,27 @@ Architecture
     ↓
 Protocol
     ↓
-Reference Implementation
+Hypothesis → RFC
+    ↓
+Minimal Prototype
     ↓
 Benchmark
     ↓
 Validation
+    ↓
+Revision
 ```
+
+Validated hypotheses (each with a reproducible benchmark under `benchmark/`):
+
+| RFC | Claim | Status |
+|-----|-------|--------|
+| RFC-007 | Selective context vs Full context | Hypothesis supported (token cost ratio 2.74x deterministic baseline; 17.85x with a real model) |
+| RFC-008 | Cognitive reuse with stale invalidation | Hypothesis supported (cost ratio 3.03x, reuse rate 0.67) |
+| RFC-009 | Atomicity, idempotency and recovery from failure | Hypothesis supported (23/23 interruptions resolved, 0 duplicates) |
+| RFC-010 | Token-minimal policy diverges from total-cost-minimal; Deterministic First | Hypothesis supported (Deterministic First reproduces the cost optimum, ~26% below reason-everything) |
+
+Workloads and harnesses are versioned for reproducibility; run artifacts are kept locally under `benchmark/<name>/results/` and excluded from version control. Results for RFC-007 were also validated with a real model (`opencode/deepseek-v4-flash-free`).
 
 ---
 
