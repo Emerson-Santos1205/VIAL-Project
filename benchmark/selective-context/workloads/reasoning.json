@@ -1409,7 +1409,7 @@
   "tasks": [
     {
       "id": "R00000",
-      "prompt": "Based on the organizational facts provided, answer whether the statement is true: 'The value referenced in entry k_00041 meets or exceeds the bound 136.'",
+      "prompt": "Based on the organizational facts provided, answer whether the statement is true: 'The value referenced in entry k_00041 meets or exceeds the bound 3872.'",
       "required": [
         "domain_1"
       ],
@@ -1445,7 +1445,7 @@
     },
     {
       "id": "R00004",
-      "prompt": "Based on the organizational facts provided, answer whether the statement is true: 'The value referenced in entry k_00149 meets or exceeds the bound 128.'",
+      "prompt": "Based on the organizational facts provided, answer whether the statement is true: 'The value referenced in entry k_00149 meets or exceeds the bound 1633.'",
       "required": [
         "domain_9"
       ],
@@ -1454,7 +1454,7 @@
     },
     {
       "id": "R00005",
-      "prompt": "Based on the organizational facts provided, answer whether the statement is true: 'The value referenced in entry k_00032 meets or exceeds the bound 76.'",
+      "prompt": "Based on the organizational facts provided, answer whether the statement is true: 'The value referenced in entry k_00032 meets or exceeds the bound 853.'",
       "required": [
         "domain_12"
       ],
@@ -1499,7 +1499,7 @@
     },
     {
       "id": "R00010",
-      "prompt": "Based on the organizational facts provided, answer whether the statement is true: 'The value referenced in entry k_00041 meets or exceeds the bound 112.'",
+      "prompt": "Based on the organizational facts provided, answer whether the statement is true: 'The value referenced in entry k_00041 meets or exceeds the bound 3848.'",
       "required": [
         "domain_1"
       ],
@@ -1589,7 +1589,7 @@
     },
     {
       "id": "R00020",
-      "prompt": "Based on the organizational facts provided, answer whether the statement is true: 'The value referenced in entry k_00197 meets or exceeds the bound 58.'",
+      "prompt": "Based on the organizational facts provided, answer whether the statement is true: 'The value referenced in entry k_00197 meets or exceeds the bound 369.'",
       "required": [
         "domain_17"
       ],
@@ -1598,7 +1598,7 @@
     },
     {
       "id": "R00021",
-      "prompt": "Based on the organizational facts provided, answer whether the statement is true: 'The value referenced in entry k_00130 meets or exceeds the bound 65.'",
+      "prompt": "Based on the organizational facts provided, answer whether the statement is true: 'The value referenced in entry k_00130 meets or exceeds the bound 1573.'",
       "required": [
         "domain_10"
       ],
@@ -1634,7 +1634,7 @@
     },
     {
       "id": "R00025",
-      "prompt": "Based on the organizational facts provided, answer whether the statement is true: 'The value referenced in entry k_00088 meets or exceeds the bound 121.'",
+      "prompt": "Based on the organizational facts provided, answer whether the statement is true: 'The value referenced in entry k_00088 meets or exceeds the bound 2032.'",
       "required": [
         "domain_8"
       ],
@@ -1643,7 +1643,7 @@
     },
     {
       "id": "R00026",
-      "prompt": "Based on the organizational facts provided, answer whether the statement is true: 'The value referenced in entry k_00111 meets or exceeds the bound 133.'",
+      "prompt": "Based on the organizational facts provided, answer whether the statement is true: 'The value referenced in entry k_00111 meets or exceeds the bound 635.'",
       "required": [
         "domain_11"
       ],
@@ -1670,7 +1670,7 @@
     },
     {
       "id": "R00029",
-      "prompt": "Based on the organizational facts provided, answer whether the statement is true: 'The value referenced in entry k_00111 meets or exceeds the bound 65.'",
+      "prompt": "Based on the organizational facts provided, answer whether the statement is true: 'The value referenced in entry k_00111 meets or exceeds the bound 567.'",
       "required": [
         "domain_11"
       ],
@@ -1715,7 +1715,7 @@
     },
     {
       "id": "R00034",
-      "prompt": "Based on the organizational facts provided, answer whether the statement is true: 'The value referenced in entry k_00031 meets or exceeds the bound 120.'",
+      "prompt": "Based on the organizational facts provided, answer whether the statement is true: 'The value referenced in entry k_00031 meets or exceeds the bound 723.'",
       "required": [
         "domain_11"
       ],
@@ -1733,7 +1733,7 @@
     },
     {
       "id": "R00036",
-      "prompt": "Based on the organizational facts provided, answer whether the statement is true: 'The value referenced in entry k_00083 meets or exceeds the bound 81.'",
+      "prompt": "Based on the organizational facts provided, answer whether the statement is true: 'The value referenced in entry k_00083 meets or exceeds the bound 4449.'",
       "required": [
         "domain_3"
       ],
@@ -1751,7 +1751,7 @@
     },
     {
       "id": "R00038",
-      "prompt": "Based on the organizational facts provided, answer whether the statement is true: 'The value referenced in entry k_00170 meets or exceeds the bound 144.'",
+      "prompt": "Based on the organizational facts provided, answer whether the statement is true: 'The value referenced in entry k_00170 meets or exceeds the bound 2269.'",
       "required": [
         "domain_10"
       ],
@@ -1760,7 +1760,7 @@
     },
     {
       "id": "R00039",
-      "prompt": "Based on the organizational facts provided, answer whether the statement is true: 'The value referenced in entry k_00191 meets or exceeds the bound 140.'",
+      "prompt": "Based on the organizational facts provided, answer whether the statement is true: 'The value referenced in entry k_00191 meets or exceeds the bound 1815.'",
       "required": [
         "domain_11"
       ],
@@ -1769,7 +1769,7 @@
     },
     {
       "id": "R00040",
-      "prompt": "Based on the organizational facts provided, answer whether the statement is true: 'The value referenced in entry k_00145 meets or exceeds the bound 64.'",
+      "prompt": "Based on the organizational facts provided, answer whether the statement is true: 'The value referenced in entry k_00145 meets or exceeds the bound 3741.'",
       "required": [
         "domain_5"
       ],
@@ -1859,7 +1859,7 @@
     },
     {
       "id": "R00050",
-      "prompt": "Based on the organizational facts provided, answer whether the statement is true: 'The value referenced in entry k_00050 meets or exceeds the bound 97.'",
+      "prompt": "Based on the organizational facts provided, answer whether the statement is true: 'The value referenced in entry k_00050 meets or exceeds the bound 4136.'",
       "required": [
         "domain_10"
       ],
@@ -1940,7 +1940,7 @@
     },
     {
       "id": "R00059",
-      "prompt": "Based on the organizational facts provided, answer whether the statement is true: 'The value referenced in entry k_00132 meets or exceeds the bound 64.'",
+      "prompt": "Based on the organizational facts provided, answer whether the statement is true: 'The value referenced in entry k_00132 meets or exceeds the bound 3470.'",
       "required": [
         "domain_12"
       ],
@@ -1958,7 +1958,7 @@
     },
     {
       "id": "R00061",
-      "prompt": "Based on the organizational facts provided, answer whether the statement is true: 'The value referenced in entry k_00116 meets or exceeds the bound 70.'",
+      "prompt": "Based on the organizational facts provided, answer whether the statement is true: 'The value referenced in entry k_00116 meets or exceeds the bound 4437.'",
       "required": [
         "domain_16"
       ],
@@ -1967,7 +1967,7 @@
     },
     {
       "id": "R00062",
-      "prompt": "Based on the organizational facts provided, answer whether the statement is true: 'The value referenced in entry k_00170 meets or exceeds the bound 136.'",
+      "prompt": "Based on the organizational facts provided, answer whether the statement is true: 'The value referenced in entry k_00170 meets or exceeds the bound 2261.'",
       "required": [
         "domain_10"
       ],
@@ -2003,7 +2003,7 @@
     },
     {
       "id": "R00066",
-      "prompt": "Based on the organizational facts provided, answer whether the statement is true: 'The value referenced in entry k_00114 meets or exceeds the bound 148.'",
+      "prompt": "Based on the organizational facts provided, answer whether the statement is true: 'The value referenced in entry k_00114 meets or exceeds the bound 2379.'",
       "required": [
         "domain_14"
       ],
@@ -2075,7 +2075,7 @@
     },
     {
       "id": "R00074",
-      "prompt": "Based on the organizational facts provided, answer whether the statement is true: 'The value referenced in entry k_00098 meets or exceeds the bound 146.'",
+      "prompt": "Based on the organizational facts provided, answer whether the statement is true: 'The value referenced in entry k_00098 meets or exceeds the bound 4513.'",
       "required": [
         "domain_18"
       ],
@@ -2102,7 +2102,7 @@
     },
     {
       "id": "R00077",
-      "prompt": "Based on the organizational facts provided, answer whether the statement is true: 'The value referenced in entry k_00015 meets or exceeds the bound 73.'",
+      "prompt": "Based on the organizational facts provided, answer whether the statement is true: 'The value referenced in entry k_00015 meets or exceeds the bound 3485.'",
       "required": [
         "domain_15"
       ],
@@ -2156,7 +2156,7 @@
     },
     {
       "id": "R00083",
-      "prompt": "Based on the organizational facts provided, answer whether the statement is true: 'The value referenced in entry k_00139 meets or exceeds the bound 115.'",
+      "prompt": "Based on the organizational facts provided, answer whether the statement is true: 'The value referenced in entry k_00139 meets or exceeds the bound 1427.'",
       "required": [
         "domain_19"
       ],
@@ -2201,7 +2201,7 @@
     },
     {
       "id": "R00088",
-      "prompt": "Based on the organizational facts provided, answer whether the statement is true: 'The value referenced in entry k_00032 meets or exceeds the bound 135.'",
+      "prompt": "Based on the organizational facts provided, answer whether the statement is true: 'The value referenced in entry k_00032 meets or exceeds the bound 912.'",
       "required": [
         "domain_12"
       ],
@@ -2246,7 +2246,7 @@
     },
     {
       "id": "R00093",
-      "prompt": "Based on the organizational facts provided, answer whether the statement is true: 'The value referenced in entry k_00083 meets or exceeds the bound 79.'",
+      "prompt": "Based on the organizational facts provided, answer whether the statement is true: 'The value referenced in entry k_00083 meets or exceeds the bound 4447.'",
       "required": [
         "domain_3"
       ],
@@ -2300,7 +2300,7 @@
     },
     {
       "id": "R00099",
-      "prompt": "Based on the organizational facts provided, answer whether the statement is true: 'The value referenced in entry k_00199 meets or exceeds the bound 103.'",
+      "prompt": "Based on the organizational facts provided, answer whether the statement is true: 'The value referenced in entry k_00199 meets or exceeds the bound 2198.'",
       "required": [
         "domain_19"
       ],

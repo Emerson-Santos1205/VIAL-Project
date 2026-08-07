@@ -87,6 +87,23 @@ python benchmark/selective-context/run_llm.py --workload workloads/reasoning.jso
 
 The reasoning workload uses non-deterministic tasks (True/False over text entries), which is the setting where quality parity is actually meaningful. `--limit` caps the number of tasks to control cost on the first run.
 
+### Real-model validation via opencode CLI
+
+Uses the installed opencode CLI as the executor backend (no external API key needed).
+
+```text
+python benchmark/selective-context/run_opencode.py --workload workloads/reasoning.json --limit 20
+```
+
+Model override:
+
+```text
+python benchmark/selective-context/run_opencode.py --model opencode/deepseek-v4-flash-free --limit 10
+```
+
+`OPENCODE_MODEL` env var also works. The executor runs `opencode run --format json`
+per task and parses model text and token counts from the event stream.
+
 ---
 
 ## Current Results
@@ -102,6 +119,25 @@ Run: 20260807-144626 (reproducible; identical metrics on re-run)
 | mean_quality | 1.0 | 1.0 |
 
 Verdict: **H1 supported** — cost_ratio 2.74 >= 2.0, quality_delta 0.0.
+
+### Real-model (opencode CLI, deepseek-v4-flash-free)
+
+Run: 20260807-152930 (20 reasoning tasks, workload `reasoning.json`)
+
+| Metric | Full Context | Selective Context |
+|--------|--------------|-------------------|
+| total_cost (tokens sent) | 121,635 | 6,814 |
+| mean_quality | 1.0 | 0.95 |
+| total_model_tokens (opencode) | 297,958 | 170,759 |
+
+Verdict: **H1 supported** — cost_ratio 17.85 >= 2.0, quality 0.95 >= floor 0.90.
+
+**Honest reporting (RFC-007 §2.6):** one task (R00012) failed only in selective mode.
+Ground truth is correct (`k_00085 = 2705 < 2732` → false); the model answered true,
+apparently reading a sibling entry in the same domain projection. This is a genuine
+model misread within a coarse-grained (10-entry) projection — a quality signal, not a
+workload artifact. The error stays within the 10% tolerance, so H1 remains supported,
+and it is preserved in `results/opencode-20260807-152930/`.
 
 ### Scaling sweep (seed 42, 200 tasks/size)
 
@@ -120,9 +156,10 @@ Key observation: **Selective Context cost is ~constant (~105 tokens/task) regard
 
 ## Interpretation
 
-- The selective projection reduced token cost by ~64% on the baseline workload and by up to 4 orders of magnitude at 100,000 fields, with identical quality.
-- **Scope of validity:** results so far are deterministic (rule-based executor, no LLM). They validate the mechanism and the scaling prediction, not real-model generalization.
-- **Next step:** an LLM executor (real model) is required to validate quality parity on non-deterministic reasoning tasks.
+- The selective projection reduced token cost by ~64% on the baseline workload and by up to 4 orders of magnitude at 100,000 fields, with identical quality (deterministic executor).
+- **Real-model validation** (opencode CLI, deepseek-v4-flash-free) confirms cost reduction (~18x fewer context tokens) with quality parity within tolerance (1.0 vs 0.95) on a 20-task reasoning workload.
+- **Scope of validity:** deterministic results validate the mechanism and scaling prediction. The real-model result is a single 20-task run on one model and does not establish generalization across models or task types.
+- **Next step:** run larger task samples and additional models to tighten the quality estimate and characterize selective-context misreads (the R00012 case).
 - **Negative results are valid** (benchmark/README.md, Principle 2): any run that fails `cost_ratio` or `quality_floor` is reported and must not be discarded.
 
 ---

@@ -18,6 +18,7 @@ from __future__ import annotations
 import argparse
 import json
 import random
+import re
 from pathlib import Path
 
 FACT_TEMPLATES = [
@@ -55,10 +56,9 @@ def generate(n_entries: int, n_tasks: int, seed: int) -> dict:
         # pick one entry whose value contains a number we can ask about
         idx = rng.randrange(len(entries))
         e = entries[idx]
-        numbers = [int(w) for w in e["value"].split() if w.lstrip("-").isdigit()]
-        if not numbers:
-            numbers = [100]
-        base = numbers[-1]
+        m = re.search(r"(\d+)", e["value"])
+        assert m, f"entry {e['key']} has no number: {e['value']!r}"
+        base = int(m.group(1))
         # ask whether the value meets a bound; ~half true, half false
         if rng.random() < 0.5:
             bound = max(0, base - rng.randint(1, 50))
@@ -66,6 +66,7 @@ def generate(n_entries: int, n_tasks: int, seed: int) -> dict:
         else:
             bound = base + rng.randint(1, 50)
             expected = False
+        assert (base >= bound) == expected, "ground truth inconsistency"
         tasks.append({
             "id": f"R{i:05d}",
             "prompt": (f"Based on the organizational facts provided, answer whether the "
