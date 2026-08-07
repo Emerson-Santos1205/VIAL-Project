@@ -1,0 +1,1440 @@
+{
+  "name": "economic-cost-bench",
+  "org_id": "eco-org",
+  "seed": 42,
+  "quality_tolerance": 0.1,
+  "price_table": {
+    "tokens_per_1k": 0.0002,
+    "inference_input_per_1k": 0.0015,
+    "inference_output_per_1k": 0.002,
+    "latency_per_second": 0.001,
+    "retrieval_per_op": 0.0001,
+    "construction_per_context": 0.0002,
+    "validation_per_op": 0.0003
+  },
+  "tier_order": [
+    "deterministic",
+    "flash",
+    "advanced"
+  ],
+  "operations": [
+    {
+      "capable_tiers": [
+        "flash",
+        "advanced"
+      ],
+      "tier_tokens": {
+        "flash": 447,
+        "advanced": 106
+      },
+      "tier_multipliers": {
+        "flash": 1.0,
+        "advanced": 6.0
+      },
+      "retrievals": 1,
+      "validations": 1,
+      "output_tokens": 44,
+      "id": "op_0000",
+      "deterministic_solvable": false
+    },
+    {
+      "id": "op_0001",
+      "deterministic_solvable": true,
+      "capable_tiers": [
+        "deterministic"
+      ],
+      "tier_tokens": {
+        "deterministic": 66
+      },
+      "tier_multipliers": {
+        "deterministic": 0.0
+      },
+      "retrievals": 0,
+      "validations": 1,
+      "output_tokens": 5
+    },
+    {
+      "capable_tiers": [
+        "flash",
+        "advanced"
+      ],
+      "tier_tokens": {
+        "flash": 430,
+        "advanced": 152
+      },
+      "tier_multipliers": {
+        "flash": 1.0,
+        "advanced": 6.0
+      },
+      "retrievals": 3,
+      "validations": 1,
+      "output_tokens": 32,
+      "id": "op_0002",
+      "deterministic_solvable": false
+    },
+    {
+      "id": "op_0003",
+      "deterministic_solvable": true,
+      "capable_tiers": [
+        "deterministic"
+      ],
+      "tier_tokens": {
+        "deterministic": 73
+      },
+      "tier_multipliers": {
+        "deterministic": 0.0
+      },
+      "retrievals": 0,
+      "validations": 1,
+      "output_tokens": 5
+    },
+    {
+      "id": "op_0004",
+      "deterministic_solvable": true,
+      "capable_tiers": [
+        "deterministic"
+      ],
+      "tier_tokens": {
+        "deterministic": 98
+      },
+      "tier_multipliers": {
+        "deterministic": 0.0
+      },
+      "retrievals": 0,
+      "validations": 1,
+      "output_tokens": 5
+    },
+    {
+      "id": "op_0005",
+      "deterministic_solvable": true,
+      "capable_tiers": [
+        "deterministic"
+      ],
+      "tier_tokens": {
+        "deterministic": 72
+      },
+      "tier_multipliers": {
+        "deterministic": 0.0
+      },
+      "retrievals": 0,
+      "validations": 1,
+      "output_tokens": 5
+    },
+    {
+      "capable_tiers": [
+        "flash",
+        "advanced"
+      ],
+      "tier_tokens": {
+        "flash": 508,
+        "advanced": 183
+      },
+      "tier_multipliers": {
+        "flash": 1.0,
+        "advanced": 6.0
+      },
+      "retrievals": 1,
+      "validations": 1,
+      "output_tokens": 58,
+      "id": "op_0006",
+      "deterministic_solvable": false
+    },
+    {
+      "capable_tiers": [
+        "flash",
+        "advanced"
+      ],
+      "tier_tokens": {
+        "flash": 447,
+        "advanced": 110
+      },
+      "tier_multipliers": {
+        "flash": 1.0,
+        "advanced": 6.0
+      },
+      "retrievals": 3,
+      "validations": 1,
+      "output_tokens": 51,
+      "id": "op_0007",
+      "deterministic_solvable": false
+    },
+    {
+      "id": "op_0008",
+      "deterministic_solvable": true,
+      "capable_tiers": [
+        "deterministic"
+      ],
+      "tier_tokens": {
+        "deterministic": 73
+      },
+      "tier_multipliers": {
+        "deterministic": 0.0
+      },
+      "retrievals": 0,
+      "validations": 1,
+      "output_tokens": 5
+    },
+    {
+      "capable_tiers": [
+        "flash",
+        "advanced"
+      ],
+      "tier_tokens": {
+        "flash": 406,
+        "advanced": 158
+      },
+      "tier_multipliers": {
+        "flash": 1.0,
+        "advanced": 6.0
+      },
+      "retrievals": 3,
+      "validations": 1,
+      "output_tokens": 36,
+      "id": "op_0009",
+      "deterministic_solvable": false
+    },
+    {
+      "id": "op_0010",
+      "deterministic_solvable": true,
+      "capable_tiers": [
+        "deterministic"
+      ],
+      "tier_tokens": {
+        "deterministic": 82
+      },
+      "tier_multipliers": {
+        "deterministic": 0.0
+      },
+      "retrievals": 0,
+      "validations": 1,
+      "output_tokens": 5
+    },
+    {
+      "capable_tiers": [
+        "flash",
+        "advanced"
+      ],
+      "tier_tokens": {
+        "flash": 448,
+        "advanced": 96
+      },
+      "tier_multipliers": {
+        "flash": 1.0,
+        "advanced": 6.0
+      },
+      "retrievals": 0,
+      "validations": 1,
+      "output_tokens": 54,
+      "id": "op_0011",
+      "deterministic_solvable": false
+    },
+    {
+      "id": "op_0012",
+      "deterministic_solvable": true,
+      "capable_tiers": [
+        "deterministic"
+      ],
+      "tier_tokens": {
+        "deterministic": 78
+      },
+      "tier_multipliers": {
+        "deterministic": 0.0
+      },
+      "retrievals": 0,
+      "validations": 1,
+      "output_tokens": 5
+    },
+    {
+      "capable_tiers": [
+        "flash",
+        "advanced"
+      ],
+      "tier_tokens": {
+        "flash": 475,
+        "advanced": 163
+      },
+      "tier_multipliers": {
+        "flash": 1.0,
+        "advanced": 6.0
+      },
+      "retrievals": 1,
+      "validations": 1,
+      "output_tokens": 75,
+      "id": "op_0013",
+      "deterministic_solvable": false
+    },
+    {
+      "id": "op_0014",
+      "deterministic_solvable": true,
+      "capable_tiers": [
+        "deterministic"
+      ],
+      "tier_tokens": {
+        "deterministic": 102
+      },
+      "tier_multipliers": {
+        "deterministic": 0.0
+      },
+      "retrievals": 0,
+      "validations": 1,
+      "output_tokens": 5
+    },
+    {
+      "id": "op_0015",
+      "deterministic_solvable": true,
+      "capable_tiers": [
+        "deterministic"
+      ],
+      "tier_tokens": {
+        "deterministic": 78
+      },
+      "tier_multipliers": {
+        "deterministic": 0.0
+      },
+      "retrievals": 0,
+      "validations": 1,
+      "output_tokens": 5
+    },
+    {
+      "capable_tiers": [
+        "flash",
+        "advanced"
+      ],
+      "tier_tokens": {
+        "flash": 391,
+        "advanced": 125
+      },
+      "tier_multipliers": {
+        "flash": 1.0,
+        "advanced": 6.0
+      },
+      "retrievals": 2,
+      "validations": 1,
+      "output_tokens": 59,
+      "id": "op_0016",
+      "deterministic_solvable": false
+    },
+    {
+      "capable_tiers": [
+        "flash",
+        "advanced"
+      ],
+      "tier_tokens": {
+        "flash": 416,
+        "advanced": 143
+      },
+      "tier_multipliers": {
+        "flash": 1.0,
+        "advanced": 6.0
+      },
+      "retrievals": 2,
+      "validations": 1,
+      "output_tokens": 43,
+      "id": "op_0017",
+      "deterministic_solvable": false
+    },
+    {
+      "capable_tiers": [
+        "flash",
+        "advanced"
+      ],
+      "tier_tokens": {
+        "flash": 526,
+        "advanced": 205
+      },
+      "tier_multipliers": {
+        "flash": 1.0,
+        "advanced": 6.0
+      },
+      "retrievals": 1,
+      "validations": 1,
+      "output_tokens": 64,
+      "id": "op_0018",
+      "deterministic_solvable": false
+    },
+    {
+      "capable_tiers": [
+        "flash",
+        "advanced"
+      ],
+      "tier_tokens": {
+        "flash": 429,
+        "advanced": 116
+      },
+      "tier_multipliers": {
+        "flash": 1.0,
+        "advanced": 6.0
+      },
+      "retrievals": 2,
+      "validations": 1,
+      "output_tokens": 70,
+      "id": "op_0019",
+      "deterministic_solvable": false
+    },
+    {
+      "capable_tiers": [
+        "flash",
+        "advanced"
+      ],
+      "tier_tokens": {
+        "flash": 465,
+        "advanced": 128
+      },
+      "tier_multipliers": {
+        "flash": 1.0,
+        "advanced": 6.0
+      },
+      "retrievals": 0,
+      "validations": 1,
+      "output_tokens": 44,
+      "id": "op_0020",
+      "deterministic_solvable": false
+    },
+    {
+      "capable_tiers": [
+        "flash",
+        "advanced"
+      ],
+      "tier_tokens": {
+        "flash": 441,
+        "advanced": 143
+      },
+      "tier_multipliers": {
+        "flash": 1.0,
+        "advanced": 6.0
+      },
+      "retrievals": 0,
+      "validations": 1,
+      "output_tokens": 43,
+      "id": "op_0021",
+      "deterministic_solvable": false
+    },
+    {
+      "capable_tiers": [
+        "flash",
+        "advanced"
+      ],
+      "tier_tokens": {
+        "flash": 513,
+        "advanced": 172
+      },
+      "tier_multipliers": {
+        "flash": 1.0,
+        "advanced": 6.0
+      },
+      "retrievals": 1,
+      "validations": 1,
+      "output_tokens": 71,
+      "id": "op_0022",
+      "deterministic_solvable": false
+    },
+    {
+      "id": "op_0023",
+      "deterministic_solvable": true,
+      "capable_tiers": [
+        "deterministic"
+      ],
+      "tier_tokens": {
+        "deterministic": 116
+      },
+      "tier_multipliers": {
+        "deterministic": 0.0
+      },
+      "retrievals": 0,
+      "validations": 1,
+      "output_tokens": 5
+    },
+    {
+      "capable_tiers": [
+        "flash",
+        "advanced"
+      ],
+      "tier_tokens": {
+        "flash": 426,
+        "advanced": 162
+      },
+      "tier_multipliers": {
+        "flash": 1.0,
+        "advanced": 6.0
+      },
+      "retrievals": 1,
+      "validations": 1,
+      "output_tokens": 45,
+      "id": "op_0024",
+      "deterministic_solvable": false
+    },
+    {
+      "capable_tiers": [
+        "flash",
+        "advanced"
+      ],
+      "tier_tokens": {
+        "flash": 451,
+        "advanced": 151
+      },
+      "tier_multipliers": {
+        "flash": 1.0,
+        "advanced": 6.0
+      },
+      "retrievals": 3,
+      "validations": 1,
+      "output_tokens": 67,
+      "id": "op_0025",
+      "deterministic_solvable": false
+    },
+    {
+      "id": "op_0026",
+      "deterministic_solvable": true,
+      "capable_tiers": [
+        "deterministic"
+      ],
+      "tier_tokens": {
+        "deterministic": 74
+      },
+      "tier_multipliers": {
+        "deterministic": 0.0
+      },
+      "retrievals": 0,
+      "validations": 1,
+      "output_tokens": 5
+    },
+    {
+      "capable_tiers": [
+        "flash",
+        "advanced"
+      ],
+      "tier_tokens": {
+        "flash": 432,
+        "advanced": 106
+      },
+      "tier_multipliers": {
+        "flash": 1.0,
+        "advanced": 6.0
+      },
+      "retrievals": 0,
+      "validations": 1,
+      "output_tokens": 78,
+      "id": "op_0027",
+      "deterministic_solvable": false
+    },
+    {
+      "id": "op_0028",
+      "deterministic_solvable": true,
+      "capable_tiers": [
+        "deterministic"
+      ],
+      "tier_tokens": {
+        "deterministic": 67
+      },
+      "tier_multipliers": {
+        "deterministic": 0.0
+      },
+      "retrievals": 0,
+      "validations": 1,
+      "output_tokens": 5
+    },
+    {
+      "id": "op_0029",
+      "deterministic_solvable": true,
+      "capable_tiers": [
+        "deterministic"
+      ],
+      "tier_tokens": {
+        "deterministic": 70
+      },
+      "tier_multipliers": {
+        "deterministic": 0.0
+      },
+      "retrievals": 0,
+      "validations": 1,
+      "output_tokens": 5
+    },
+    {
+      "capable_tiers": [
+        "flash",
+        "advanced"
+      ],
+      "tier_tokens": {
+        "flash": 480,
+        "advanced": 170
+      },
+      "tier_multipliers": {
+        "flash": 1.0,
+        "advanced": 6.0
+      },
+      "retrievals": 3,
+      "validations": 1,
+      "output_tokens": 54,
+      "id": "op_0030",
+      "deterministic_solvable": false
+    },
+    {
+      "capable_tiers": [
+        "flash",
+        "advanced"
+      ],
+      "tier_tokens": {
+        "flash": 476,
+        "advanced": 163
+      },
+      "tier_multipliers": {
+        "flash": 1.0,
+        "advanced": 6.0
+      },
+      "retrievals": 0,
+      "validations": 1,
+      "output_tokens": 73,
+      "id": "op_0031",
+      "deterministic_solvable": false
+    },
+    {
+      "capable_tiers": [
+        "flash",
+        "advanced"
+      ],
+      "tier_tokens": {
+        "flash": 505,
+        "advanced": 190
+      },
+      "tier_multipliers": {
+        "flash": 1.0,
+        "advanced": 6.0
+      },
+      "retrievals": 2,
+      "validations": 1,
+      "output_tokens": 37,
+      "id": "op_0032",
+      "deterministic_solvable": false
+    },
+    {
+      "id": "op_0033",
+      "deterministic_solvable": true,
+      "capable_tiers": [
+        "deterministic"
+      ],
+      "tier_tokens": {
+        "deterministic": 70
+      },
+      "tier_multipliers": {
+        "deterministic": 0.0
+      },
+      "retrievals": 0,
+      "validations": 1,
+      "output_tokens": 5
+    },
+    {
+      "id": "op_0034",
+      "deterministic_solvable": true,
+      "capable_tiers": [
+        "deterministic"
+      ],
+      "tier_tokens": {
+        "deterministic": 106
+      },
+      "tier_multipliers": {
+        "deterministic": 0.0
+      },
+      "retrievals": 0,
+      "validations": 1,
+      "output_tokens": 5
+    },
+    {
+      "capable_tiers": [
+        "flash",
+        "advanced"
+      ],
+      "tier_tokens": {
+        "flash": 447,
+        "advanced": 142
+      },
+      "tier_multipliers": {
+        "flash": 1.0,
+        "advanced": 6.0
+      },
+      "retrievals": 0,
+      "validations": 1,
+      "output_tokens": 70,
+      "id": "op_0035",
+      "deterministic_solvable": false
+    },
+    {
+      "id": "op_0036",
+      "deterministic_solvable": true,
+      "capable_tiers": [
+        "deterministic"
+      ],
+      "tier_tokens": {
+        "deterministic": 100
+      },
+      "tier_multipliers": {
+        "deterministic": 0.0
+      },
+      "retrievals": 0,
+      "validations": 1,
+      "output_tokens": 5
+    },
+    {
+      "capable_tiers": [
+        "flash",
+        "advanced"
+      ],
+      "tier_tokens": {
+        "flash": 394,
+        "advanced": 122
+      },
+      "tier_multipliers": {
+        "flash": 1.0,
+        "advanced": 6.0
+      },
+      "retrievals": 1,
+      "validations": 1,
+      "output_tokens": 64,
+      "id": "op_0037",
+      "deterministic_solvable": false
+    },
+    {
+      "capable_tiers": [
+        "flash",
+        "advanced"
+      ],
+      "tier_tokens": {
+        "flash": 417,
+        "advanced": 149
+      },
+      "tier_multipliers": {
+        "flash": 1.0,
+        "advanced": 6.0
+      },
+      "retrievals": 2,
+      "validations": 1,
+      "output_tokens": 61,
+      "id": "op_0038",
+      "deterministic_solvable": false
+    },
+    {
+      "id": "op_0039",
+      "deterministic_solvable": true,
+      "capable_tiers": [
+        "deterministic"
+      ],
+      "tier_tokens": {
+        "deterministic": 119
+      },
+      "tier_multipliers": {
+        "deterministic": 0.0
+      },
+      "retrievals": 0,
+      "validations": 1,
+      "output_tokens": 5
+    },
+    {
+      "id": "op_0040",
+      "deterministic_solvable": true,
+      "capable_tiers": [
+        "deterministic"
+      ],
+      "tier_tokens": {
+        "deterministic": 113
+      },
+      "tier_multipliers": {
+        "deterministic": 0.0
+      },
+      "retrievals": 0,
+      "validations": 1,
+      "output_tokens": 5
+    },
+    {
+      "capable_tiers": [
+        "flash",
+        "advanced"
+      ],
+      "tier_tokens": {
+        "flash": 387,
+        "advanced": 135
+      },
+      "tier_multipliers": {
+        "flash": 1.0,
+        "advanced": 6.0
+      },
+      "retrievals": 0,
+      "validations": 1,
+      "output_tokens": 35,
+      "id": "op_0041",
+      "deterministic_solvable": false
+    },
+    {
+      "capable_tiers": [
+        "flash",
+        "advanced"
+      ],
+      "tier_tokens": {
+        "flash": 455,
+        "advanced": 94
+      },
+      "tier_multipliers": {
+        "flash": 1.0,
+        "advanced": 6.0
+      },
+      "retrievals": 1,
+      "validations": 1,
+      "output_tokens": 38,
+      "id": "op_0042",
+      "deterministic_solvable": false
+    },
+    {
+      "capable_tiers": [
+        "flash",
+        "advanced"
+      ],
+      "tier_tokens": {
+        "flash": 441,
+        "advanced": 174
+      },
+      "tier_multipliers": {
+        "flash": 1.0,
+        "advanced": 6.0
+      },
+      "retrievals": 3,
+      "validations": 1,
+      "output_tokens": 43,
+      "id": "op_0043",
+      "deterministic_solvable": false
+    },
+    {
+      "capable_tiers": [
+        "flash",
+        "advanced"
+      ],
+      "tier_tokens": {
+        "flash": 539,
+        "advanced": 204
+      },
+      "tier_multipliers": {
+        "flash": 1.0,
+        "advanced": 6.0
+      },
+      "retrievals": 2,
+      "validations": 1,
+      "output_tokens": 55,
+      "id": "op_0044",
+      "deterministic_solvable": false
+    },
+    {
+      "capable_tiers": [
+        "flash",
+        "advanced"
+      ],
+      "tier_tokens": {
+        "flash": 480,
+        "advanced": 175
+      },
+      "tier_multipliers": {
+        "flash": 1.0,
+        "advanced": 6.0
+      },
+      "retrievals": 3,
+      "validations": 1,
+      "output_tokens": 37,
+      "id": "op_0045",
+      "deterministic_solvable": false
+    },
+    {
+      "id": "op_0046",
+      "deterministic_solvable": true,
+      "capable_tiers": [
+        "deterministic"
+      ],
+      "tier_tokens": {
+        "deterministic": 64
+      },
+      "tier_multipliers": {
+        "deterministic": 0.0
+      },
+      "retrievals": 0,
+      "validations": 1,
+      "output_tokens": 5
+    },
+    {
+      "id": "op_0047",
+      "deterministic_solvable": true,
+      "capable_tiers": [
+        "deterministic"
+      ],
+      "tier_tokens": {
+        "deterministic": 97
+      },
+      "tier_multipliers": {
+        "deterministic": 0.0
+      },
+      "retrievals": 0,
+      "validations": 1,
+      "output_tokens": 5
+    },
+    {
+      "capable_tiers": [
+        "flash",
+        "advanced"
+      ],
+      "tier_tokens": {
+        "flash": 453,
+        "advanced": 195
+      },
+      "tier_multipliers": {
+        "flash": 1.0,
+        "advanced": 6.0
+      },
+      "retrievals": 0,
+      "validations": 1,
+      "output_tokens": 75,
+      "id": "op_0048",
+      "deterministic_solvable": false
+    },
+    {
+      "capable_tiers": [
+        "flash",
+        "advanced"
+      ],
+      "tier_tokens": {
+        "flash": 387,
+        "advanced": 147
+      },
+      "tier_multipliers": {
+        "flash": 1.0,
+        "advanced": 6.0
+      },
+      "retrievals": 2,
+      "validations": 1,
+      "output_tokens": 34,
+      "id": "op_0049",
+      "deterministic_solvable": false
+    },
+    {
+      "capable_tiers": [
+        "flash",
+        "advanced"
+      ],
+      "tier_tokens": {
+        "flash": 470,
+        "advanced": 124
+      },
+      "tier_multipliers": {
+        "flash": 1.0,
+        "advanced": 6.0
+      },
+      "retrievals": 1,
+      "validations": 1,
+      "output_tokens": 64,
+      "id": "op_0050",
+      "deterministic_solvable": false
+    },
+    {
+      "id": "op_0051",
+      "deterministic_solvable": true,
+      "capable_tiers": [
+        "deterministic"
+      ],
+      "tier_tokens": {
+        "deterministic": 119
+      },
+      "tier_multipliers": {
+        "deterministic": 0.0
+      },
+      "retrievals": 0,
+      "validations": 1,
+      "output_tokens": 5
+    },
+    {
+      "capable_tiers": [
+        "flash",
+        "advanced"
+      ],
+      "tier_tokens": {
+        "flash": 483,
+        "advanced": 178
+      },
+      "tier_multipliers": {
+        "flash": 1.0,
+        "advanced": 6.0
+      },
+      "retrievals": 3,
+      "validations": 1,
+      "output_tokens": 56,
+      "id": "op_0052",
+      "deterministic_solvable": false
+    },
+    {
+      "id": "op_0053",
+      "deterministic_solvable": true,
+      "capable_tiers": [
+        "deterministic"
+      ],
+      "tier_tokens": {
+        "deterministic": 66
+      },
+      "tier_multipliers": {
+        "deterministic": 0.0
+      },
+      "retrievals": 0,
+      "validations": 1,
+      "output_tokens": 5
+    },
+    {
+      "capable_tiers": [
+        "flash",
+        "advanced"
+      ],
+      "tier_tokens": {
+        "flash": 449,
+        "advanced": 139
+      },
+      "tier_multipliers": {
+        "flash": 1.0,
+        "advanced": 6.0
+      },
+      "retrievals": 3,
+      "validations": 1,
+      "output_tokens": 76,
+      "id": "op_0054",
+      "deterministic_solvable": false
+    },
+    {
+      "id": "op_0055",
+      "deterministic_solvable": true,
+      "capable_tiers": [
+        "deterministic"
+      ],
+      "tier_tokens": {
+        "deterministic": 101
+      },
+      "tier_multipliers": {
+        "deterministic": 0.0
+      },
+      "retrievals": 0,
+      "validations": 1,
+      "output_tokens": 5
+    },
+    {
+      "capable_tiers": [
+        "flash",
+        "advanced"
+      ],
+      "tier_tokens": {
+        "flash": 369,
+        "advanced": 107
+      },
+      "tier_multipliers": {
+        "flash": 1.0,
+        "advanced": 6.0
+      },
+      "retrievals": 2,
+      "validations": 1,
+      "output_tokens": 36,
+      "id": "op_0056",
+      "deterministic_solvable": false
+    },
+    {
+      "id": "op_0057",
+      "deterministic_solvable": true,
+      "capable_tiers": [
+        "deterministic"
+      ],
+      "tier_tokens": {
+        "deterministic": 72
+      },
+      "tier_multipliers": {
+        "deterministic": 0.0
+      },
+      "retrievals": 0,
+      "validations": 1,
+      "output_tokens": 5
+    },
+    {
+      "capable_tiers": [
+        "flash",
+        "advanced"
+      ],
+      "tier_tokens": {
+        "flash": 421,
+        "advanced": 126
+      },
+      "tier_multipliers": {
+        "flash": 1.0,
+        "advanced": 6.0
+      },
+      "retrievals": 2,
+      "validations": 1,
+      "output_tokens": 59,
+      "id": "op_0058",
+      "deterministic_solvable": false
+    },
+    {
+      "id": "op_0059",
+      "deterministic_solvable": true,
+      "capable_tiers": [
+        "deterministic"
+      ],
+      "tier_tokens": {
+        "deterministic": 119
+      },
+      "tier_multipliers": {
+        "deterministic": 0.0
+      },
+      "retrievals": 0,
+      "validations": 1,
+      "output_tokens": 5
+    },
+    {
+      "id": "op_0060",
+      "deterministic_solvable": true,
+      "capable_tiers": [
+        "deterministic"
+      ],
+      "tier_tokens": {
+        "deterministic": 111
+      },
+      "tier_multipliers": {
+        "deterministic": 0.0
+      },
+      "retrievals": 0,
+      "validations": 1,
+      "output_tokens": 5
+    },
+    {
+      "capable_tiers": [
+        "flash",
+        "advanced"
+      ],
+      "tier_tokens": {
+        "flash": 432,
+        "advanced": 187
+      },
+      "tier_multipliers": {
+        "flash": 1.0,
+        "advanced": 6.0
+      },
+      "retrievals": 0,
+      "validations": 1,
+      "output_tokens": 35,
+      "id": "op_0061",
+      "deterministic_solvable": false
+    },
+    {
+      "capable_tiers": [
+        "flash",
+        "advanced"
+      ],
+      "tier_tokens": {
+        "flash": 401,
+        "advanced": 124
+      },
+      "tier_multipliers": {
+        "flash": 1.0,
+        "advanced": 6.0
+      },
+      "retrievals": 3,
+      "validations": 1,
+      "output_tokens": 60,
+      "id": "op_0062",
+      "deterministic_solvable": false
+    },
+    {
+      "id": "op_0063",
+      "deterministic_solvable": true,
+      "capable_tiers": [
+        "deterministic"
+      ],
+      "tier_tokens": {
+        "deterministic": 85
+      },
+      "tier_multipliers": {
+        "deterministic": 0.0
+      },
+      "retrievals": 0,
+      "validations": 1,
+      "output_tokens": 5
+    },
+    {
+      "capable_tiers": [
+        "flash",
+        "advanced"
+      ],
+      "tier_tokens": {
+        "flash": 419,
+        "advanced": 141
+      },
+      "tier_multipliers": {
+        "flash": 1.0,
+        "advanced": 6.0
+      },
+      "retrievals": 3,
+      "validations": 1,
+      "output_tokens": 46,
+      "id": "op_0064",
+      "deterministic_solvable": false
+    },
+    {
+      "capable_tiers": [
+        "flash",
+        "advanced"
+      ],
+      "tier_tokens": {
+        "flash": 508,
+        "advanced": 202
+      },
+      "tier_multipliers": {
+        "flash": 1.0,
+        "advanced": 6.0
+      },
+      "retrievals": 3,
+      "validations": 1,
+      "output_tokens": 74,
+      "id": "op_0065",
+      "deterministic_solvable": false
+    },
+    {
+      "capable_tiers": [
+        "flash",
+        "advanced"
+      ],
+      "tier_tokens": {
+        "flash": 521,
+        "advanced": 189
+      },
+      "tier_multipliers": {
+        "flash": 1.0,
+        "advanced": 6.0
+      },
+      "retrievals": 1,
+      "validations": 1,
+      "output_tokens": 42,
+      "id": "op_0066",
+      "deterministic_solvable": false
+    },
+    {
+      "id": "op_0067",
+      "deterministic_solvable": true,
+      "capable_tiers": [
+        "deterministic"
+      ],
+      "tier_tokens": {
+        "deterministic": 63
+      },
+      "tier_multipliers": {
+        "deterministic": 0.0
+      },
+      "retrievals": 0,
+      "validations": 1,
+      "output_tokens": 5
+    },
+    {
+      "capable_tiers": [
+        "flash",
+        "advanced"
+      ],
+      "tier_tokens": {
+        "flash": 426,
+        "advanced": 169
+      },
+      "tier_multipliers": {
+        "flash": 1.0,
+        "advanced": 6.0
+      },
+      "retrievals": 0,
+      "validations": 1,
+      "output_tokens": 33,
+      "id": "op_0068",
+      "deterministic_solvable": false
+    },
+    {
+      "capable_tiers": [
+        "flash",
+        "advanced"
+      ],
+      "tier_tokens": {
+        "flash": 481,
+        "advanced": 174
+      },
+      "tier_multipliers": {
+        "flash": 1.0,
+        "advanced": 6.0
+      },
+      "retrievals": 0,
+      "validations": 1,
+      "output_tokens": 62,
+      "id": "op_0069",
+      "deterministic_solvable": false
+    },
+    {
+      "id": "op_0070",
+      "deterministic_solvable": true,
+      "capable_tiers": [
+        "deterministic"
+      ],
+      "tier_tokens": {
+        "deterministic": 71
+      },
+      "tier_multipliers": {
+        "deterministic": 0.0
+      },
+      "retrievals": 0,
+      "validations": 1,
+      "output_tokens": 5
+    },
+    {
+      "id": "op_0071",
+      "deterministic_solvable": true,
+      "capable_tiers": [
+        "deterministic"
+      ],
+      "tier_tokens": {
+        "deterministic": 64
+      },
+      "tier_multipliers": {
+        "deterministic": 0.0
+      },
+      "retrievals": 0,
+      "validations": 1,
+      "output_tokens": 5
+    },
+    {
+      "capable_tiers": [
+        "flash",
+        "advanced"
+      ],
+      "tier_tokens": {
+        "flash": 431,
+        "advanced": 143
+      },
+      "tier_multipliers": {
+        "flash": 1.0,
+        "advanced": 6.0
+      },
+      "retrievals": 1,
+      "validations": 1,
+      "output_tokens": 67,
+      "id": "op_0072",
+      "deterministic_solvable": false
+    },
+    {
+      "capable_tiers": [
+        "flash",
+        "advanced"
+      ],
+      "tier_tokens": {
+        "flash": 439,
+        "advanced": 173
+      },
+      "tier_multipliers": {
+        "flash": 1.0,
+        "advanced": 6.0
+      },
+      "retrievals": 2,
+      "validations": 1,
+      "output_tokens": 46,
+      "id": "op_0073",
+      "deterministic_solvable": false
+    },
+    {
+      "id": "op_0074",
+      "deterministic_solvable": true,
+      "capable_tiers": [
+        "deterministic"
+      ],
+      "tier_tokens": {
+        "deterministic": 105
+      },
+      "tier_multipliers": {
+        "deterministic": 0.0
+      },
+      "retrievals": 0,
+      "validations": 1,
+      "output_tokens": 5
+    },
+    {
+      "id": "op_0075",
+      "deterministic_solvable": true,
+      "capable_tiers": [
+        "deterministic"
+      ],
+      "tier_tokens": {
+        "deterministic": 76
+      },
+      "tier_multipliers": {
+        "deterministic": 0.0
+      },
+      "retrievals": 0,
+      "validations": 1,
+      "output_tokens": 5
+    },
+    {
+      "id": "op_0076",
+      "deterministic_solvable": true,
+      "capable_tiers": [
+        "deterministic"
+      ],
+      "tier_tokens": {
+        "deterministic": 102
+      },
+      "tier_multipliers": {
+        "deterministic": 0.0
+      },
+      "retrievals": 0,
+      "validations": 1,
+      "output_tokens": 5
+    },
+    {
+      "capable_tiers": [
+        "flash",
+        "advanced"
+      ],
+      "tier_tokens": {
+        "flash": 448,
+        "advanced": 174
+      },
+      "tier_multipliers": {
+        "flash": 1.0,
+        "advanced": 6.0
+      },
+      "retrievals": 0,
+      "validations": 1,
+      "output_tokens": 59,
+      "id": "op_0077",
+      "deterministic_solvable": false
+    },
+    {
+      "capable_tiers": [
+        "flash",
+        "advanced"
+      ],
+      "tier_tokens": {
+        "flash": 434,
+        "advanced": 188
+      },
+      "tier_multipliers": {
+        "flash": 1.0,
+        "advanced": 6.0
+      },
+      "retrievals": 1,
+      "validations": 1,
+      "output_tokens": 62,
+      "id": "op_0078",
+      "deterministic_solvable": false
+    },
+    {
+      "id": "op_0079",
+      "deterministic_solvable": true,
+      "capable_tiers": [
+        "deterministic"
+      ],
+      "tier_tokens": {
+        "deterministic": 119
+      },
+      "tier_multipliers": {
+        "deterministic": 0.0
+      },
+      "retrievals": 0,
+      "validations": 1,
+      "output_tokens": 5
+    }
+  ]
+}
