@@ -1,0 +1,56 @@
+{
+  "name": "plant-7-minimal",
+  "org_id": "plant-7",
+  "seed": 42,
+  "quality_tolerance": 0.10,
+  "cost_ratio_threshold": 2.0,
+  "state_fields": [
+    {"key": "pressure",     "value": 8.2,  "relevance": ["pressure", "control", "safety"]},
+    {"key": "temperature",  "value": 72.0, "relevance": ["temperature", "control", "safety"]},
+    {"key": "mode",         "value": "AUTO", "relevance": ["mode", "control"]},
+    {"key": "ledger_balance", "value": 999, "relevance": ["ledger_balance", "finance"]},
+    {"key": "hr_headcount", "value": 42,   "relevance": ["hr_headcount", "hr"]}
+  ],
+  "tasks": [
+    {
+      "id": "T1",
+      "prompt": "Is pressure within the limit 4.0-10.0 bar?",
+      "required": ["pressure"],
+      "expected": true,
+      "op": "range",
+      "args": ["pressure", 4.0, 10.0]
+    },
+    {
+      "id": "T2",
+      "prompt": "Is temperature within the limit 60.0-80.0 C?",
+      "required": ["temperature"],
+      "expected": true,
+      "op": "range",
+      "args": ["temperature", 60.0, 80.0]
+    },
+    {
+      "id": "T3",
+      "prompt": "Is operating mode AUTO?",
+      "required": ["mode"],
+      "expected": true,
+      "op": "bool",
+      "args": ["mode"]
+    },
+    {
+      "id": "T4",
+      "prompt": "Is ledger balance non-negative?",
+      "required": ["ledger_balance"],
+      "expected": true,
+      "op": "range",
+      "args": ["ledger_balance", 0.0, 1e18]
+    },
+    {
+      "id": "T5",
+      "prompt": "Is headcount greater than zero?",
+      "required": ["hr_headcount"],
+      "expected": true,
+      "op": "range",
+      "args": ["hr_headcount", 1, 1e9]
+    }
+  ]
+}
