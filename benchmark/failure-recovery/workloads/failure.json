@@ -1,0 +1,549 @@
+{
+  "name": "failure-recovery-bench",
+  "org_id": "failure-org",
+  "seed": 42,
+  "state_fields": [
+    {
+      "key": "f_00000",
+      "value": 81,
+      "relevance": [
+        "f_00000",
+        "generic"
+      ],
+      "authority": "admin"
+    },
+    {
+      "key": "f_00001",
+      "value": 14,
+      "relevance": [
+        "f_00001",
+        "generic"
+      ],
+      "authority": "admin"
+    },
+    {
+      "key": "f_00002",
+      "value": 3,
+      "relevance": [
+        "f_00002",
+        "generic"
+      ],
+      "authority": "admin"
+    },
+    {
+      "key": "f_00003",
+      "value": 94,
+      "relevance": [
+        "f_00003",
+        "generic"
+      ],
+      "authority": "admin"
+    },
+    {
+      "key": "f_00004",
+      "value": 35,
+      "relevance": [
+        "f_00004",
+        "generic"
+      ],
+      "authority": "admin"
+    },
+    {
+      "key": "f_00005",
+      "value": 31,
+      "relevance": [
+        "f_00005",
+        "generic"
+      ],
+      "authority": "admin"
+    },
+    {
+      "key": "f_00006",
+      "value": 28,
+      "relevance": [
+        "f_00006",
+        "generic"
+      ],
+      "authority": "admin"
+    },
+    {
+      "key": "f_00007",
+      "value": 17,
+      "relevance": [
+        "f_00007",
+        "generic"
+      ],
+      "authority": "admin"
+    },
+    {
+      "key": "f_00008",
+      "value": 94,
+      "relevance": [
+        "f_00008",
+        "generic"
+      ],
+      "authority": "admin"
+    },
+    {
+      "key": "f_00009",
+      "value": 13,
+      "relevance": [
+        "f_00009",
+        "generic"
+      ],
+      "authority": "admin"
+    },
+    {
+      "key": "f_00010",
+      "value": 86,
+      "relevance": [
+        "f_00010",
+        "generic"
+      ],
+      "authority": "admin"
+    },
+    {
+      "key": "f_00011",
+      "value": 94,
+      "relevance": [
+        "f_00011",
+        "generic"
+      ],
+      "authority": "admin"
+    },
+    {
+      "key": "f_00012",
+      "value": 69,
+      "relevance": [
+        "f_00012",
+        "generic"
+      ],
+      "authority": "admin"
+    },
+    {
+      "key": "f_00013",
+      "value": 11,
+      "relevance": [
+        "f_00013",
+        "generic"
+      ],
+      "authority": "admin"
+    },
+    {
+      "key": "f_00014",
+      "value": 75,
+      "relevance": [
+        "f_00014",
+        "generic"
+      ],
+      "authority": "admin"
+    },
+    {
+      "key": "f_00015",
+      "value": 54,
+      "relevance": [
+        "f_00015",
+        "generic"
+      ],
+      "authority": "admin"
+    },
+    {
+      "key": "f_00016",
+      "value": 4,
+      "relevance": [
+        "f_00016",
+        "generic"
+      ],
+      "authority": "admin"
+    },
+    {
+      "key": "f_00017",
+      "value": 3,
+      "relevance": [
+        "f_00017",
+        "generic"
+      ],
+      "authority": "admin"
+    },
+    {
+      "key": "f_00018",
+      "value": 11,
+      "relevance": [
+        "f_00018",
+        "generic"
+      ],
+      "authority": "admin"
+    },
+    {
+      "key": "f_00019",
+      "value": 27,
+      "relevance": [
+        "f_00019",
+        "generic"
+      ],
+      "authority": "admin"
+    }
+  ],
+  "operations": [
+    {
+      "id": "op_0000",
+      "key": "f_00007",
+      "value": 64,
+      "fail_point": "clean"
+    },
+    {
+      "id": "op_0001",
+      "key": "f_00017",
+      "value": 25,
+      "fail_point": "clean"
+    },
+    {
+      "id": "op_0002",
+      "key": "f_00017",
+      "value": 53,
+      "fail_point": "after_commit"
+    },
+    {
+      "id": "op_0003",
+      "key": "f_00000",
+      "value": 97,
+      "fail_point": "clean"
+    },
+    {
+      "id": "op_0004",
+      "key": "f_00013",
+      "value": 43,
+      "fail_point": "before_commit"
+    },
+    {
+      "id": "op_0005",
+      "key": "f_00010",
+      "value": 13,
+      "fail_point": "before_commit"
+    },
+    {
+      "id": "op_0006",
+      "key": "f_00011",
+      "value": 44,
+      "fail_point": "clean"
+    },
+    {
+      "id": "op_0007",
+      "key": "f_00001",
+      "value": 93,
+      "fail_point": "clean"
+    },
+    {
+      "id": "op_0008",
+      "key": "f_00003",
+      "value": 48,
+      "fail_point": "after_commit"
+    },
+    {
+      "id": "op_0009",
+      "key": "f_00019",
+      "value": 46,
+      "fail_point": "clean"
+    },
+    {
+      "id": "op_0010",
+      "key": "f_00002",
+      "value": 5,
+      "fail_point": "clean"
+    },
+    {
+      "id": "op_0011",
+      "key": "f_00009",
+      "value": 10,
+      "fail_point": "clean"
+    },
+    {
+      "id": "op_0012",
+      "key": "f_00003",
+      "value": 48,
+      "fail_point": "after_commit"
+    },
+    {
+      "id": "op_0013",
+      "key": "f_00005",
+      "value": 47,
+      "fail_point": "after_commit"
+    },
+    {
+      "id": "op_0014",
+      "key": "f_00002",
+      "value": 77,
+      "fail_point": "clean"
+    },
+    {
+      "id": "op_0015",
+      "key": "f_00017",
+      "value": 93,
+      "fail_point": "after_commit"
+    },
+    {
+      "id": "op_0016",
+      "key": "f_00012",
+      "value": 34,
+      "fail_point": "clean"
+    },
+    {
+      "id": "op_0017",
+      "key": "f_00017",
+      "value": 28,
+      "fail_point": "clean"
+    },
+    {
+      "id": "op_0018",
+      "key": "f_00001",
+      "value": 29,
+      "fail_point": "clean"
+    },
+    {
+      "id": "op_0019",
+      "key": "f_00010",
+      "value": 51,
+      "fail_point": "before_commit"
+    },
+    {
+      "id": "op_0020",
+      "key": "f_00018",
+      "value": 91,
+      "fail_point": "after_commit"
+    },
+    {
+      "id": "op_0021",
+      "key": "f_00012",
+      "value": 82,
+      "fail_point": "clean"
+    },
+    {
+      "id": "op_0022",
+      "key": "f_00008",
+      "value": 17,
+      "fail_point": "after_commit"
+    },
+    {
+      "id": "op_0023",
+      "key": "f_00018",
+      "value": 54,
+      "fail_point": "clean"
+    },
+    {
+      "id": "op_0024",
+      "key": "f_00012",
+      "value": 46,
+      "fail_point": "before_commit"
+    },
+    {
+      "id": "op_0025",
+      "key": "f_00016",
+      "value": 63,
+      "fail_point": "before_commit"
+    },
+    {
+      "id": "op_0026",
+      "key": "f_00003",
+      "value": 19,
+      "fail_point": "clean"
+    },
+    {
+      "id": "op_0027",
+      "key": "f_00013",
+      "value": 76,
+      "fail_point": "after_commit"
+    },
+    {
+      "id": "op_0028",
+      "key": "f_00019",
+      "value": 59,
+      "fail_point": "clean"
+    },
+    {
+      "id": "op_0029",
+      "key": "f_00017",
+      "value": 1,
+      "fail_point": "clean"
+    },
+    {
+      "id": "op_0030",
+      "key": "f_00003",
+      "value": 87,
+      "fail_point": "clean"
+    },
+    {
+      "id": "op_0031",
+      "key": "f_00008",
+      "value": 98,
+      "fail_point": "clean"
+    },
+    {
+      "id": "op_0032",
+      "key": "f_00003",
+      "value": 37,
+      "fail_point": "clean"
+    },
+    {
+      "id": "op_0033",
+      "key": "f_00014",
+      "value": 0,
+      "fail_point": "clean"
+    },
+    {
+      "id": "op_0034",
+      "key": "f_00008",
+      "value": 64,
+      "fail_point": "clean"
+    },
+    {
+      "id": "op_0035",
+      "key": "f_00016",
+      "value": 13,
+      "fail_point": "clean"
+    },
+    {
+      "id": "op_0036",
+      "key": "f_00009",
+      "value": 81,
+      "fail_point": "clean"
+    },
+    {
+      "id": "op_0037",
+      "key": "f_00006",
+      "value": 19,
+      "fail_point": "before_commit"
+    },
+    {
+      "id": "op_0038",
+      "key": "f_00017",
+      "value": 99,
+      "fail_point": "clean"
+    },
+    {
+      "id": "op_0039",
+      "key": "f_00000",
+      "value": 76,
+      "fail_point": "before_commit"
+    },
+    {
+      "id": "op_0040",
+      "key": "f_00003",
+      "value": 46,
+      "fail_point": "clean"
+    },
+    {
+      "id": "op_0041",
+      "key": "f_00009",
+      "value": 30,
+      "fail_point": "before_commit"
+    },
+    {
+      "id": "op_0042",
+      "key": "f_00002",
+      "value": 93,
+      "fail_point": "clean"
+    },
+    {
+      "id": "op_0043",
+      "key": "f_00002",
+      "value": 97,
+      "fail_point": "clean"
+    },
+    {
+      "id": "op_0044",
+      "key": "f_00004",
+      "value": 16,
+      "fail_point": "clean"
+    },
+    {
+      "id": "op_0045",
+      "key": "f_00017",
+      "value": 21,
+      "fail_point": "after_commit"
+    },
+    {
+      "id": "op_0046",
+      "key": "f_00006",
+      "value": 69,
+      "fail_point": "clean"
+    },
+    {
+      "id": "op_0047",
+      "key": "f_00006",
+      "value": 91,
+      "fail_point": "after_commit"
+    },
+    {
+      "id": "op_0048",
+      "key": "f_00014",
+      "value": 66,
+      "fail_point": "clean"
+    },
+    {
+      "id": "op_0049",
+      "key": "f_00007",
+      "value": 28,
+      "fail_point": "before_commit"
+    },
+    {
+      "id": "op_0050",
+      "key": "f_00018",
+      "value": 70,
+      "fail_point": "before_commit"
+    },
+    {
+      "id": "op_0051",
+      "key": "f_00000",
+      "value": 9,
+      "fail_point": "clean"
+    },
+    {
+      "id": "op_0052",
+      "key": "f_00001",
+      "value": 29,
+      "fail_point": "before_commit"
+    },
+    {
+      "id": "op_0053",
+      "key": "f_00010",
+      "value": 9,
+      "fail_point": "clean"
+    },
+    {
+      "id": "op_0054",
+      "key": "f_00008",
+      "value": 85,
+      "fail_point": "clean"
+    },
+    {
+      "id": "op_0055",
+      "key": "f_00017",
+      "value": 16,
+      "fail_point": "clean"
+    },
+    {
+      "id": "op_0056",
+      "key": "f_00018",
+      "value": 73,
+      "fail_point": "clean"
+    },
+    {
+      "id": "op_0057",
+      "key": "f_00015",
+      "value": 52,
+      "fail_point": "before_commit"
+    },
+    {
+      "id": "op_0058",
+      "key": "f_00013",
+      "value": 45,
+      "fail_point": "clean"
+    },
+    {
+      "id": "op_0059",
+      "key": "f_00014",
+      "value": 93,
+      "fail_point": "before_commit"
+    }
+  ]
+}
