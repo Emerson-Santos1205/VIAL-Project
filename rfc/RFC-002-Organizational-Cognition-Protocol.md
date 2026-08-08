@@ -4,7 +4,10 @@
 **Version:** 1.0.0
 **Status:** Draft
 **Category:** Standards Track
-**Depends On:** FCP-002A, FCP-006, FCP-007
+Depends On:
+- FCP-002A
+- FCP-006
+- FCP-007
 
 ---
 
@@ -1232,11 +1235,11 @@ Organizational Cognition
        ├── RFC-004 Context & Efficiency
        ├── RFC-005 Memory & Knowledge
        ├── RFC-006 Decision & Authority
-       ├── RFC-007 Evidence & Provenance
-       ├── RFC-008 Execution & Delegation
+       ├── RFC-007 Selective Context
+       ├── RFC-008 Cognitive Reuse
        ├── RFC-009 Failure & Recovery
-       ├── RFC-010 Interoperability
-       └── RFC-011 Security & Governance
+       ├── RFC-010 Economic Cost
+       └── RFC-011 Security & Governance (planned)
 ```
 
 RFC-002 SHOULD remain relatively small and stable.

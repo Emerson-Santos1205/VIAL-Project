@@ -4,7 +4,17 @@
 **Version:** 1.0.0
 **Status:** Draft
 **Category:** Tools Specification
-**Depends On:** TOOLS-001 — Tool Model, TOOLS-003 — Tool Security, SDK-001 — Architecture, SDK-003 — Resource, SDK-004 — Context, SDK-005 — Decision, RFC-002, RFC-003, RFC-004, RFC-005, RFC-006
+Depends On:
+- TOOLS-001
+- SDK-001
+- SDK-003
+- SDK-004
+- SDK-005
+- RFC-002
+- RFC-003
+- RFC-004
+- RFC-005
+- RFC-006
 
 ---
 

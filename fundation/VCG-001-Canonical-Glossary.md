@@ -15,11 +15,9 @@ Category: Foundation
 
 Normative: YES
 
-Dependencies:
-
-- FCP-001 Problem Statement
-- FCP-002 First Principles
-
+Depends On:
+- FP-001
+- FCP-002
 ---
 
 # Abstract

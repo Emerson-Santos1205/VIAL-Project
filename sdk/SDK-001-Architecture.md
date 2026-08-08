@@ -4,7 +4,16 @@
 **Version:** 1.0.0
 **Status:** Draft
 **Category:** SDK Specification
-**Depends On:** FCP-002A, RFC-002, RFC-003, RUNTIME-001 through RUNTIME-006
+Depends On:
+- FCP-002A
+- RFC-002
+- RFC-003
+- RUNTIME-001
+- RUNTIME-002
+- RUNTIME-003
+- RUNTIME-004
+- RUNTIME-005
+- RUNTIME-006
 
 ---
 

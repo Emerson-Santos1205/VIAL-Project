@@ -4,7 +4,13 @@
 **Version:** 1.0.0
 **Status:** Draft
 **Category:** Runtime Specification
-**Depends On:** RUNTIME-001, RUNTIME-002, RUNTIME-003, RUNTIME-004, RFC-003, FCP-002A
+Depends On:
+- RUNTIME-001
+- RUNTIME-002
+- RUNTIME-003
+- RUNTIME-004
+- RFC-003
+- FCP-002A
 
 ---
 

@@ -6,6 +6,7 @@
 **Date:** 2026-08-07
 **Decision Type:** Governance
 **Related:** ADR-0000, FCP-002, VCG-001
+Depends On: None
 
 ---
 

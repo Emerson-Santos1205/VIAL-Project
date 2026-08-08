@@ -13,11 +13,9 @@ Status: Draft
 
 Category: Technical Specification
 
-Dependencies:
-
-- ADR-0001 VIAL is a Distributed Cognitive Architecture
-- ADR-0002 Adoption of Distributed Organizational Cognition
-
+Depends On:
+- ADR-0001
+- ADR-0002
 ---
 
 ## Abstract

@@ -4,7 +4,13 @@
 **Version:** 1.0.0
 **Status:** Draft
 **Category:** Runtime Specification
-**Depends On:** RFC-002 through RFC-006, FCP-002A
+Depends On:
+- RFC-002
+- RFC-003
+- RFC-004
+- RFC-005
+- RFC-006
+- FCP-002A
 
 ---
 

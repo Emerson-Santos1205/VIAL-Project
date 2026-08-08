@@ -13,9 +13,8 @@ Status: Draft
 
 Category: Foundation
 
-Dependencies:
-- FCP-001 Problem Statement
-
+Depends On:
+- FP-001
 ---
 
 # Abstract

@@ -29,10 +29,10 @@ All contributions SHALL comply with the VIAL Governance Model.
 
 Contributors SHOULD understand the following documents before proposing architectural changes:
 
-1. `foundation/FCP-001-Problem-Statement.md`
-2. `foundation/FCP-002-First-Principles.md`
-3. `foundation/VCG-001-Canonical-Glossary.md`
-4. `foundation/TDOC/README.md`
+1. `fundation/FP-001-Problem-Statement.md`
+2. `fundation/FCP-002-First-Principles.md`
+3. `fundation/VCG-001-Canonical-Glossary.md`
+4. `fundation/TDC/README.md`
 5. `adr/ADR-0000-Governance.md`
 
 Contributors SHALL NOT introduce architectural concepts that contradict these documents.

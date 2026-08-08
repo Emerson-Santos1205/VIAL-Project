@@ -4,7 +4,13 @@
 **Version:** 1.0.0
 **Status:** Draft
 **Category:** SDK Specification
-**Depends On:** SDK-001 — Architecture, SDK-002 — Organization API, SDK-003 — Resource API, FCP-002A — TDOC, RFC-002, RFC-003
+Depends On:
+- SDK-001
+- SDK-002
+- SDK-003
+- FCP-002A
+- RFC-002
+- RFC-003
 
 ---
 

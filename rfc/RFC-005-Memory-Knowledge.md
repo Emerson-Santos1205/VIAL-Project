@@ -4,7 +4,13 @@
 **Version:** 1.0.0
 **Status:** Draft
 **Category:** Standards Track
-**Depends On:** RFC-002, RFC-003, RFC-004, FCP-002A, FCP-006, FCP-007
+Depends On:
+- RFC-002
+- RFC-003
+- RFC-004
+- FCP-002A
+- FCP-006
+- FCP-007
 
 ---
 

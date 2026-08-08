@@ -5,7 +5,13 @@
 **Version:** 1.0.0
 **Status:** Draft
 **Type:** Foundation / Manifesto
-**Depends On:** FCP-002A, FCP-003, FCP-004, FCP-005, FCP-006, FCP-007
+Depends On:
+- FCP-002A
+- FCP-003
+- FCP-004
+- FCP-005
+- FCP-006
+- FCP-007
 
 ---
 

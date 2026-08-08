@@ -4,6 +4,7 @@
 ---
 
 ADR ID: ADR-0001
+Depends On: None
 
 Title: VIAL is a Distributed Cognitive Architecture
 
@@ -16,7 +17,7 @@ Category: Foundation
 Date: TBD
 
 Related Documents:
-- FCP-001 Problem Statement
+- FP-001 Problem Statement
 - FCP-002 First Principles
 
 Supersedes:
@@ -214,7 +215,7 @@ without changing the architectural identity of the project.
 
 # References
 
-FCP-001 — Problem Statement
+FP-001 — Problem Statement
 
 FCP-002 — First Principles
 

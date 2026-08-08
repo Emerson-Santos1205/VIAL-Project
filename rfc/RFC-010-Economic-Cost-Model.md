@@ -13,14 +13,12 @@ Status: Draft
 
 Category: Technical Specification
 
-Dependencies:
-
-- ADR-0001 VIAL is a Distributed Cognitive Architecture
-- ADR-0002 Adoption of Distributed Organizational Cognition
-- RFC-004 Context & Cognitive Efficiency
-- RFC-007 Selective Context Hypothesis & Validation Protocol
-- RFC-008 Cognitive Reuse Hypothesis & Validation Protocol
-
+Depends On:
+- ADR-0001
+- ADR-0002
+- RFC-004
+- RFC-007
+- RFC-008
 ---
 
 ## Abstract

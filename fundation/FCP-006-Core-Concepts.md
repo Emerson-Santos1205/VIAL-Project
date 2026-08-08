@@ -5,7 +5,11 @@
 **Version:** 1.0.0
 **Status:** Draft
 **Type:** Foundation Change Proposal
-**Depends On:** FCP-002A, FCP-003, FCP-004, FCP-005
+Depends On:
+- FCP-002A
+- FCP-003
+- FCP-004
+- FCP-005
 **Related:** TDOC-00 through TDOC-09, ADR-0002, VCG-001
 
 ---

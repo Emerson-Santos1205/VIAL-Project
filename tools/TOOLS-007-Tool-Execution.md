@@ -4,7 +4,22 @@
 **Version:** 1.0.0
 **Status:** Draft
 **Category:** Tools Specification
-**Depends On:** TOOLS-001 — Tool Model, TOOLS-002 — Tool Contract, TOOLS-003 — Tool Security, TOOLS-004 — Tool Registry, TOOLS-005 — Tool Discovery, TOOLS-006 — Tool Invocation, SDK-001 — Architecture, SDK-003 — Resource API, SDK-004 — Context API, SDK-005 — Decision API, RFC-002, RFC-003, RFC-004, RFC-005, RFC-006
+Depends On:
+- TOOLS-001
+- TOOLS-002
+- TOOLS-003
+- TOOLS-004
+- TOOLS-005
+- TOOLS-006
+- SDK-001
+- SDK-003
+- SDK-004
+- SDK-005
+- RFC-002
+- RFC-003
+- RFC-004
+- RFC-005
+- RFC-006
 
 ---
 

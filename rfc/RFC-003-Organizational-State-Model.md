@@ -4,7 +4,11 @@
 **Version:** 1.0.0
 **Status:** Draft
 **Category:** Standards Track
-**Depends On:** RFC-002, FCP-002A, FCP-006, FCP-007
+Depends On:
+- RFC-002
+- FCP-002A
+- FCP-006
+- FCP-007
 
 ---
 
@@ -1434,23 +1438,23 @@ RFC-006 — Decision & Authority
         ↓
 Authorized State Transition
 
-RFC-007 — Evidence & Provenance
+RFC-007 — Selective Context
         ↓
-Transition Traceability
+Relevant State Selection
 
-RFC-008 — Execution & Delegation
+RFC-008 — Cognitive Reuse
         ↓
-Execution-Induced State Changes
+State-Based Reuse
 
 RFC-009 — Failure & Recovery
         ↓
 State Recovery
 
-RFC-010 — Interoperability
+RFC-010 — Economic Cost
         ↓
-State Exchange
+State Cost Accounting
 
-RFC-011 — Security & Governance
+RFC-011 — Security & Governance (planned)
         ↓
 State Protection
 ```

@@ -5,7 +5,12 @@
 **Version:** 1.0.0
 **Status:** Draft
 **Type:** Foundation Change Proposal
-**Depends On:** FCP-002A, FCP-003, FCP-004, FCP-005, FCP-006
+Depends On:
+- FCP-002A
+- FCP-003
+- FCP-004
+- FCP-005
+- FCP-006
 
 ---
 

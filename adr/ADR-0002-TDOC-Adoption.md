@@ -2,10 +2,11 @@
 
 # ADR-0002 — Adoption of Distributed Organizational Cognition
 
-**Status:** Proposed
+**Status:** Accepted
 **Date:** 2026-08-07
 **Decision Type:** Foundation Architecture
 **Related:** FCP-002A, TDOC-00 through TDOC-09
+Depends On: None
 
 ---
 
@@ -132,7 +133,13 @@ A proposal that materially contradicts the organizational-cognition model SHALL 
 
 # 11. Status
 
-Proposed for Foundation approval.
+Accepted.
+
+The decision is adopted as the foundational architectural model of VIAL: the
+entire specification stack (RFC-002 through RFC-010, SDK, RUNTIME, TOOLS) and
+the reference implementation are built upon the Theory of Distributed
+Organizational Cognition (TDOC), and this ADR is treated as normative by the
+dependent RFCs.
 
 ---
 
