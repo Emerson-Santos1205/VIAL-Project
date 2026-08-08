@@ -1282,9 +1282,6 @@ Conformance & Validation
 
 FCP-007
 Benchmark Specification
-
-RFC-001
-VIAL Core Protocol
 ```
 
 The exact numbering of future documents SHALL be confirmed through the project's document registry.

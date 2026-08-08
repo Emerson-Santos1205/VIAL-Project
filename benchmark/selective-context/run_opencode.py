@@ -58,6 +58,8 @@ def main() -> int:
     ap.add_argument("--workload", default="workloads/reasoning.json")
     ap.add_argument("--limit", type=int, default=0, help="max tasks (0 = all)")
     ap.add_argument("--model", default=None, help="provider/model override")
+    ap.add_argument("--timeout", type=float, default=None,
+                    help="per-task subprocess timeout in seconds (default 180)")
     ap.add_argument("--out", default="results")
     args = ap.parse_args()
 
@@ -71,7 +73,7 @@ def main() -> int:
     if args.limit:
         tasks = tasks[: args.limit]
     builder = ContextBuilder(org)
-    executor = OpencodeExecutor(model=args.model)
+    executor = OpencodeExecutor(model=args.model, timeout=args.timeout or 180.0)
     evaluator = OpencodeEvaluator()
 
     print(f"model: {executor.model} | tasks: {len(tasks)}")

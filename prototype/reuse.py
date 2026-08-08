@@ -82,7 +82,7 @@ class ReuseEngine:
             signature=reuse_signature(task),
             outcome=outcome,
             quality=quality,
-            state_version=self.org.version,
+            state_version=self.org.state_version,
             referenced_fields=fields,
             provenance=provenance,
         )

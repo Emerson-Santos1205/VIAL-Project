@@ -4,7 +4,7 @@
 **Version:** 1.0.0
 **Status:** Draft
 **Category:** Tools Specification
-**Depends On:** FCP-002A — TDOC, RFC-001, RFC-002, RFC-003, SDK-001 — Architecture, SDK-002 — Organization, SDK-003 — Resource, SDK-004 — Context, SDK-005 — Decision
+**Depends On:** FCP-002A — Theory of Distributed Organizational Cognition (TDOC), RFC-002, RFC-003, RFC-004, RFC-005, RFC-006 — Decision & Authority, SDK-001 — Architecture, SDK-002 — Organization API, SDK-003 — Resource API, SDK-004 — Context API, SDK-005 — Decision API
 
 ---
 

@@ -17,6 +17,12 @@ import subprocess
 import sys
 
 from .context import Context, Task
+from .errors import wrap_network_error
+
+# RUNTIME-002 §37 outcome status values
+OUTCOME_SUCCESS = "SUCCESS"
+OUTCOME_FAILED = "FAILED"
+OUTCOME_UNKNOWN = "UNKNOWN"
 
 DEFAULT_MODEL = "opencode/deepseek-v4-flash-free"
 
@@ -55,10 +61,19 @@ class OpencodeExecutor:
             self.command, "run", "--format", "json",
             "--model", self.model, prompt,
         ]
-        proc = subprocess.run(
-            cmd, capture_output=True, text=True, timeout=self.timeout,
-            encoding="utf-8", errors="replace",
-        )
+        try:
+            proc = subprocess.run(
+                cmd, capture_output=True, text=True, timeout=self.timeout,
+                encoding="utf-8", errors="replace",
+            )
+        except subprocess.TimeoutExpired as exc:
+            raise wrap_network_error(
+                exc, f"opencode timed out after {self.timeout}s",
+                details={"model": self.model})
+        except OSError as exc:
+            raise wrap_network_error(
+                exc, f"failed to start opencode CLI: {exc}",
+                details={"command": self.command})
         events = [json.loads(l) for l in proc.stdout.splitlines() if l.strip()]
 
         text = ""
@@ -74,6 +89,7 @@ class OpencodeExecutor:
             "task_id": task.id,
             "mode": ctx.mode,
             "outcome": answer,
+            "status": OUTCOME_SUCCESS if answer is not None else OUTCOME_UNKNOWN,
             "prompt_tokens": tokens.get("input"),
             "completion_tokens": tokens.get("output"),
             "total_tokens": tokens.get("total"),
@@ -92,9 +108,13 @@ class OpencodeExecutor:
 
 
 class OpencodeEvaluator:
-    """Scores opencode outcomes: exact match against expected (0.0/1.0)."""
+    """Scores opencode outcomes: exact match against expected (0.0/1.0).
+
+    UNKNOWN outcomes are scored 0.0 for benchmark compatibility, but remain
+    distinguishable from FAILED via the row's `status` (RUNTIME-002 §37, §42).
+    """
 
     def score(self, row: dict, task: Task) -> float:
-        if row["outcome"] is None:
+        if row.get("status") == OUTCOME_UNKNOWN or row["outcome"] is None:
             return 0.0
         return 1.0 if row["outcome"] == bool(task.expected) else 0.0

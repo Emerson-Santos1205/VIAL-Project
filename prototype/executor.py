@@ -9,6 +9,7 @@ import json
 from dataclasses import dataclass
 
 from .context import Context, Task
+from .errors import VIALValidationError
 
 
 @dataclass
@@ -48,7 +49,10 @@ class DeterministicExecutor:
                 return ExecutionResult(task.id, mode, None, False, 0.0)
             v = bool(fields[key]["value"])
             return ExecutionResult(task.id, mode, v, v == task.expected, 1.0 if v == task.expected else 0.0)
-        raise ValueError(f"unknown op {task.op}")
+        raise VIALValidationError(
+            "UNKNOWN_OPERATION",
+            f"unknown op {task.op}",
+            details={"op": task.op})
 
 
 class Evaluator:

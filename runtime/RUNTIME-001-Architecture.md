@@ -4,7 +4,7 @@
 **Version:** 1.0.0
 **Status:** Draft
 **Category:** Runtime Specification
-**Depends On:** RFC-001 through RFC-006, FCP-002A
+**Depends On:** RFC-002 through RFC-006, FCP-002A
 
 ---
 
@@ -663,7 +663,7 @@ Possible strategies include:
 * version checks;
 * transactional transitions.
 
-RFC-001 does not mandate one mechanism.
+RFC-003 does not mandate one mechanism.
 
 ---
 

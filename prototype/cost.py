@@ -7,6 +7,8 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 
+from .errors import VIALValidationError
+
 
 @dataclass
 class CostComponents:
@@ -94,4 +96,7 @@ class ResourceSelector:
         for tier in self.order:
             if tier in capable_tiers:
                 return tier
-        raise ValueError("no capable tier")
+        raise VIALValidationError(
+            "NO_CAPABLE_TIER",
+            "no capable tier",
+            details={"capable_tiers": capable_tiers})
