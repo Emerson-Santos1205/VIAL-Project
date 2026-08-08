@@ -8,6 +8,29 @@
 
 ---
 
+## Contributing
+
+VIAL is developed in the open. We welcome contributions of all kinds:
+
+- **Specifications** — foundations (`fundation/`), RFCs, ADRs, SDKs, runtimes, tools
+- **Prototype code** — the minimal reference implementation under `prototype/`
+- **Benchmarks** — reproducible hypothesis validation under `benchmark/`
+- **Evidence** — challenge assumptions with reproducible measurements
+
+Before starting, read:
+
+```text
+CONTRIBUTING.md    human-facing contribution guide
+CODE_OF_CONDUCT.md expected behavior
+AGENTS.md          instructions for AI-assisted contributors
+```
+
+The project's central discipline is **evidence over authority**: a claim is
+accepted only when backed by a reproducible benchmark. See
+[#36 Getting Started](#36-getting-started) for the recommended reading order.
+
+---
+
 ## 1. What is VIAL?
 
 VIAL is an architectural foundation for building **persistent, distributed and governable organizational cognition**.
