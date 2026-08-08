@@ -1,0 +1,91 @@
+Copyright 2026 VIAL Contributors
+
+This product includes software developed as part of the VIAL project.
+See https://github.com/Emerson-Santos1205/ViIAL-Project for details.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at:
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+---
+
+# VIAL Project Notice
+
+The VIAL project may contain multiple types of material.
+
+Unless otherwise specified:
+
+```text
+Source Code
+Documentation
+Specifications
+Reference Implementations
+Tests
+Examples
+```
+
+are distributed under the Apache License 2.0.
+
+Individual files may contain additional licensing notices where
+required by their respective authors or dependencies.
+
+---
+
+# VIAL Specifications
+
+The VIAL specification documents describe architectural concepts,
+protocols and normative requirements.
+
+The Apache License grants permission to use, reproduce and modify
+the documentation.
+
+However:
+
+```text
+License
+    ≠
+Conformance
+```
+
+Using VIAL documentation does not automatically make an implementation
+VIAL-conformant.
+
+Conformance is determined according to the applicable VIAL
+specification and conformance requirements.
+
+---
+
+# VIAL Trademark Notice
+
+The Apache License does not grant rights to use the VIAL name,
+logos, trademarks or other project identifiers except as permitted
+by applicable law and project policy.
+
+The VIAL project may establish separate trademark guidelines.
+
+---
+
+# Final Principle
+
+VIAL is intended to remain:
+
+```text
+Open
+Interoperable
+Implementable
+Commercially Usable
+Vendor-Neutral
+Long-Term
+```
+
+The license protects the freedom to implement and extend the project
+while preserving attribution and patent protections provided by
+Apache License 2.0.
