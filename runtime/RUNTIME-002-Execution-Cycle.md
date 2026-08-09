@@ -6,6 +6,7 @@
 **Category:** Runtime Specification
 Depends On:
 - RUNTIME-001
+- RFC-002
 - RFC-003
 - RFC-004
 - RFC-005
@@ -22,8 +23,9 @@ The Execution Cycle describes how an Organization transforms an event or organiz
 * Context;
 * Cognition;
 * Decision;
-* Authorized Execution;
-* Result;
+* Authorization / Approval;
+* Invocation / Execution;
+* Outcome;
 * State transition;
 * Organizational learning.
 
@@ -56,9 +58,15 @@ DECISION
   ↓
 AUTHORITY
   ↓
+AUTHORIZATION
+  ↓
+APPROVAL
+  ↓
+INVOCATION
+  ↓
 EXECUTION
   ↓
-RESULT
+OUTCOME
   ↓
 STATE UPDATE
   ↓
@@ -272,6 +280,8 @@ If Context is insufficient, the cycle MAY:
 * escalate;
 * terminate.
 
+For consequential evaluation or execution, the Runtime SHOULD freeze the Context before proceeding beyond validation. Once FROZEN, the normative content of the Context MUST NOT change; later changes require a new Context.
+
 ---
 
 # 15. Stage 5 — Memory Retrieval
@@ -429,7 +439,7 @@ A validated Proposal MAY become a Decision.
 A Decision SHOULD identify:
 
 ```text
-Decision ID
+DEC-*
 Cycle ID
 Decision Type
 Scope
@@ -437,6 +447,7 @@ Action
 Constraints
 Validity
 Authority Requirement
+CTX-*
 ```
 
 ---
@@ -451,9 +462,11 @@ Conceptually:
 Decision
    ↓
 Authority Check
-   ├── Authorized
+   ├── Authorization
+   │      ↓
+   │   Approval (when required)
    ├── Rejected
-   └── Escalated
+   └── Escalation event
 ```
 
 ---
@@ -468,7 +481,7 @@ Decision
 AUTHORIZED
 ```
 
-The Runtime MAY proceed toward Execution.
+The Runtime MAY proceed toward Invocation and Execution.
 
 ---
 
@@ -488,19 +501,21 @@ No external effect SHOULD occur.
 
 ---
 
-# 27. Escalated Decision
+# 27. Escalation Event
 
-If additional authority is required:
+If additional authority is required, the Runtime SHOULD raise an ESCALATION event:
 
 ```text
 Decision
    ↓
-ESCALATION
+ESCALATION event
    ↓
 Higher Authority
    ↓
-Approved / Rejected
+AUTHORIZED / REJECTED
 ```
+
+ESCALATION is an event or transition, not a Decision state. The Decision remains in its current lifecycle state while awaiting the additional authority.
 
 The original analysis SHOULD be preserved.
 
@@ -518,9 +533,15 @@ State
 Preconditions
 Constraints
 Target
+Tool existence
+Tool lifecycle eligibility
+Tool Contract
+Invocation identity
 ```
 
 This is necessary because organizational conditions may have changed after the Decision was created.
+
+The Runtime MUST NOT create an Invocation or execute a Tool whose lifecycle state does not permit normal invocation. In particular, `DRAFT`, `DEFINED`, `DEPRECATED` and `RETIRED` Tools MUST NOT be used for normal execution; only an `ACTIVE` Tool is eligible, subject to Authorization, Approval when required, Contract and scope.
 
 ---
 
@@ -568,36 +589,38 @@ Execution MUST NOT proceed.
 
 ---
 
-# 32. Stage 12 — Execution
+# 32. Stage 12 — Invocation and Execution
 
-The Execution Engine dispatches the authorized Decision to the appropriate Execution Resource.
+The Runtime creates an Invocation and dispatches the authorized Decision to the appropriate execution resource.
 
 ```text
 Authorized Decision
        ↓
-Execution Resource
+   Invocation
+       ↓
+execution resource
        ↓
 External Effect
 ```
 
 ---
 
-# 33. Execution Identity
+# 33. Invocation Identity
 
-Each Execution SHOULD have a unique identifier.
+Each Invocation SHOULD have a unique identifier.
 
 Example:
 
 ```text
-Execution ID: X-92831
+Invocation ID: INV-92831
 ```
 
-The Execution ID SHOULD be associated with:
+The Invocation ID SHOULD be associated with:
 
 * Decision;
 * Cycle;
 * Resource;
-* Result.
+* Outcome.
 
 ---
 
@@ -871,17 +894,17 @@ No Cognition or Decision is required.
 
 # 47. Cycle Escalation
 
-A cycle MAY enter an escalation state.
+A cycle MAY raise an ESCALATION event when additional authority or review is required.
 
 ```text
 RUNNING
    ↓
-ESCALATED
-   ↓
-WAITING
+WAITING   (during escalation)
    ↓
 RESUMED
 ```
+
+ESCALATION is an event or transition, not a cycle state (ADR-0006 D-002, D-009).
 
 The original Cycle ID SHOULD remain unchanged.
 
@@ -1262,12 +1285,13 @@ A Cycle MAY have:
 CREATED
 RUNNING
 WAITING
-ESCALATED
 COMPLETED
 FAILED
 CANCELLED
 RECOVERING
 ```
+
+ESCALATION is an event or transition, not a Cycle status (ADR-0006 D-009).
 
 ---
 

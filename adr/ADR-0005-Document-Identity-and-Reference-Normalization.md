@@ -1,90 +1,380 @@
 # Architecture Decision Record
 
-# ADR-0005 — Document Identity and Reference Normalization
+# ADR-0005 — Canonical Semantic and Lifecycle Models
 
 **Status:** Proposed
 **Date:** 2026-08-08
-**Decision Type:** Governance
-**Related:** ADR-0000, ADR-0003, FCP-002A, RFC-0001
+**Decision Type:** Architecture
+**Related:** ADR-0000, ADR-0001, ADR-0003, FCP-002A, SDK-004, SDK-005, RUNTIME-002, RUNTIME-004, TOOLS-001
 Depends On: None
 
 ---
 
 ## 1. Context
 
-An audit of repository references found broken cross-references between documents:
+The VIAL specification has completed the structural and semantic audits through
+AUDIT-003.
 
-- Several documents reference `RFC-001` (RFC-002 through RFC-006, RUNTIME-001, FCP-004), but no `RFC-001` exists.
-- The repository contains `RFC-0001-Template.md`, a template whose internal document ID is `RFC-0001`.
-- The SDK numbering previously debated creating an `SDK-005 — State API`; this was not created.
-- `TOOLS-002` through `TOOLS-008` exist as empty, planned files.
+The audits identified divergences between the normative model and its Runtime,
+SDK, Tools, and Examples representations, particularly around:
 
-The repository must resolve these inconsistencies without inventing documents and without renumbering valid documents.
+- Decision lifecycle;
+- Context lifecycle and freezing;
+- Resource terminology;
+- Tool lifecycle;
+- Decision, Authorization, and Approval semantics;
+- State versus Event semantics;
+- Canonical entity identifiers;
+- Domain-specific concepts introduced by Examples.
 
----
+Phase 3A consolidated the canonical models that must govern subsequent
+alignment work.
 
-## 2. Analysis
-
-### 2.1 Template vs. Effective Document
-
-`RFC-0001-Template.md` has document ID `RFC-0001` but is explicitly a template (`Title: Template`, `Version: 1.0.0-draft.1`).
-
-It defines the structure for future RFCs; it does not define a conceptual specification.
-
-A reference to `RFC-001` must not be automatically rewritten to `RFC-0001`, because the template is not necessarily the intended dependency.
-
-### 2.2 Renumbering vs. Identity
-
-Renumbering `SDK-005 — Decision API` to a different identifier would break existing references and create churn without justification.
-
-No `SDK-005 — State API` was ever created; therefore no empty slot needs to be filled.
-
-### 2.3 Empty Documents
-
-Empty files are valid placeholders for planned specifications.
-
-They must not be treated as completed documents, and they must not be referenced as dependencies until they have content.
+This ADR records those canonical decisions.
 
 ---
 
-## 3. Decisions
+## 2. Decisions
 
-- **D-001:** `RFC-0001` is the correct identifier of the existing template. `RFC-001` will not be created automatically.
-- **D-002:** `SDK-005` remains the Decision API. No `SDK-005 — State API` will be created.
-- **D-003:** `RFC-006` remains a direct dependency of `SDK-005`.
-- **D-004:** `TOOLS-002` through `TOOLS-008` are planned/empty documents, not completed documents.
-- **D-005:** Existing `RFC-001` references must be audited and corrected individually.
-- **D-006:** References within the body of a document carry the same weight as `Depends On` declarations.
-- **D-007:** Files will not be renamed solely for style correction until a formal naming convention is established.
+### D-008 — Canonical Decision Model
+
+A Decision is a normative or operational determination produced from a Context
+that specifies an intended action or outcome.
+
+A Decision is distinct from:
+
+- Authorization;
+- Approval;
+- Invocation;
+- Execution;
+- Outcome.
+
+The canonical conceptual flow is:
+
+```text
+Context
+  ↓
+Decision
+  ↓
+Authorization
+  ↓
+Approval (when required)
+  ↓
+Invocation
+  ↓
+Execution
+  ↓
+Outcome
+```
+
+A Decision MAY exist before authorization.
+
+Therefore, a Decision MUST NOT be defined as inherently authorized.
+
+### D-009 — Canonical Decision Lifecycle
+
+The canonical Decision lifecycle is:
+
+```text
+DRAFT
+  ↓
+PENDING
+  ↓
+AUTHORIZED
+  ↓
+EXECUTING
+  ↓
+COMPLETED
+```
+
+The following are terminal or alternative states:
+
+```text
+CANCELLED
+REJECTED
+FAILED
+REVOKED
+```
+
+ESCALATION is not a Decision state.
+
+Escalation is an event or process that causes additional authority, review, or
+intervention.
+
+A Decision MAY enter an escalation flow while remaining in an appropriate
+lifecycle state.
+
+Runtime and SDK implementations MUST expose compatible lifecycle semantics.
+
+### D-010 — Canonical Context Lifecycle and Freeze
+
+A Context represents the information associated with a specific evaluation or
+execution point.
+
+The canonical Context lifecycle is:
+
+```text
+CREATED
+  ↓
+VALID
+  ↓
+FROZEN
+  ↓
+CONSUMED
+  ↓
+ARCHIVED
+```
+
+FROZEN is a normative Context state.
+
+After a Context becomes FROZEN, its normative content MUST NOT be modified.
+
+Runtime implementations MUST recognize the frozen state.
+
+Temporal invalidity such as expiration MAY be represented as a terminal
+condition where required, but MUST NOT create a competing lifecycle model.
+
+### D-011 — Canonical Resource Terminology
+
+Resource is the canonical normative term.
+
+Execution Resource MUST NOT be treated as a separate normative concept unless a
+future specification explicitly defines it as a specialization of Resource.
+
+Documents SHOULD use Resource when referring to the normative entity.
+
+The term `execution resource` MAY be used descriptively when referring to a
+Resource in an execution context, but it MUST NOT silently introduce a new
+resource type.
+
+### D-012 — Canonical Tool Lifecycle
+
+The canonical Tool lifecycle is:
+
+```text
+DRAFT
+  ↓
+DEFINED
+  ↓
+ACTIVE
+  ↓
+DEPRECATED
+  ↓
+RETIRED
+```
+
+Definitions:
+
+- DRAFT — Tool is being designed or specified.
+- DEFINED — Tool contract has been formally defined.
+- ACTIVE — Tool is available for use.
+- DEPRECATED — Tool remains defined but should not be selected for new use.
+- RETIRED — Tool is no longer available for operational use.
+
+No Tool specification MAY introduce an independent lifecycle without explicitly
+extending or superseding this model.
+
+### D-013 — Decision, Authorization, and Approval Separation
+
+The following concepts are distinct:
+
+Decision
+
+Determines what is intended or should be done.
+
+Authorization
+
+Determines whether the intended operation is permitted under applicable
+authority and policy.
+
+Approval
+
+Represents an explicit approval step required by a policy or workflow.
+
+Therefore:
+
+```text
+Decision ≠ Authorization
+Decision ≠ Approval
+Authorization ≠ Approval
+```
+
+Approval MAY form part of an authorization workflow, but approval itself does
+not replace the authorization model.
+
+Implementations MUST preserve these distinctions.
+
+### D-014 — Events and States Are Distinct
+
+A state represents a condition of an entity.
+
+An event represents an occurrence or transition.
+
+Examples of states include:
+
+```text
+DRAFT
+PENDING
+AUTHORIZED
+EXECUTING
+COMPLETED
+FAILED
+REVOKED
+```
+
+Examples of events include:
+
+```text
+ESCALATION
+INVOCATION_CREATED
+EXECUTION_STARTED
+EXECUTION_COMPLETED
+```
+
+An event MUST NOT be introduced as a lifecycle state merely because it appears
+in an operational flow.
+
+Runtime, SDK, Tools, and Examples MUST preserve this distinction.
+
+### D-015 — Canonical Entity Identifiers
+
+Normative entity identifiers use the following canonical prefixes:
+
+```text
+ORG-*   Organization
+RES-*   Resource
+CTX-*   Context
+DEC-*   Decision
+INV-*   Invocation
+```
+
+Implementations and Examples SHOULD use these canonical forms.
+
+Alternative identifiers such as `org.*` or `inv-*` MUST NOT be used when
+representing canonical VIAL entities.
+
+Domain-specific identifiers MAY exist for external systems, but MUST remain
+distinguishable from canonical VIAL identifiers.
+
+### D-016 — Non-Normative Boundary of Examples
+
+Examples exist to demonstrate the normative system.
+
+Examples MAY instantiate domain-specific values and scenarios.
+
+Examples MUST NOT silently introduce new normative:
+
+- lifecycle states;
+- entity types;
+- required fields;
+- error codes;
+- event types;
+- identifiers;
+- authorization semantics.
+
+A domain-specific value that is not part of the normative model MUST be
+explicitly presented as illustrative or domain-specific.
+
+Examples therefore MUST conform to the canonical models defined by the FCP,
+RFC, Runtime, SDK, and Tools layers.
 
 ---
 
-## 4. Consequences
+## 3. Consequences
 
-### Positive
+These decisions establish a single semantic model across the VIAL
+specification.
 
-- broken references are resolved without fabricating documents;
-- valid identifiers are preserved, avoiding churn;
-- empty placeholders remain honest about their state;
-- body references are treated with the same rigor as header declarations.
+The following alignment is required:
 
-### Negative
+```text
+RFC
+ ↓
+RUNTIME
+ ↓
+SDK
+ ↓
+TOOLS
+ ↓
+EXAMPLES
+```
 
-- each `RFC-001` reference requires individual judgment (template vs. other intent);
-- correctness of the fix depends on manual audit.
+The normative layers define the model, Runtime implements the model, SDK
+exposes the model, Tools consume the model, and Examples demonstrate the
+model.
+
+Existing documents that contradict these decisions MUST be updated during Phase
+3B.
 
 ---
 
-## 5. Compliance
+## 4. Required Alignment
 
-- `RFC-001` SHALL NOT be introduced as a document identifier.
-- References to `RFC-0001` SHALL denote the template `RFC-0001-Template.md` or a future effective RFC-0001, and the intended target SHALL be confirmed per reference.
-- Empty documents SHALL NOT be listed as dependencies.
-- Body references SHALL be corrected with the same rigor as `Depends On` declarations.
+The following known divergences are specifically covered by this ADR:
+
+- RUNTIME-006 MUST remain the Cognition Engine and MUST NOT introduce a second
+  Decision Engine.
+- RUNTIME-006 MUST align with RFC-006.
+- Runtime and SDK Decision lifecycles MUST converge on D-009.
+- Context freeze MUST be implemented consistently between SDK and Runtime.
+- Tenant lifecycle examples MUST use the canonical Organization lifecycle.
+- Execution Resource terminology MUST converge on Resource.
+- TOOLS-001 and TOOLS-008 MUST use D-012.
+- Decision, Authorization, and Approval MUST be separated.
+- Example-specific error codes and fields MUST NOT become implicit normative
+  concepts.
+- Example identifiers MUST use the canonical identifier model.
 
 ---
 
-## 6. Status
+## 5. Implementation Order
+
+The decisions in this ADR MUST be applied in the following order:
+
+1. RFC
+2. RUNTIME
+3. SDK
+4. TOOLS
+5. EXAMPLES
+
+After implementation, AUDIT-004 MUST verify normative coverage and semantic
+consistency.
+
+---
+
+## 6. Related Audits
+
+- AUDIT-001 — Repository Integrity Report
+- AUDIT-002 — Dependency & Reference Integrity
+- AUDIT-003 — Semantic & Architectural Audit
+- Phase 3A — Canonical Models
+
+---
+
+## 7. Decision History
+
+| ID | Decision |
+|---|---|
+| D-001 | Existing ADR-0005 decision |
+| D-002 | Existing ADR-0005 decision |
+| D-003 | Existing ADR-0005 decision |
+| D-004 | Existing ADR-0005 decision |
+| D-005 | Existing ADR-0005 decision |
+| D-006 | Existing ADR-0005 decision |
+| D-007 | Existing ADR-0005 decision |
+| D-008 | Canonical Decision Model |
+| D-009 | Canonical Decision Lifecycle |
+| D-010 | Canonical Context Lifecycle and Freeze |
+| D-011 | Canonical Resource Terminology |
+| D-012 | Canonical Tool Lifecycle |
+| D-013 | Decision / Authorization / Approval Separation |
+| D-014 | Events vs States |
+| D-015 | Canonical Entity Identifiers |
+| D-016 | Non-Normative Boundary of Examples |
+
+---
+
+## 8. Status
 
 Proposed for approval.
 

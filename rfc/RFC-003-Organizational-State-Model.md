@@ -124,7 +124,7 @@ Those concerns belong to other RFCs.
 
 The Organization is the owner of its persistent State.
 
-Execution Resources may:
+execution resources may:
 
 ```text id="m7g5xq"
 Observe State
@@ -239,6 +239,22 @@ Context MAY contain information derived from State.
 
 Context MUST NOT automatically become persistent State.
 
+When a Context is material to a consequential evaluation or execution, RFC-003 consumes the canonical Context model defined by RFC-002 and RFC-004:
+
+```text
+CREATED
+   ↓
+VALID
+   ↓
+FROZEN
+   ↓
+CONSUMED
+   ↓
+ARCHIVED
+```
+
+After FROZEN, the normative content of the Context MUST NOT change.
+
 ---
 
 # 9. State Identity
@@ -347,6 +363,8 @@ A State Transition MAY originate from:
 * administrative action;
 * recovery procedure.
 
+When a State Transition is Decision-driven, RFC-003 consumes the canonical model defined by RFC-002 and RFC-006: Decision determines the intended change, Authorization determines whether the operation may proceed, and Approval MAY be required as an explicit additional step.
+
 The transition MUST respect applicable authority and policy.
 
 ---
@@ -355,17 +373,25 @@ The transition MUST respect applicable authority and policy.
 
 A significant State Transition SHOULD be authorized before commitment.
 
-Conceptually:
+Decision-driven transitions SHOULD conceptually follow:
 
 ```text id="4h6m2v"
 Proposal
    ↓
-Validation
+Decision
    ↓
 Authorization
    ↓
+Approval (when required)
+   ↓
+Invocation
+   ↓
+Execution
+   ↓
 State Transition
 ```
+
+Deterministic transitions that do not require a Decision still require the applicable Authorization model.
 
 The exact authority model is defined in RFC-006.
 
@@ -696,7 +722,7 @@ Revalidation Required
 
 # 30. State References
 
-Execution Resources SHOULD normally receive a reference to relevant State rather than a complete organizational snapshot.
+execution resources SHOULD normally receive a reference to relevant State rather than a complete organizational snapshot.
 
 Example:
 
@@ -742,7 +768,7 @@ Authoritative State
 State Projection
 ```
 
-An Execution Resource MUST NOT assume that modifying its local projection automatically modifies organizational State.
+An execution resource MUST NOT assume that modifying its local projection automatically modifies organizational State.
 
 ---
 
@@ -1189,7 +1215,7 @@ Operating Mode: AUTO
 
 A sensor generates an Observation.
 
-An Execution Resource evaluates it.
+An execution resource evaluates it.
 
 A Proposal is generated:
 
@@ -1199,7 +1225,9 @@ Reduce pump speed by 10%.
 
 The Proposal is validated.
 
-An authorized Decision is created.
+A Decision is created.
+
+The Organization authorizes execution of the proposed transition.
 
 The State Transition becomes:
 
@@ -1215,7 +1243,7 @@ The transition references:
 
 * Decision;
 * Evidence;
-* Execution Resource;
+* execution resource;
 * timestamp;
 * previous State.
 
@@ -1378,7 +1406,7 @@ The following principles should remain stable.
 
 ### Continuity Invariant
 
-> Execution Resource failure must not inherently destroy organizational State.
+> execution resource failure must not inherently destroy organizational State.
 
 ### Consistency Invariant
 
@@ -1508,7 +1536,8 @@ Therefore:
 Context is temporary.
 Memory is persistent knowledge.
 Events are occurrences.
-Decisions authorize change.
+Decisions determine change.
+Authorization grants permission for change.
 Transitions modify State.
 State preserves organizational continuity.
 ```

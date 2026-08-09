@@ -51,6 +51,19 @@ benchmark/   Hypothesis validation harnesses + workloads (Python)
 - **Architectural changes** go through the FCP/ADR mechanism (see `adr/ADR-0003`).
 - **Breaking changes** must be documented and follow ADR-0000.
 
+## Examples Are Not a Second Specification
+
+- Examples MAY instantiate normative concepts, but MUST NOT introduce new
+  normative states, fields, lifecycle values, identifiers or error codes
+  unless explicitly marked as illustrative (VCG-001 §2, CONTRIBUTING §8.1).
+- Prefer canonical tokens: use `RESOURCE_UNAVAILABLE` (SDK-003 §77), not
+  domain codes like `PUMP_NOT_AVAILABLE`; use `objective:`/`outcome:`
+  (SDK-005 §10/§12), not `intent:`/`proposed_action:`; use `FAILED`
+  (RUNTIME-001 outcomes), not `FAILURE` as a state.
+- The `audit002.py` check K validates this automatically: any ALL-CAPS
+  code-like token in `examples/` that does not occur in the normative corpus
+  (sdk/, runtime/, rfc/, tools/, fundation/) fails.
+
 ## Prototype Conventions
 
 - `prototype/` is a minimal reference implementation, additive and
@@ -80,3 +93,7 @@ python benchmark/failure-recovery/run_benchmark.py --out results/_check
 
 All four must report `hypotheses_supported: true`. Remove the `results/_check`
 artifacts afterwards (they are git-ignored but keep the tree clean).
+
+Run the canonical integrity audit after touching `examples/`, `sdk/`,
+`runtime/`, `rfc/`, `tools/` or `fundation/`: the audit (check K) fails when
+examples invent ALL-CAPS normative tokens absent from the normative corpus.

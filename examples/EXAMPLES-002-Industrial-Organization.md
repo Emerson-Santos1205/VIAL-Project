@@ -38,6 +38,8 @@ Depends On:
 
 This document demonstrates VIAL in an industrial environment.
 
+Domain-specific values in this example are illustrative and MUST NOT be interpreted as introducing new normative states, fields, identifiers or error codes.
+
 The example expands the Minimal Organization scenario to include multiple Resources, Tools, operational Context and consequential Decisions.
 
 ---
@@ -65,7 +67,7 @@ VIAL provides governed access to these Resources.
 
 ```text
 Organization:
-    id: org.factory.example
+    id: ORG-001
     name: Example Industrial Plant
 ```
 
@@ -78,11 +80,11 @@ The Organization represents the operational authority boundary.
 Resources include:
 
 ```text
-resource.pasteurizer-01
-resource.temperature-01
-resource.pressure-01
-resource.pump-01
-resource.valve-01
+RES-001
+RES-002
+RES-003
+RES-004
+RES-005
 ```
 
 Resources may have relationships.
@@ -119,12 +121,12 @@ Their permissions are not equivalent.
 Example Tools:
 
 ```text
-tool.sensor.read_temperature
-tool.sensor.read_pressure
-tool.pump.read_state
-tool.pump.set_speed
-tool.valve.read_position
-tool.valve.set_position
+TOOL-001
+TOOL-002
+TOOL-003
+TOOL-004
+TOOL-005
+TOOL-006
 ```
 
 Read-only Tools generally have lower operational risk than control Tools.
@@ -136,7 +138,7 @@ Read-only Tools generally have lower operational risk than control Tools.
 A Tool such as:
 
 ```text
-tool.pump.set_speed
+TOOL-004
 ```
 
 has side effects.
@@ -194,10 +196,12 @@ A Decision may determine that pump speed must be adjusted.
 
 ```text
 Decision:
-    id: decision.adjust-pump
-    intent: restore operating pressure
-    resource: resource.pump-01
+    id: DEC-001
+    objective: restore operating pressure
+    resource: RES-004
 ```
+
+The Decision expresses intent; it does not by itself grant permission to act.
 
 ---
 
@@ -234,7 +238,7 @@ Required capability:
     adjust pump speed
 
 Discovery:
-    tool.pump.set_speed
+    TOOL-004
 ```
 
 ---
@@ -245,10 +249,10 @@ The invocation specifies:
 
 ```text
 Tool:
-    tool.pump.set_speed
+    TOOL-004
 
 Resource:
-    resource.pump-01
+    RES-004
 
 Input:
     speed = 65%
@@ -331,7 +335,7 @@ If the pump refuses the command:
 ```text
 Execution
     ↓
-FAILURE
+FAILED
 ```
 
 The Runtime MUST NOT report success.
@@ -339,13 +343,13 @@ The Runtime MUST NOT report success.
 The failure may be:
 
 ```text
-PUMP_NOT_AVAILABLE
+RESOURCE_UNAVAILABLE
 ```
 
 or:
 
 ```text
-EXECUTION_FAILED
+EXECUTION_FAILURE
 ```
 
 ---

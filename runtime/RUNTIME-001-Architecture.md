@@ -60,15 +60,23 @@ Understand
    ↓
 Build Context
    ↓
+Freeze Context when consequential
+   ↓
 Cognize
    ↓
 Decide
    ↓
+Evaluate Authority
+   ↓
 Authorize
+   ↓
+Approve when required
+   ↓
+Create Invocation
    ↓
 Execute
    ↓
-Observe Result
+Observe Outcome
    ↓
 Update State
    ↓
@@ -106,7 +114,7 @@ VIAL Protocol
       ↓
 VIAL Runtime
       ↓
-Execution Resources
+execution resources
       ↓
 Real World
 ```
@@ -180,11 +188,23 @@ The fundamental Runtime cycle is:
 └──────┬───────┘
        ↓
 ┌──────────────┐
+│ AUTHORIZATION│
+└──────┬───────┘
+       ↓
+┌──────────────┐
+│   APPROVAL   │
+└──────┬───────┘
+       ↓
+┌──────────────┐
+│  INVOCATION  │
+└──────┬───────┘
+       ↓
+┌──────────────┐
 │  EXECUTION   │
 └──────┬───────┘
        ↓
 ┌──────────────┐
-│    RESULT    │
+│   OUTCOME    │
 └──────┬───────┘
        ↓
 ┌──────────────┐
@@ -302,6 +322,22 @@ Context
 
 The entire organizational knowledge base MUST NOT automatically become Context.
 
+For consequential evaluation or execution, the Context Engine MUST support the canonical Context lifecycle consumed from RFC-002 through RFC-004:
+
+```text
+CREATED
+   ↓
+VALID
+   ↓
+FROZEN
+   ↓
+CONSUMED
+   ↓
+ARCHIVED
+```
+
+After FROZEN, the normative content of the Context MUST NOT change.
+
 ---
 
 # 12. Memory Engine
@@ -323,7 +359,7 @@ Responsibilities include:
 
 # 13. Cognition Coordinator
 
-The Cognition Coordinator invokes one or more Execution Resources capable of reasoning.
+The Cognition Coordinator invokes one or more execution resources capable of reasoning.
 
 Resources MAY include:
 
@@ -389,6 +425,8 @@ Conceptually:
 ```text
 Decision
    ↓
+Authority Evaluation
+   ↓
 Who is deciding?
    ↓
 What authority exists?
@@ -397,14 +435,18 @@ What is the scope?
    ↓
 Are constraints satisfied?
    ↓
-AUTHORIZED / REJECTED / ESCALATED
+Authorization
+   ↓
+Approval (when required)
+   ↓
+AUTHORIZED / REJECTED / ESCALATION event
 ```
 
 ---
 
 # 17. Execution Engine
 
-The Execution Engine dispatches authorized Decisions to Execution Resources.
+The Execution Engine dispatches authorized Decisions to execution resources through an explicit Invocation.
 
 It SHOULD verify the Decision immediately before execution.
 
@@ -413,7 +455,11 @@ Decision
    ↓
 Validate
    ↓
-Authorize
+Confirm Authorization
+   ↓
+Confirm Approval when required
+   ↓
+Create Invocation
    ↓
 Dispatch
 ```
@@ -439,7 +485,7 @@ UNKNOWN
 The Result Manager SHOULD preserve the relationship between:
 
 ```text
-Decision → Execution → Result
+Decision → Invocation → Execution → Outcome
 ```
 
 ---
@@ -461,11 +507,15 @@ Cognition
  ↓
 Decision
  ↓
-Authority
+Authorization
+ ↓
+Approval
+ ↓
+Invocation
  ↓
 Execution
  ↓
-Result
+Outcome
 ```
 
 ---
@@ -569,9 +619,11 @@ Proposal
    ↓
 Decision Validation
    ↓
+Decision
+   ↓
 Authority
    ↓
-Decision
+Authorization
 ```
 
 ---
@@ -613,8 +665,8 @@ Additional identifiers MAY include:
 State Version
 Context Version
 Decision ID
-Execution ID
-Result ID
+Invocation ID
+Outcome ID
 ```
 
 ---
@@ -630,10 +682,10 @@ Cycle C100
 
 Event E10
 State S82
-Context X42
-Decision D18
-Execution X90
-Result R55
+Context CTX-042
+Decision DEC-018
+Invocation INV-090
+Outcome R55
 ```
 
 This allows complete reconstruction.
@@ -716,7 +768,7 @@ Memory MAY be shared organizationally, but access MUST respect:
 
 # 34. Resource Isolation
 
-Execution Resources SHOULD NOT automatically share:
+Execution resources SHOULD NOT automatically share:
 
 * credentials;
 * authority;
@@ -1084,12 +1136,16 @@ CYCLE_STARTED
 CONTEXT_CREATED
 DECISION_PROPOSED
 DECISION_AUTHORIZED
+DECISION_REVOKED
+DECISION_ESCALATED
 EXECUTION_STARTED
 EXECUTION_COMPLETED
 STATE_UPDATED
 MEMORY_UPDATED
 CYCLE_COMPLETED
 ```
+
+DECISION_REVOKED signals that an authorized Decision was withdrawn; DECISION_ESCALATED signals an escalation event. Both are events, not Decision lifecycle states.
 
 ---
 
@@ -1536,15 +1592,19 @@ The Runtime MUST NOT make VIAL dependent on a specific provider.
        │            │           │            │            │
        └────────────┴───────────┴────────────┴────────────┘
                                 │
-                           DECISION
+                            DECISION
                                 │
-                          EXECUTION
+                         AUTHORIZATION
+                                │
+                            INVOCATION
+                                │
+                           EXECUTION
                                 │
                               TOOLS
                                 │
                          EXTERNAL WORLD
                                 │
-                              RESULT
+                             OUTCOME
                                 │
                      ┌──────────┴──────────┐
                      ↓                     ↓
@@ -1567,12 +1627,14 @@ The canonical cycle is:
 7. PRODUCE PROPOSAL
 8. EVALUATE DECISION
 9. VALIDATE AUTHORITY
-10. EXECUTE
-11. COLLECT RESULT
-12. UPDATE STATE
-13. UPDATE MEMORY
-14. RECORD AUDIT
-15. CLOSE CYCLE
+10. AUTHORIZE / APPROVE WHEN REQUIRED
+11. CREATE INVOCATION
+12. EXECUTE
+13. COLLECT OUTCOME
+14. UPDATE STATE
+15. UPDATE MEMORY
+16. RECORD AUDIT
+17. CLOSE CYCLE
 ```
 
 ---
@@ -1592,6 +1654,9 @@ Safety policy
 Current equipment state
 Known failure knowledge
 
+Context State:
+FROZEN
+
 Cognition:
 Recommend controlled shutdown.
 
@@ -1601,10 +1666,16 @@ Shutdown machine.
 Authority:
 Authorized by safety policy.
 
+Approval:
+Not required.
+
+Invocation:
+INV-001
+
 Execution:
 Shutdown command.
 
-Result:
+Outcome:
 Machine = STOPPED.
 
 State:

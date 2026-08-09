@@ -88,7 +88,7 @@ Architecture SHOULD clearly distinguish:
 Organization
 Role
 Capability
-Execution Resource
+execution resource
 ```
 
 This allows execution resources to be replaced without changing organizational semantics.

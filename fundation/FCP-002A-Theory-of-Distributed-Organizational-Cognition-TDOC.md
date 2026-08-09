@@ -142,7 +142,7 @@ Instead:
 ```text
 Agent
   ↓
-Execution Resource
+execution resource
   ↓
 Role
   ↓
@@ -302,7 +302,7 @@ Organization
      ↓
     Role
      ↓
-Execution Resource
+execution resource
 ```
 
 A Role represents an organizational responsibility.

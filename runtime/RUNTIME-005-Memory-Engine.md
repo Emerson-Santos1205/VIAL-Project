@@ -10,6 +10,7 @@ Depends On:
 - RUNTIME-003
 - RUNTIME-004
 - RFC-003
+- RFC-005
 - FCP-002A
 
 ---
@@ -54,7 +55,7 @@ Decision
   ↓
 Execution
   ↓
-Result
+Outcome
   ↓
 Memory
   ↺
@@ -126,6 +127,8 @@ Relevant Memory selected for the current task.
 ```
 
 The Context Engine retrieves Memory; it does not replace the Memory Engine.
+
+When Memory is materialized into a consequential Context, the Runtime consumes the canonical Context lifecycle from RFC-002 through RFC-004: `CREATED → VALID → FROZEN → CONSUMED → ARCHIVED`. Once the relevant Context is FROZEN, its normative content MUST NOT change.
 
 ---
 
@@ -666,11 +669,13 @@ Important Decisions SHOULD be retained when they have future value.
 A Decision Memory SHOULD reference:
 
 ```text
-Decision ID
-Context
+DEC-*
+CTX-*
 State Version
 Reasoning Summary
 Action
+Authorization / Approval context when applicable
+Invocation
 Outcome
 ```
 
@@ -682,6 +687,8 @@ A Decision becomes more valuable when its outcome is known.
 
 ```text
 Decision
+ ↓
+Invocation
  ↓
 Execution
  ↓
@@ -1097,7 +1104,7 @@ Execution outcomes provide new learning material.
 ```text
 Execution
  ↓
-Result
+Outcome
  ↓
 Evaluation
  ↓

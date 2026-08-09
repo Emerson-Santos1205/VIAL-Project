@@ -24,7 +24,7 @@ Depends On:
 
 This document converts the central VIAL efficiency thesis into a **falsifiable hypothesis** with a **reproducible validation protocol**.
 
-VIAL claims that selective contextualization — sending each Execution Resource only the minimum sufficient projection of persistent State — reduces cognitive cost without materially degrading result quality, when compared to transmitting complete organizational context.
+VIAL claims that selective contextualization — sending each execution resource only the minimum sufficient projection of persistent State — reduces cognitive cost without materially degrading result quality, when compared to transmitting complete organizational context.
 
 This RFC does NOT assert that the claim is true. It defines exactly what would have to be observed, measured and falsified for the claim to be accepted, and how to reproduce the measurement.
 
@@ -77,11 +77,13 @@ where `quality_tolerance` defaults to `0.10` (10% relative degradation is the ma
 
 ### 2.2 Operational Definitions
 
-**Full Context (Fc):** the complete serialized representation of the Organization's persistent State available for the workload, passed verbatim to the Execution Resource for every task.
+**Full Context (Fc):** the complete serialized representation of the Organization's persistent State available for the workload, passed verbatim to the execution resource for every task.
 
 **Selective Context (Sc):** a projection constructed by selecting only the state fields, references and policies that the Context Builder determines relevant to the specific task, per the selection rules in §2.3.
 
-**Cognitive Cost:** the primary metric is token count of the serialized context delivered to the Execution Resource. Secondary metrics: bytes, retrieval operations, construction time.
+When a workload evaluates a consequential Decision or execution boundary, the benchmark MUST consume the canonical Context model from RFC-002 through RFC-004: `CREATED → VALID → FROZEN → CONSUMED → ARCHIVED`. Once the benchmarked Context is FROZEN, its normative content MUST NOT change during that evaluation.
+
+**Cognitive Cost:** the primary metric is token count of the serialized context delivered to the execution resource. Secondary metrics: bytes, retrieval operations, construction time.
 
 **Quality:** for deterministic tasks, quality = exact-match correctness (0.0 or 1.0). For non-deterministic tasks, quality = an evaluator score in `[0.0, 1.0]` with a documented rubric. The same evaluator MUST be applied to both conditions.
 
@@ -179,7 +181,7 @@ Organization State fixture:
 
 ```text
 {
-  "identity": {"org": "plant-7"},
+  "identity": {"org": "ORG-007"},
   "pressure": 8.2,        // relevance: [control, safety]
   "temperature": 72.0,    // relevance: [control, safety]
   "mode": "AUTO",         // relevance: [control]
@@ -216,6 +218,8 @@ This illustration is NOT a result. Results come only from actual runs.
 - Selection MUST NOT leak state outside the authority scope of the task (RFC-004 §19).
 - Results and workloads MAY contain organizational fixtures; sensitive fixtures MUST be synthetic.
 - The benchmark executor MUST NOT have access to the Full Context when evaluating Selective Context quality, and vice versa.
+- This RFC consumes the canonical authority model from RFC-006. Authorization remains distinct from Decision, Approval, Invocation and Execution; benchmark governance MUST NOT redefine those concepts.
+- If review or escalation is required during a benchmark workflow, it MUST be treated as a governance event or process, not as a Decision lifecycle state.
 
 ---
 

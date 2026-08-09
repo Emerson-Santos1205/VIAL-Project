@@ -11,6 +11,7 @@ Depends On:
 - RUNTIME-004
 - RUNTIME-005
 - RFC-003
+- RFC-006
 - FCP-002A
 
 ---
@@ -19,7 +20,11 @@ Depends On:
 
 This document defines the **VIAL Cognition Engine**.
 
-The Cognition Engine is responsible for transforming Context into structured organizational reasoning and, when authorized, a Decision proposal.
+The Cognition Engine is responsible for transforming Context into structured organizational reasoning and producing a Decision proposal for evaluation.
+
+RUNTIME-006 is the **Cognition Engine**, not the **Decision Engine**.
+
+The Decision Engine is the separate logical component, defined in RUNTIME-001 §15, that transforms Cognition output into an explicit Decision representation and verifies its structure, scope, constraints, preconditions, risk and authority requirements. The Cognition Engine performs cognition and planning; the Decision Engine evaluates and represents the resulting Decision. The Cognition Engine does not itself evaluate or authorize Decisions (see RFC-006).
 
 Its purpose is not to maximize intelligence.
 
@@ -146,6 +151,8 @@ Authority
 Risk Information
 ```
 
+When a consequential Decision proposal depends on a stabilized evaluation boundary, the input Context SHOULD be FROZEN. After FROZEN, the normative content of that Context MUST NOT change; later changes require a new Context.
+
 ---
 
 # 7. Cognition Output
@@ -178,7 +185,11 @@ Decision
 Execution
 ```
 
+Cognition proposes, Decision evaluates, Execution acts.
+
 Reasoning does not automatically constitute authorization.
+
+The Cognition Engine produces a Decision proposal; it does not replace the Decision Engine, which represents and evaluates the Decision (RUNTIME-001 §15), nor the Authority Engine, which determines authorization (RFC-006).
 
 ---
 
@@ -727,7 +738,8 @@ The correct response depends on risk and domain.
 A Decision Proposal SHOULD contain:
 
 ```text
-Decision ID
+Proposed Decision ID (DEC-*)
+CTX-*
 Objective
 Selected Action
 Alternatives
@@ -735,9 +747,11 @@ Reasons
 Evidence
 Constraints
 Risk
-Authority
+Required Authority
 Expected Outcome
 ```
+
+A Decision Proposal is not yet an authorized Decision. Authorization, Approval, Invocation and Execution remain separate downstream concerns.
 
 ---
 
@@ -1227,7 +1241,7 @@ Organizations SHOULD define which Decisions require:
 
 # 73. Authority
 
-A Decision is organizationally valid only when the Resource possesses the required authority.
+A Decision Proposal does not become eligible to proceed merely because cognition produced it. Organizational execution may proceed only when the required authority workflow grants Authorization, with Approval when policy requires it.
 
 ```text
 Capability

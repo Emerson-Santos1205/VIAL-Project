@@ -58,7 +58,12 @@ class VIALAuthenticationError(VIALError, PermissionError):
 
 
 class VIALAuthorizationError(VIALError, PermissionError):
-    """Raised when an actor lacks authority (SDK-001 §30 - Authorization)."""
+    """Raised when Authorization is denied: the actor lacks the permission
+    granted by the authority model (SDK-001 §30 - Authorization).
+
+    Decision, Authorization, Approval and Execution are distinct concepts
+    (VCG-001 DEC-001/AUTH-001/APV-001/EXE-001). A Decision may be valid yet
+    still lack the Authorization required to execute."""
 
     category = AUTHORIZATION
 

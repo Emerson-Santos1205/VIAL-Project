@@ -41,6 +41,8 @@ Depends On:
 
 This document demonstrates an autonomous VIAL workflow.
 
+Domain-specific values in this example are illustrative and MUST NOT be interpreted as introducing new normative states, fields, identifiers or error codes.
+
 The example shows how an autonomous component can observe Resources, produce Decisions and invoke Tools while remaining bounded by predefined authority.
 
 ---
@@ -134,8 +136,8 @@ The agent invokes read-only Tools.
 Example:
 
 ```text
-tool.sensor.read_temperature
-tool.sensor.read_pressure
+TOOL-001
+TOOL-002
 ```
 
 ---
@@ -148,9 +150,9 @@ Example:
 
 ```text
 Decision:
-    intent: stabilize pressure
+    objective: stabilize pressure
     target: pump-01
-    proposed_action: reduce speed
+    outcome: reduce speed
 ```
 
 ---
@@ -186,7 +188,7 @@ Capability:
     adjust pump speed
 
 Tool:
-    tool.pump.set_speed
+    TOOL-003
 ```
 
 ---
@@ -200,10 +202,10 @@ principal:
     principal.agent.pasteurizer
 
 tool:
-    tool.pump.set_speed
+    TOOL-003
 
 resource:
-    resource.pump-01
+    RES-001
 
 input:
     speed: 55%

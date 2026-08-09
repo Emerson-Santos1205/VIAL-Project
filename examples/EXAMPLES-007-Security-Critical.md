@@ -43,6 +43,8 @@ Depends On:
 
 This document demonstrates VIAL in a security-critical environment.
 
+Domain-specific values in this example are illustrative and MUST NOT be interpreted as introducing new normative states, fields, identifiers or error codes.
+
 The example emphasizes strict authorization, least privilege, approval, isolation, audit and emergency control.
 
 ---
@@ -82,13 +84,15 @@ A normal operator may observe the Resource but cannot directly execute the criti
 
 ```text
 Operator:
-    READ
+    equipment.read
 
 Safety Engineer:
-    READ + CONTROL
+    equipment.read
+    equipment.control
 
 Administrator:
-    POLICY
+    equipment.control
+    policy.manage
 ```
 
 ---
@@ -217,8 +221,10 @@ The system SHOULD support emergency Tool suspension.
 ```text
 ACTIVE
    ↓
-EMERGENCY SUSPENDED
+EMERGENCY_DISABLED
 ```
+
+EMERGENCY_DISABLED is a security override, not a lifecycle stage (TOOLS-008 §33).
 
 ---
 
@@ -275,13 +281,13 @@ If the Runtime cannot establish the required security state, the operation MUST 
 
 # 24. Security Event
 
-A suspicious invocation MAY generate:
+A suspicious invocation MAY be rejected:
 
 ```text
-SECURITY_EVENT
+RESOURCE_UNAUTHORIZED
 ```
 
-The event SHOULD be independently recorded.
+The rejection SHOULD be independently recorded.
 
 ---
 
@@ -320,15 +326,17 @@ ACTIVE
    ↓
 SUSPENDED
    ↓
-SECURITY REVIEW
-   ↓
 ACTIVE
 ```
+
+Suspension is a transient operational state; return to ACTIVE requires review and authorization (TOOLS-008 §6, §36).
 
 or:
 
 ```text
 ACTIVE
+   ↓
+DEPRECATED
    ↓
 RETIRED
 ```
@@ -340,7 +348,7 @@ RETIRED
 An unauthorized operator attempts:
 
 ```text
-tool.safety.disable
+TOOL-001
 ```
 
 The Runtime evaluates authorization and returns:

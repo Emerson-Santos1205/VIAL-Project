@@ -231,17 +231,19 @@ Consumers MUST NOT assume that the latest version is automatically the active ve
 
 A Tool Registry Entry SHOULD have a lifecycle state.
 
-Recommended states:
+The lifecycle state follows the canonical lifecycle defined in **TOOLS-001 §71**:
 
 ```text
 DRAFT
-VALIDATING
-PUBLISHED
+DEFINED
 ACTIVE
-SUSPENDED
 DEPRECATED
 RETIRED
 ```
+
+SUSPENDED is a transient operational state, not a lifecycle stage.
+
+DEGRADED reflects health, not lifecycle. EMERGENCY_DISABLED is a security override, not a lifecycle stage.
 
 ---
 

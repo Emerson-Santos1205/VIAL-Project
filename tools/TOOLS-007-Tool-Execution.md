@@ -44,7 +44,7 @@ Execution Environment
         ↓
 Tool Implementation
         ↓
-Result
+Outcome
         ↓
 Postcondition Validation
         ↓
@@ -154,7 +154,7 @@ External system interactions MUST remain within authorized destinations and cred
 
 # 16. Result Validation
 
-The Runtime SHOULD validate the Tool result against the Contract output schema.
+The Runtime SHOULD validate the Tool outcome against the Contract output schema.
 
 ---
 

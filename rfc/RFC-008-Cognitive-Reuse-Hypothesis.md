@@ -89,6 +89,8 @@ where `quality_tolerance` defaults to `0.10`.
 
 **State compatibility:** an operation is reusable iff the State fields referenced by its original projection have the same values now as when the result was validated. Fields NOT referenced by the operation MAY change without invalidating its result (RFC-004 §25 "State compatibility").
 
+When reuse is evaluated for a consequential Decision or execution boundary, RFC-008 consumes the canonical Context model from RFC-002 through RFC-004: `CREATED → VALID → FROZEN → CONSUMED → ARCHIVED`. Once the relevant Context is FROZEN, its normative content MUST NOT change during that evaluation.
+
 **Stale reuse:** serving a cached result whose referenced State fields have changed since validation. Stale reuse is a correctness violation.
 
 **Cognitive cost:** the primary metric is token count of the context delivered to the executor, summed over all operations. A cache hit is a deterministic lookup with no executor invocation and counts as 0 tokens.
@@ -203,6 +205,8 @@ This illustration is NOT a result. Results come only from actual runs.
 - Cache hits bypass the executor; therefore State compatibility MUST be verified (RFC-004 §27). A buggy compatibility check is a correctness and security risk.
 - Cached results MUST retain provenance references to the validated State version.
 - Cache admission MUST respect authorization: an operation must not serve a result beyond the caller's authority scope.
+- This RFC consumes the canonical authority model from RFC-006. Authorization remains distinct from Decision, Approval, Invocation and Execution; reuse logic MUST NOT redefine those concepts.
+- If reuse review, escalation or revocation is required during benchmark governance, it MUST be treated as an event or process rather than as a Decision lifecycle state.
 
 ---
 

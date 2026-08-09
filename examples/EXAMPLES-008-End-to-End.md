@@ -44,6 +44,8 @@ Depends On:
 
 This document demonstrates a complete VIAL workflow from initial intent to final audited result.
 
+Domain-specific values in this example are illustrative and MUST NOT be interpreted as introducing new normative states, fields, identifiers or error codes.
+
 It combines the concepts demonstrated by the previous examples.
 
 ---
@@ -86,7 +88,7 @@ Audit
 
 ```text
 Organization:
-    org.example.industrial
+    ORG-001
 ```
 
 The Organization owns multiple plants.
@@ -109,15 +111,15 @@ Plant:
 The target Resource is:
 
 ```text
-resource.plant-a.pasteurizer-01
+RES-001
 ```
 
 Associated Resources include:
 
 ```text
-temperature-01
-pressure-01
-pump-01
+RES-002
+RES-003
+RES-004
 ```
 
 ---
@@ -138,7 +140,7 @@ Its authority is explicitly bounded.
 
 ```text
 Context:
-    organization: org.example.industrial
+    organization: ORG-001
     plant: plant-a
     equipment: pasteurizer-01
     temperature: 72.5
@@ -154,8 +156,8 @@ Context:
 The agent discovers and invokes read-only Tools:
 
 ```text
-tool.sensor.read_temperature
-tool.sensor.read_pressure
+TOOL-001
+TOOL-002
 ```
 
 The results are validated.
@@ -176,9 +178,9 @@ The agent produces:
 
 ```text
 Decision:
-    intent: stabilize pressure
-    target: pump-01
-    proposed_action: reduce speed
+    objective: stabilize pressure
+    target: RES-004
+    outcome: reduce speed
 ```
 
 ---
@@ -210,7 +212,7 @@ adjust pump speed
 Discovery returns:
 
 ```text
-tool.pump.set_speed
+TOOL-003
 ```
 
 ---
@@ -255,7 +257,7 @@ An authorized engineer approves the specific operation.
 ```text
 Approval:
     principal.engineer
-    target: pump-01
+    target: RES-004
     operation: set_speed
 ```
 
@@ -267,13 +269,13 @@ The Runtime creates:
 
 ```text
 Invocation:
-    id: inv-000042
+    id: INV-001
 
 Tool:
-    tool.pump.set_speed@1.0.0
+    TOOL-003@1.0.0
 
 Resource:
-    resource.plant-a.pump-01
+    RES-004
 
 Input:
     speed: 55%
@@ -336,16 +338,16 @@ The final result contains:
 
 ```text
 Invocation:
-    inv-000042
+    INV-001
 
 Status:
     SUCCESS
 
 Tool:
-    tool.pump.set_speed@1.0.0
+    TOOL-003@1.0.0
 
 Resource:
-    resource.plant-a.pump-01
+    RES-004
 
 Result:
     speed = 55%

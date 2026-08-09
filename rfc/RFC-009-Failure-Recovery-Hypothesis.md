@@ -78,6 +78,8 @@ RFC-009 fills that gap.
 
 **Operation:** a single intended State Transition, identified by a unique `operation_id`.
 
+`operation_id` is a benchmark-local identifier for recovery validation. It is not a canonical VIAL entity identifier and therefore does not replace `ORG-*`, `RES-*`, `CTX-*`, `DEC-*` or `INV-*` for normative entities.
+
 **Interrupted operation:** an operation whose executor fails between request and acknowledged completion.
 
 **Recovery:** the process of determining an interrupted operation's outcome from the transition log (`previous_state`, `resulting_state`, `status`) and, where needed, completing or aborting it.
@@ -87,6 +89,8 @@ RFC-009 fills that gap.
 **Observed intermediate state:** a State read that reflects only part of an intended transition (e.g., a new version recorded but field value not applied, or vice versa).
 
 **Authoritative State:** the State recognized as current truth (RFC-003 §24).
+
+When an interrupted operation derives from a consequential Decision or execution boundary, RFC-009 consumes the canonical Context model from RFC-002 through RFC-004: `CREATED → VALID → FROZEN → CONSUMED → ARCHIVED`. Once the relevant Context is FROZEN, its normative content MUST NOT change during that evaluation or recovery path.
 
 ### 2.3 Coordinator Behavior
 
@@ -100,6 +104,8 @@ A conforming coordinator MUST:
    - intent recorded, not committed → MAY complete or abort;
    - already committed → return the existing committed outcome, do NOT re-apply;
 6. never commit the same `operation_id` twice.
+
+If the operation is Decision-driven, the coordinator consumes the canonical authority model from RFC-006: Decision remains distinct from Authorization, Approval, Invocation and Execution. Recovery logic MUST NOT collapse those concepts into a single state or permission token.
 
 ### 2.4 Metrics
 
@@ -179,6 +185,7 @@ recovery(O-43): already committed → return v11 result, do NOT re-apply
 - Recovery MUST respect authority: only authorized actors may complete or abort an interrupted operation.
 - The transition log is a trust boundary; tampering with it breaks recovery correctness and auditability (RFC-003 §33, §34).
 - Idempotency keys (operation_id) MUST be unforgeable where the operation is consequential.
+- Escalation, revocation or review during recovery MUST be treated as events or processes, not as Decision lifecycle states.
 
 ---
 

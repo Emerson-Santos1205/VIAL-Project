@@ -313,9 +313,9 @@ flow
 
 # 17. Context Validity
 
-A Context SHOULD have a validity state.
+A Context SHOULD have a validity condition.
 
-Possible states:
+Possible validity conditions:
 
 ```text
 VALID
@@ -325,6 +325,8 @@ INVALID
 EXPIRED
 REVOKED
 ```
+
+These are conditions, not lifecycle states; the canonical lifecycle is defined in §49 (CREATED → VALID → FROZEN → CONSUMED → ARCHIVED).
 
 ---
 
@@ -840,33 +842,29 @@ Updated
 
 # 49. Context Lifecycle
 
-A Context MAY follow:
+The canonical Context lifecycle is:
 
 ```text
 CREATED
    ↓
 VALID
    ↓
-REFRESHED
-   ↓
-STALE
-   ↓
-EXPIRED
-```
-
-A Decision-related Context MAY instead follow:
-
-```text
-CREATED
-   ↓
-VALIDATED
-   ↓
 FROZEN
    ↓
-USED
+CONSUMED
    ↓
 ARCHIVED
 ```
+
+After FROZEN, the normative content of a Context MUST NOT change. A new Context SHALL be created when additional information is required (RUNTIME-004 §54, ADR-0006 D-004).
+
+Additional conditions MAY exist without creating a competing lifecycle. For example:
+
+* REFRESHED — a Context is replaced by a new version when required (see §68);
+* STALE — a Context may become stale as the Organization changes;
+* EXPIRED — a terminal condition; an EXPIRED Context is no longer valid for a new Decision but remains a stable record once FROZEN.
+
+The Runtime SHALL recognize FROZEN; FROZEN is not an SDK-only concept (ADR-0006 D-004).
 
 ---
 

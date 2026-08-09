@@ -664,7 +664,7 @@ A Decision SHOULD reference the State upon which it was based.
 Example:
 
 ```text
-Decision D-100
+Decision DEC-100
 
 Based on:
 State Version 482
@@ -1128,6 +1128,8 @@ But it MUST remain distinguishable from observed State.
 ---
 
 # 64. State Transition Lifecycle
+
+This lifecycle applies to the State Transition record managed by the State Engine. It is distinct from the canonical Decision lifecycle defined by RFC-006.
 
 ```text
 PROPOSED

@@ -39,6 +39,8 @@ Depends On:
 
 This document demonstrates VIAL operating across distributed environments.
 
+Domain-specific values in this example are illustrative and MUST NOT be interpreted as introducing new normative states, fields, identifiers or error codes.
+
 The example introduces multiple administrative and execution domains while preserving identity, authority, Context and Tool governance.
 
 ---
@@ -62,7 +64,7 @@ Each plant has local Resources and Runtime capabilities.
 
 ```text
 Organization:
-    org.example
+    ORG-001
 
 Units:
     plant-a
@@ -79,15 +81,15 @@ The Organization remains the top-level authority boundary.
 Plant A:
 
 ```text
-resource.plant-a.pasteurizer-01
-resource.plant-a.pump-01
+RES-001
+RES-002
 ```
 
 Plant B:
 
 ```text
-resource.plant-b.pasteurizer-01
-resource.plant-b.pump-01
+RES-003
+RES-004
 ```
 
 ---
@@ -154,8 +156,8 @@ Central Operations may issue a Decision:
 
 ```text
 Decision:
-    id: decision.inspect-plant-a
-    intent: inspect pasteurizer state
+    id: DEC-001
+    objective: inspect pasteurizer state
     target: plant-a
 ```
 
@@ -188,7 +190,7 @@ Authorization
 The central system may discover that Plant A exposes:
 
 ```text
-tool.sensor.read_temperature
+TOOL-001
 ```
 
 The local Registry remains authoritative for the local Tool instance.
@@ -226,10 +228,10 @@ Example:
 
 ```text
 central_invocation:
-    inv-central-001
+    INV-001
 
 local_invocation:
-    inv-plant-a-001
+    INV-002
 ```
 
 ---
@@ -257,7 +259,7 @@ The system MUST return an explicit failure.
 Example:
 
 ```text
-REMOTE_RUNTIME_UNAVAILABLE
+RESOURCE_UNAVAILABLE
 ```
 
 It MUST NOT fabricate the Resource state.
@@ -367,7 +369,7 @@ Context MUST identify the relevant domain.
 Example:
 
 ```text
-organization: org.example
+organization: ORG-001
 plant: plant-a
 resource: pasteurizer-01
 ```
@@ -383,9 +385,9 @@ A distributed operation SHOULD produce correlated audit records.
 ```text
 Central Audit
       │
-      └── inv-central-001
+      └── INV-001
               │
-              └── inv-plant-a-001
+              └── INV-002
 ```
 
 ---
@@ -415,7 +417,7 @@ The system MUST distinguish:
 ```text
 SUCCESS
 PARTIAL_SUCCESS
-FAILURE
+FAILED
 UNKNOWN
 ```
 

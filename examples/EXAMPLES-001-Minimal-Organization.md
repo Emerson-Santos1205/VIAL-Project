@@ -39,6 +39,8 @@ This document presents the smallest meaningful VIAL deployment.
 
 The example demonstrates how the fundamental VIAL concepts operate together:
 
+Domain-specific values in this example are illustrative and MUST NOT be interpreted as introducing new normative states, fields, identifiers or error codes.
+
 ```text
 Organization
 Resource
@@ -72,7 +74,7 @@ Organization
 
 ```text
 Organization:
-    id: org.example.minimal
+    id: ORG-001
     name: Minimal Organization
 ```
 
@@ -100,7 +102,7 @@ The Organization contains one Resource:
 
 ```text
 Resource:
-    id: resource.temperature-01
+    id: RES-001
     type: temperature_sensor
 ```
 
@@ -114,7 +116,7 @@ The Tool provides the capability:
 
 ```text
 Tool:
-    id: tool.sensor.read_temperature
+    id: TOOL-001
     version: 1.0.0
 ```
 
@@ -155,9 +157,9 @@ Example:
 
 ```text
 Context:
-    organization: org.example.minimal
+    organization: ORG-001
     principal: user.operator
-    resource: resource.temperature-01
+    resource: RES-001
     operation: read_temperature
 ```
 
@@ -169,10 +171,10 @@ The Decision establishes the intended operation.
 
 ```text
 Decision:
-    id: decision.read-temperature
-    intent: obtain current temperature
-    resource: resource.temperature-01
-    tool: tool.sensor.read_temperature
+    id: DEC-001
+    objective: obtain current temperature
+    resource: RES-001
+    tool: TOOL-001
 ```
 
 ---
@@ -210,7 +212,7 @@ Conceptually:
         ↓
 Tool Discovery
         ↓
-tool.sensor.read_temperature
+TOOL-001
 ```
 
 ---
@@ -221,9 +223,9 @@ The Runtime creates an Invocation:
 
 ```text
 Invocation:
-    id: inv-000001
-    tool: tool.sensor.read_temperature
-    resource: resource.temperature-01
+    id: INV-001
+    tool: TOOL-001
+    resource: RES-001
 ```
 
 The Contract is validated before execution.
@@ -238,7 +240,7 @@ Example result:
 
 ```text
 {
-    "resource_id": "resource.temperature-01",
+    "resource_id": "RES-001",
     "temperature": 72.4,
     "unit": "C"
 }
@@ -260,16 +262,16 @@ The operation produces an auditable event:
 
 ```text
 Invocation:
-    inv-000001
+    INV-001
 
 Principal:
     user.operator
 
 Tool:
-    tool.sensor.read_temperature@1.0.0
+    TOOL-001@1.0.0
 
 Resource:
-    resource.temperature-01
+    RES-001
 
 Result:
     SUCCESS

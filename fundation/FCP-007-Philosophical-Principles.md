@@ -51,18 +51,18 @@ Organizational Intelligence
 Persistent Cognition
 ```
 
-The system SHALL prioritize organizational capability over the apparent intelligence of individual Execution Resources.
+The system SHALL prioritize organizational capability over the apparent intelligence of individual execution resources.
 
 ---
 
 # 3. Cognition Must Persist Beyond Execution
 
-An Execution Resource is temporary.
+An execution resource is temporary.
 
 Organizational cognition is persistent.
 
 ```text
-Execution Resource
+execution resource
       ↓
 Temporary
       ↓
@@ -96,7 +96,7 @@ Organization
       │
       ├── Knowledge
       │
-      └── Execution Resources
+      └── execution resources
 ```
 
 This principle enables replacement and scaling.
@@ -105,9 +105,9 @@ This principle enables replacement and scaling.
 
 # 5. Replaceability Is a First-Class Property
 
-No critical organizational capability SHOULD depend permanently on a single Execution Resource.
+No critical organizational capability SHOULD depend permanently on a single execution resource.
 
-An Execution Resource SHOULD be replaceable when:
+An execution resource SHOULD be replaceable when:
 
 * unavailable;
 * inefficient;
@@ -419,7 +419,7 @@ Can Perform
 May Commit
 ```
 
-An Execution Resource may possess the capability to recommend an action without possessing authority to change organizational State.
+An execution resource may possess the capability to recommend an action without possessing authority to change organizational State.
 
 ---
 
@@ -433,7 +433,7 @@ Why?
 Based on what?
 Under which Policy?
 Which Role?
-Which Execution Resource?
+Which execution resource?
 Which State?
 When?
 ```
@@ -485,7 +485,7 @@ Information SHOULD be exposed according to:
 
 # 23. Failure Is Expected
 
-VIAL assumes that Execution Resources will fail.
+VIAL assumes that execution resources will fail.
 
 Therefore:
 
@@ -660,7 +660,7 @@ Therefore an architecture that works technically but becomes economically imprac
 
 # 33. Scale Should Not Require Universal Context
 
-As organizational complexity increases, every Execution Resource should not automatically receive the complete organizational history.
+As organizational complexity increases, every execution resource should not automatically receive the complete organizational history.
 
 Instead:
 
@@ -1092,7 +1092,7 @@ VIAL is not fundamentally an attempt to build a better agent.
 
 It is an attempt to build a better **organizational substrate for intelligence**.
 
-The Execution Resource may change.
+The execution resource may change.
 
 The model may change.
 

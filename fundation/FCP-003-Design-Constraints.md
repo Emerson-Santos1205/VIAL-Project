@@ -41,7 +41,7 @@ The Organization SHALL have an authoritative representation of its current cogni
 
 # 4. Constraint: Execution Independence
 
-Organizational continuity SHOULD survive replacement of individual Execution Resources.
+Organizational continuity SHOULD survive replacement of individual execution resources.
 
 ---
 
@@ -103,7 +103,7 @@ Implementations SHOULD avoid transmitting or reconstructing information already 
 
 # 12. Constraint: Bounded Context
 
-Execution Resources SHOULD receive only the organizational information required to perform their assigned responsibility.
+Execution resources SHOULD receive only the organizational information required to perform their assigned responsibility.
 
 This constraint exists to reduce:
 
@@ -158,13 +158,13 @@ Important organizational transitions SHALL be reconstructable according to defin
 
 # 18. Constraint: Failure Isolation
 
-Failure of an Execution Resource SHALL NOT automatically invalidate organizational identity, Memory or authoritative state.
+Failure of an execution resource SHALL NOT automatically invalidate organizational identity, Memory or authoritative state.
 
 ---
 
 # 19. Constraint: No Implicit Authority
 
-An Execution Resource SHALL NOT acquire organizational authority merely because it generated a response.
+An execution resource SHALL NOT acquire organizational authority merely because it generated a response.
 
 Authority SHALL be explicitly delegated or defined by Policy.
 

@@ -76,10 +76,19 @@ Organization
    DECISION
       │
       ▼
+ Authorization
+      │
+      ▼
+   Approval
+      │
+      ▼
+  Invocation
+      │
+      ▼
   Execution
       │
       ▼
-    Result
+    Outcome
 ```
 
 The Decision is the bridge between organizational reasoning and organizational action.
@@ -133,6 +142,10 @@ A Decision does not automatically execute an action.
 Decision
    ↓
 Authorization
+   ↓
+Approval (when required)
+   ↓
+Invocation
    ↓
 Execution
 ```
@@ -212,14 +225,12 @@ Examples:
 
 ```text
 RECOMMENDATION
-APPROVAL
 REJECTION
 SELECTION
 CLASSIFICATION
 PRIORITIZATION
 ACTION
 POLICY
-ESCALATION
 ```
 
 The exact taxonomy MAY be extended.
@@ -243,21 +254,30 @@ The outcome SHOULD be structured whenever possible.
 
 # 13. Decision Status
 
-Possible Decision states include:
+Decision states are divided into lifecycle states and terminal states.
+
+Lifecycle states:
 
 ```text
 DRAFT
-PROPOSED
 PENDING
-APPROVED
-REJECTED
 AUTHORIZED
 EXECUTING
-EXECUTED
-CANCELLED
-EXPIRED
-SUPERSEDED
+COMPLETED
 ```
+
+Terminal or alternative states:
+
+```text
+CANCELLED
+REJECTED
+FAILED
+REVOKED
+```
+
+ESCALATION is not a Decision state.
+
+It is an event or transition that routes a Decision toward additional authority or human review.
 
 ---
 
@@ -268,27 +288,25 @@ A typical lifecycle is:
 ```text
 DRAFT
   ↓
-PROPOSED
-  ↓
 PENDING
-  ↓
-APPROVED
   ↓
 AUTHORIZED
   ↓
 EXECUTING
   ↓
-EXECUTED
+COMPLETED
 ```
 
 Alternative outcomes MAY include:
 
 ```text
-REJECTED
 CANCELLED
-EXPIRED
-SUPERSEDED
+REJECTED
+FAILED
+REVOKED
 ```
+
+A Decision MAY transition to a terminal state from any lifecycle state where the Runtime permits it.
 
 ---
 
@@ -753,6 +771,20 @@ Reason
 Authority
 ```
 
+Cancellation is distinct from revocation:
+
+```text
+CANCELLED
+```
+
+means the Decision was withdrawn before taking effect, while:
+
+```text
+REVOKED
+```
+
+means an existing Decision was withdrawn after it had been authorized. In both cases execution MUST NOT proceed.
+
 ---
 
 # 45. Decision Expiration
@@ -855,6 +887,8 @@ decision.approve()
 decision.reject()
 decision.authorize()
 decision.cancel()
+decision.revoke()
+decision.escalate()
 decision.validate()
 decision.revalidate()
 decision.supersede()
@@ -1070,9 +1104,11 @@ AI Cognition
      ↓
 Decision Proposal
      ↓
-Human Approval
-     ↓
 Authorization
+     ↓
+ Human Approval
+     ↓
+ Invocation
      ↓
 Execution
 ```
@@ -1215,12 +1251,12 @@ This protects against stale organizational conditions.
 
 # 77. Decision Execution Reference
 
-After execution, the Decision SHOULD reference the resulting Execution.
+After execution, the Decision SHOULD reference the resulting Invocation and resulting Execution.
 
 ```text
 Decision
    ↓
-ExecutionID
+INV-*
 ```
 
 ---
@@ -1332,6 +1368,10 @@ Was it executed?
 What happened?
 ```
 
+The SDK SHOULD use the cross-API audit correlation defined by SDK-001 §24,
+including `ORG-*`, `CTX-*`, `DEC-*` and `INV-*` identifiers and distinct
+Authorization, Approval, Execution and Outcome records.
+
 ---
 
 # 85. Decision Security
@@ -1397,15 +1437,28 @@ Examples:
 
 ```text
 decision.created
-decision.proposed
-decision.approved
-decision.rejected
+decision.drafted
+decision.pending
 decision.authorized
+decision.executing
+decision.completed
 decision.cancelled
-decision.expired
-decision.executed
-decision.superseded
+decision.rejected
+decision.failed
+decision.revoked
 ```
+
+ESCALATION is an event, not a Decision state:
+
+```text
+Decision
+   ↓
+ESCALATION event
+   ↓
+new authority / human review
+```
+
+An ESCALATION event routes the Decision toward additional authority or human review without changing the Decision's state to a distinct escalation state.
 
 ---
 

@@ -230,6 +230,22 @@ Memory answers:
 
 RFC-004 defines Context as a temporary execution view.
 
+RFC-005 consumes the canonical Context model defined by RFC-002 through RFC-004:
+
+```text
+CREATED
+   ↓
+VALID
+   ↓
+FROZEN
+   ↓
+CONSUMED
+   ↓
+ARCHIVED
+```
+
+After FROZEN, the normative content of a Context MUST NOT change.
+
 Therefore:
 
 ```text id="s8v4p2"
@@ -361,11 +377,14 @@ Procedural Knowledge may originate from:
 
 Decision Memory preserves significant organizational decisions.
 
+RFC-005 consumes the canonical Decision model defined by RFC-002 and RFC-006: a Decision determines what was intended, but it is distinct from Authorization, Approval, Invocation and Execution.
+
 It SHOULD preserve:
 
 * decision;
 * reason;
-* authority;
+* authorization context;
+* approval requirement when applicable;
 * relevant evidence;
 * applicable State;
 * resulting outcome when available.
@@ -1039,6 +1058,8 @@ This transforms organizational experience into future efficiency.
 
 Important decisions SHOULD preserve their rationale.
 
+The preserved record SHOULD keep Decision, Authorization, and Approval distinguishable rather than collapsing them into a single memory artifact.
+
 Conceptually:
 
 ```text id="q5m7v3"
@@ -1442,14 +1463,14 @@ These situations require different responses.
 
 A primary purpose of VIAL Memory is organizational continuity.
 
-If one Execution Resource disappears:
+If one execution resource disappears:
 
 ```text id="f8m2q7"
-Execution Resource A
+execution resource A
        ↓
 Organization Memory
        ↓
-Execution Resource B
+execution resource B
 ```
 
 B can continue organizational cognition without requiring A's private history.
@@ -1458,7 +1479,7 @@ B can continue organizational cognition without requiring A's private history.
 
 # 72. No Private Organizational Memory
 
-Critical organizational knowledge SHOULD NOT exist exclusively inside a single Execution Resource.
+Critical organizational knowledge SHOULD NOT exist exclusively inside a single execution resource.
 
 If knowledge is organizationally significant, it SHOULD be promoted into shared organizational memory.
 
@@ -1484,7 +1505,7 @@ Lost when Resource disappears
 
 # 73. Memory Portability
 
-Organizational Memory SHOULD remain independent from the lifecycle of any particular Execution Resource.
+Organizational Memory SHOULD remain independent from the lifecycle of any particular execution resource.
 
 This supports:
 
@@ -1544,7 +1565,7 @@ An implementation conforming to RFC-005 MUST:
 7. distinguish obsolete or invalid knowledge from active knowledge;
 8. prevent uncontrolled persistence of all execution data;
 9. support retrieval based on organizational relevance;
-10. preserve organizationally significant knowledge independently from individual Execution Resources.
+10. preserve organizationally significant knowledge independently from individual execution resources.
 
 ---
 
@@ -1695,7 +1716,7 @@ The VIAL Memory Architecture is governed by the following principles:
 
 ### Principle 5 — Continuity
 
-> Organizational knowledge must survive Execution Resource replacement.
+> Organizational knowledge must survive execution resource replacement.
 
 ### Principle 6 — Efficiency
 

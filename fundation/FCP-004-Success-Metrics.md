@@ -531,7 +531,7 @@ Unexpected Terminations
 
 # 30. Failure Isolation
 
-The benchmark SHOULD test whether failure of one Execution Resource affects organizational continuity.
+The benchmark SHOULD test whether failure of one execution resource affects organizational continuity.
 
 Example:
 
@@ -978,7 +978,7 @@ This directly tests the VIAL hypothesis that persistent organizational cognition
 
 # 54. Organizational Continuity
 
-A continuity test SHOULD evaluate whether replacing Execution Resources affects organizational performance.
+A continuity test SHOULD evaluate whether replacing execution resources affects organizational performance.
 
 Example:
 
@@ -1006,7 +1006,7 @@ Performance
 
 # 55. Agent Replacement Test
 
-The system SHOULD pass a continuity test if an Execution Resource can be replaced without losing authoritative organizational cognition.
+The system SHOULD pass a continuity test if an execution resource can be replaced without losing authoritative organizational cognition.
 
 ---
 

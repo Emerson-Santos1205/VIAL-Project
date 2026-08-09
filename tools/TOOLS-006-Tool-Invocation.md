@@ -50,13 +50,15 @@ Authenticate
   ↓
 Authorize
   ↓
+Approval (when required)
+  ↓
 Check Preconditions
   ↓
 Create Invocation
   ↓
 Execute
   ↓
-Return Result
+Return Outcome
 ```
 
 ---
@@ -149,7 +151,7 @@ Context supplied to an invocation MUST be validated according to its trust and r
 
 An invocation MAY reference a Decision.
 
-The Decision SHOULD provide intent, authority context or justification where applicable.
+The Decision SHOULD provide intent, authority context or justification where applicable. The invocation consumes the canonical model in which Decision remains distinct from Authorization, Approval and Execution.
 
 ---
 
@@ -246,6 +248,8 @@ InvocationResult {
     provenance
 }
 ```
+
+This structured result represents the invocation outcome, not the Decision itself.
 
 ---
 

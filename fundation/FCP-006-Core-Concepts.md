@@ -107,13 +107,13 @@ VIAL assumes that organizational cognition may be distributed across multiple re
               Organizational State
 ```
 
-No individual Execution Resource is required to contain the complete organizational cognition.
+No individual execution resource is required to contain the complete organizational cognition.
 
 ---
 
-# 5. Execution Resource
+# 5. Resource During Execution
 
-An Execution Resource is a resource temporarily used to perform organizational work.
+A Resource may act as an execution resource when it is temporarily used to perform organizational work.
 
 Examples include:
 
@@ -146,7 +146,7 @@ Role:
 A Role is distinct from the resource performing it.
 
 ```text
-Role ≠ Execution Resource
+Role ≠ execution resource
 ```
 
 This allows:
@@ -313,7 +313,7 @@ Context ≠ State
 
 # 14. Context Materialization
 
-Context Materialization is the process of constructing the information required by an Execution Resource.
+Context Materialization is the process of constructing the information required by an execution resource.
 
 The objective is to provide:
 
@@ -447,7 +447,7 @@ Commit
 New State
 ```
 
-This separation prevents arbitrary Execution Resources from directly changing authoritative state.
+This separation prevents arbitrary execution resources from directly changing authoritative state.
 
 ---
 
@@ -498,7 +498,7 @@ Why?
 Based on what?
 Under which Policy?
 By which Role?
-Using which Execution Resource?
+Using which execution resource?
 What State changed?
 ```
 
@@ -546,7 +546,7 @@ Combination
 
 # 27. Coordination
 
-Coordination is the mechanism by which multiple Execution Resources contribute to an organizational operation.
+Coordination is the mechanism by which multiple execution resources contribute to an organizational operation.
 
 VIAL seeks to minimize unnecessary coordination.
 
@@ -805,7 +805,7 @@ Reducing Cognitive Waste is a primary VIAL objective.
 
 # 41. Organizational Continuity
 
-Organizational Continuity is the ability of the Organization to preserve its identity, Goals, State, Knowledge and Policies across changes in Execution Resources.
+Organizational Continuity is the ability of the Organization to preserve its identity, Goals, State, Knowledge and Policies across changes in execution resources.
 
 Example:
 
@@ -1005,7 +1005,7 @@ The core VIAL model can be summarized as:
                      CONTEXT
                          │
                          ↓
-                EXECUTION RESOURCE
+                execution resource
                          │
                          ↓
                     OBSERVATION
@@ -1035,7 +1035,7 @@ The most important conceptual separation in VIAL is:
 ```text
 Organization
       ≠
-Execution Resource
+execution resource
 ```
 
 and:
@@ -1100,7 +1100,7 @@ The objective is to avoid performing the same organizational cognition unnecessa
 
 A central invariant is:
 
-> **Execution Resources are replaceable; Organizational Cognition is persistent.**
+> **Execution resources are replaceable; Organizational Cognition is persistent.**
 
 This invariant distinguishes VIAL from architectures where organizational intelligence is primarily located inside individual agents.
 
@@ -1147,7 +1147,7 @@ Therefore VIAL concepts SHALL not depend on:
 
 # 60. Core Scalability Principle
 
-VIAL SHOULD allow organizational complexity to increase without requiring every Execution Resource to receive the complete organizational state.
+VIAL SHOULD allow organizational complexity to increase without requiring every execution resource to receive the complete organizational state.
 
 Conceptually:
 

@@ -42,6 +42,8 @@ Depends On:
 
 This document demonstrates failure handling and recovery in VIAL.
 
+Domain-specific values in this example are illustrative and MUST NOT be interpreted as introducing new normative states, fields, identifiers or error codes.
+
 The objective is to show that failures are explicit states and that recovery does not bypass governance.
 
 ---
@@ -130,7 +132,7 @@ RESOURCE_UNAVAILABLE
 For distributed operations:
 
 ```text
-REMOTE_RUNTIME_UNAVAILABLE
+RESOURCE_UNAVAILABLE
 ```
 
 The Runtime MUST NOT fabricate the Resource state.

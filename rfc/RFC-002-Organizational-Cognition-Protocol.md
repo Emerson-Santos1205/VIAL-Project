@@ -15,7 +15,7 @@ Depends On:
 
 This document defines the core protocol model for **Organizational Cognition** within VIAL.
 
-The protocol establishes how a persistent Organization interacts with temporary Execution Resources while preserving:
+The protocol establishes how a persistent Organization interacts with temporary execution resources while preserving:
 
 * organizational continuity;
 * state;
@@ -64,7 +64,7 @@ Organization
       └── Provenance
              │
              ↓
-      Execution Resource
+      execution resource
              │
              ↓
           Result
@@ -234,9 +234,11 @@ Execution resources are subordinate to organizational semantics.
 
 ---
 
-# 8. Execution Resource
+# 8. Resource During Execution
 
-An Execution Resource is any resource capable of performing work on behalf of an Organization.
+A Resource is any actor, system or capacity capable of performing work on behalf of an Organization (VCG-001 RES-001).
+
+The term "execution resource" MAY be used as a contextual description of a Resource acting during execution; it is not a separate normative type (ADR-0006 D-005).
 
 Examples include:
 
@@ -251,14 +253,14 @@ External System
 Deterministic Process
 ```
 
-An Execution Resource:
+An execution resource:
 
 * receives an authorized task;
 * processes available context;
 * produces an observation, proposal or result;
 * returns the result to the Organization.
 
-An Execution Resource does not automatically possess authority to modify organizational state.
+An execution resource does not automatically possess authority to modify organizational state.
 
 ---
 
@@ -461,15 +463,28 @@ The cheapest sufficiently reliable validation mechanism SHOULD be preferred.
 
 # 18. Decision
 
-A Decision is an authorized organizational determination.
+A Decision is an organizational determination of what should happen.
 
 A Decision MAY:
 
-* approve a Proposal;
+* adopt a Proposal;
 * reject a Proposal;
 * modify a Proposal;
 * request additional evidence;
 * initiate another operation.
+
+A Decision is distinct from Authorization, Approval, Invocation and Execution:
+
+```text
+Decision        determines what must be done
+Authorization   determines whether it may be done
+Approval        explicit additional authorization when required
+Invocation      request to perform the operation
+Execution       realizes the operation
+Outcome         result of execution
+```
+
+A Decision MAY exist without being authorized (ADR-0006 D-001).
 
 A Decision is distinct from a model output.
 
@@ -491,12 +506,24 @@ A State Transition changes the persistent organizational state.
 
 Only an authorized Decision or explicitly authorized deterministic operation SHOULD produce a significant organizational State Transition.
 
+A Decision does not itself execute; it requires Authorization, Approval when required, and an Invocation before Execution.
+
 Conceptually:
 
 ```text
 State(t)
-   +
+   ↓
 Decision
+   ↓
+Authorization
+   ↓
+Approval (when required)
+   ↓
+Invocation
+   ↓
+Execution
+   ↓
+Outcome
    ↓
 State(t+1)
 ```
@@ -509,6 +536,8 @@ The transition SHOULD be attributable.
 
 Authority determines which resources may perform specific organizational actions.
 
+Approval MAY be required as an explicit additional step within the authority workflow, but it does not replace Authorization.
+
 VIAL distinguishes:
 
 ```text
@@ -517,13 +546,13 @@ Capability
 Authority
 ```
 
-An Execution Resource may possess the technical capability to perform an operation without possessing organizational authority to commit the result.
+An execution resource may possess the technical capability to perform an operation without possessing organizational authority to commit the result.
 
 ---
 
 # 21. Delegation
 
-An Organization MAY delegate an operation to an Execution Resource.
+An Organization MAY delegate an operation to an execution resource.
 
 Delegation SHOULD specify:
 
@@ -737,7 +766,7 @@ This creates controlled escalation instead of defaulting every task to the most 
 
 # 30. Failure
 
-An Execution Resource failure MUST NOT automatically invalidate organizational state.
+An execution resource failure MUST NOT automatically invalidate organizational state.
 
 Failures SHOULD be represented separately from organizational decisions.
 
@@ -778,7 +807,7 @@ The exact idempotency mechanism will be specified by the protocol implementation
 
 # 32. Concurrency
 
-Multiple Execution Resources MAY operate concurrently.
+Multiple execution resources MAY operate concurrently.
 
 The Organization MUST preserve organizational consistency.
 
@@ -795,7 +824,7 @@ Concurrent operations that affect the same critical state SHOULD include suffici
 
 The Organization is the authoritative owner of its persistent State.
 
-Execution Resources SHOULD NOT independently establish competing organizational state.
+Execution resources SHOULD NOT independently establish competing organizational state.
 
 They may:
 
@@ -819,7 +848,7 @@ At minimum, provenance SHOULD permit reconstruction of:
 ```text
 Source
 Operation
-Execution Resource
+execution resource
 Time
 Relevant Context
 Evidence
@@ -965,7 +994,7 @@ The complete conceptual loop is:
                 ↓
          Context Selection
                 ↓
-         Execution Resource
+         execution resource
                 ↓
             Observation
                 ↓
@@ -1088,7 +1117,7 @@ Extensions MUST NOT silently redefine core VIAL concepts.
 An implementation conforms to RFC-002 if it:
 
 1. recognizes the Organization as the persistent semantic entity;
-2. distinguishes Execution Resources from organizational identity;
+2. distinguishes execution resources from organizational identity;
 3. separates proposals from decisions;
 4. preserves applicable authority boundaries;
 5. supports persistent organizational cognition;
@@ -1118,7 +1147,7 @@ Observation
 
 The Organization retrieves relevant historical knowledge and policy.
 
-An AI Execution Resource evaluates the condition and produces:
+An AI execution resource evaluates the condition and produces:
 
 ```text
 Proposal:
@@ -1328,7 +1357,7 @@ Persistent Organization
         ↓
 Selective Context
         ↓
-Execution Resource
+execution resource
         ↓
 Proposal / Result
         ↓

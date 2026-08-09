@@ -9,6 +9,7 @@ Depends On:
 - RUNTIME-002
 - RUNTIME-003
 - RFC-003
+- RFC-004
 
 ---
 
@@ -970,25 +971,31 @@ Perfect reproduction is not required where external information is inherently dy
 
 # 54. Context Lifecycle
 
-A Context MAY follow:
+The canonical Context lifecycle is:
 
 ```text
 CREATED
    ↓
-VALIDATED
+VALID
    ↓
-ACTIVE
+FROZEN
    ↓
 CONSUMED
    ↓
+ARCHIVED
+```
+
+After FROZEN, the normative content of a Context MUST NOT change. A new Context SHALL be created when additional information is required.
+
+The Runtime SHALL recognize FROZEN (ADR-0006 D-004).
+
+Additional conditions MAY exist without creating a competing lifecycle. For example, temporal validity MAY produce:
+
+```text
 EXPIRED
 ```
 
-Possible terminal state:
-
-```text
-INVALIDATED
-```
+as a terminal condition. A Context that is EXPIRED is no longer valid for a new Decision but remains a stable record once FROZEN.
 
 ---
 
@@ -1000,13 +1007,17 @@ Possible statuses:
 CREATED
 VALIDATING
 VALID
+FROZEN
 PARTIAL
 CONFLICTED
 STALE
 INVALID
 EXPIRED
 CONSUMED
+ARCHIVED
 ```
+
+FROZEN and ARCHIVED are lifecycle states (see §54). The other statuses are conditions that MAY apply without defining a competing lifecycle.
 
 ---
 

@@ -60,6 +60,10 @@ Every canonical concept SHALL:
 
 Canonical identifiers MUST never be reused.
 
+No normative term may exist outside the VCG.
+
+Examples MAY instantiate normative concepts, but MUST NOT introduce new normative states, fields, lifecycle values, identifiers or error codes unless explicitly marked as illustrative.
+
 ---
 
 # 3. Identifier Convention
@@ -285,6 +289,38 @@ Policies never execute actions.
 
 ---
 
+## RES-001
+
+Name
+
+Resource
+
+Definition
+
+Any actor, system or capacity available to the Organization to perform work.
+
+Resources include AI models, agents, humans, functions, services and external systems.
+
+`execution resource` MAY be used as a contextual description of a Resource acting during execution, but it is not a separate normative type (ADR-0006 D-005).
+
+Properties
+
+- temporary
+- replaceable
+- auditable
+
+Relationships
+
+Performs:
+
+CAP-001
+
+Used by:
+
+ORG-001
+
+---
+
 ## DEC-001
 
 Name
@@ -293,13 +329,171 @@ Decision
 
 Definition
 
-A validated organizational choice capable of modifying the Organizational Cognitive State.
+An operational determination of what the Organization intends to happen.
+
+A Decision is not itself an Authorization, an Approval or an Execution.
 
 Properties
 
 - auditable
 - versioned
 - evidence-based
+
+Relationships
+
+Determines:
+
+EXE-001
+
+Requires:
+
+AUTH-001
+
+---
+
+## AUTH-001
+
+Name
+
+Authorization
+
+Definition
+
+Permission granted by the authority model that permits an actor, Resource or operation to act.
+
+Authorization is not a Decision and not an Approval.
+
+Properties
+
+- permission-based
+- revocable
+- scope-bound
+- auditable
+
+Relationships
+
+Granted by:
+
+POL-001
+
+Permits:
+
+EXE-001
+
+---
+
+## APV-001
+
+Name
+
+Approval
+
+Definition
+
+An explicit, attributable act of approval required before an operation may proceed.
+
+Approval is not a Decision and not an Authorization.
+
+Properties
+
+- explicit
+- attributable
+- auditable
+- condition-bound
+
+Relationships
+
+Precedes:
+
+EXE-001
+
+---
+
+## EXE-001
+
+Name
+
+Execution
+
+Definition
+
+The effective realization of an authorized and, where required, approved operation.
+
+Properties
+
+- observable
+- attributable
+- auditable
+
+Relationships
+
+Follows:
+
+AUTH-001
+
+Follows:
+
+APV-001
+
+---
+
+## INV-001
+
+Name
+
+Invocation
+
+Definition
+
+A request to perform an operation, submitted by an authorized principal through the authority model.
+
+An Invocation is not a Decision, not an Authorization, not an Approval and not Execution.
+
+Properties
+
+- attributable
+- auditable
+- traceable
+
+Relationships
+
+Follows:
+
+AUTH-001
+
+Follows:
+
+APV-001
+
+Triggers:
+
+EXE-001
+
+---
+
+## OTC-001
+
+Name
+
+Outcome
+
+Definition
+
+The result produced by Execution.
+
+An Outcome is not a Decision, not an Authorization and not the Invocation itself.
+
+Properties
+
+- observable
+- attributable
+- auditable
+
+Relationships
+
+Follows:
+
+EXE-001
 
 ---
 
@@ -393,6 +587,32 @@ Organizational Memory
 
 ---
 
+Decision ≠ Authorization ≠ Approval ≠ Execution
+
+The canonical operational flow is:
+
+```text
+Context
+   ↓
+Decision
+   ↓
+Authorization
+   ↓
+Approval (if required)
+   ↓
+Invocation
+   ↓
+Execution
+   ↓
+Outcome
+```
+
+Decision determines what must be done. Authorization determines whether it may be done. Approval is an explicit additional authorization required by policy or workflow (Approval ⊂ Authorization workflow, yet Approval ≠ Authorization). Invocation requests the operation. Execution realizes the operation. Outcome is the result of execution.
+
+A Decision MAY exist without being authorized (ADR-0006 D-001).
+
+---
+
 # 6. Reserved Terms
 
 The following words possess canonical meaning.
@@ -407,7 +627,19 @@ Capability
 
 Policy
 
+Resource
+
 Decision
+
+Authorization
+
+Approval
+
+Invocation
+
+Execution
+
+Outcome
 
 Evidence
 

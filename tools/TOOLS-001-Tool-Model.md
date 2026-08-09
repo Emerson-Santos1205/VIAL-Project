@@ -79,13 +79,19 @@ Caller
  Authorization
    │
    ▼
- Tool
+ Approval (when required)
    │
    ▼
- Execution
+ Invocation
    │
    ▼
- Result
+  Tool
+   │
+   ▼
+  Execution
+   │
+   ▼
+ Outcome
 ```
 
 ---
@@ -159,6 +165,12 @@ A Tool provides the capability to perform or retrieve something associated with 
 
 ```text
 Decision
+   │
+   ▼
+Authorization
+   │
+   ▼
+Approval (when required)
    │
    ▼
 Tool Invocation
@@ -1176,10 +1188,11 @@ The execution layer SHOULD handle:
 ```text
 Validation
 Authorization
+Approval (when required)
 Invocation
 Timeout
 Cancellation
-Result
+Outcome
 Error
 Audit
 ```
@@ -1192,25 +1205,27 @@ Detailed execution semantics belong to **TOOLS-007 — Tool Execution**.
 
 A Tool SHOULD have a defined lifecycle.
 
-Conceptually:
+The canonical lifecycle is:
 
 ```text
+DRAFT
+   ↓
 DEFINED
-   ↓
-REGISTERED
-   ↓
-AVAILABLE
    ↓
 ACTIVE
    ↓
-DEGRADED
-   ↓
-DISABLED
+DEPRECATED
    ↓
 RETIRED
 ```
 
-Detailed lifecycle semantics belong to **TOOLS-008 — Tool Lifecycle**.
+Not every Tool must pass through every state.
+
+SUSPENDED is a transient operational state, not a lifecycle stage. A suspended Tool MAY return to ACTIVE.
+
+DEGRADED reflects health, not lifecycle. EMERGENCY_DISABLED is a security override, not a lifecycle stage.
+
+Detailed lifecycle semantics belong to **TOOLS-008 — Tool Lifecycle**, which references this canonical model.
 
 ---
 
@@ -1415,14 +1430,17 @@ Input Validation
 Authorization
    │
    ▼
+Approval (when required)
+   │
+   ▼
 Invocation
    │
    ▼
 Execution
    │
-   ├── Success
+   ├── Success → Outcome
    │
-   └── Failure
+   └── Failure → Outcome
    │
    ▼
 Result

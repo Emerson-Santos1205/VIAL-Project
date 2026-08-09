@@ -17,7 +17,7 @@ Depends On:
 
 This document defines the VIAL model for **Context Construction and Cognitive Efficiency**.
 
-The objective is to ensure that an Execution Resource receives the **minimum sufficient context** required to perform an operation correctly.
+The objective is to ensure that an execution resource receives the **minimum sufficient context** required to perform an operation correctly.
 
 VIAL treats context as a controlled computational resource rather than as a complete representation of organizational knowledge.
 
@@ -77,7 +77,7 @@ Relevant Information
       ↓
 Context Projection
       ↓
-Execution Resource
+execution resource
 ```
 
 ---
@@ -121,18 +121,18 @@ Persistent Organizational Knowledge
              ↓
        Context Projection
              ↓
-       Execution Resource
+       execution resource
 ```
 
 The Organization remains the source of persistent cognition.
 
-The Execution Resource receives only what is necessary for its assigned operation.
+The execution resource receives only what is necessary for its assigned operation.
 
 ---
 
 # 5. Context Definition
 
-Context is the information made available to an Execution Resource for a specific operation.
+Context is the information made available to an execution resource for a specific operation.
 
 Conceptually:
 
@@ -158,6 +158,22 @@ Context MAY also contain:
 * expected output;
 * authorization information;
 * temporal constraints.
+
+When Context is material to a consequential evaluation or execution, RFC-004 consumes the canonical Context lifecycle defined by RFC-002 and RFC-003:
+
+```text
+CREATED
+   ↓
+VALID
+   ↓
+FROZEN
+   ↓
+CONSUMED
+   ↓
+ARCHIVED
+```
+
+After FROZEN, the normative content of the Context MUST NOT change.
 
 ---
 
@@ -339,7 +355,7 @@ Policy Reference: P-17
 Evidence Reference: E-712
 ```
 
-The Execution Resource can retrieve only what is required.
+The execution resource can retrieve only what is required.
 
 ---
 
@@ -411,11 +427,13 @@ UNKNOWN
 
 The status SHOULD be machine-detectable where necessary.
 
+These validity statuses are conditions, not a competing lifecycle. The canonical lifecycle remains `CREATED → VALID → FROZEN → CONSUMED → ARCHIVED`.
+
 ---
 
 # 19. Context Isolation
 
-Execution Resources SHOULD receive only the information necessary for their assigned authority.
+execution resources SHOULD receive only the information necessary for their assigned authority.
 
 This provides:
 
@@ -471,7 +489,7 @@ An implementation SHOULD measure these dimensions where practical.
 
 # 22. Cost-Aware Execution
 
-The Organization SHOULD consider cognitive cost when selecting an Execution Resource.
+The Organization SHOULD consider cognitive cost when selecting an execution resource.
 
 Conceptually:
 
@@ -758,7 +776,7 @@ Source A: Pump ACTIVE
 Source B: Pump STOPPED
 ```
 
-The Execution Resource should receive a resolvable conflict state rather than ambiguous data presented as truth.
+The execution resource should receive a resolvable conflict state rather than ambiguous data presented as truth.
 
 ---
 
@@ -794,7 +812,11 @@ Request
    ↓
 Identify Operation
    ↓
+Determine Decision
+   ↓
 Determine Authority
+   ↓
+Approval (when required)
    ↓
 Inspect Current State
    ↓
@@ -808,8 +830,12 @@ Build Minimum Sufficient Context
    ↓
 Validate Context
    ↓
+Invocation
+   ↓
 Execute
 ```
+
+Within this flow, Decision determines what is intended, Authority determines whether the operation may proceed, and Approval MAY be required as an explicit additional step. RFC-004 does not redefine those concepts; it consumes the canonical model from RFC-002 and RFC-006.
 
 ---
 
@@ -970,7 +996,7 @@ The Organization SHOULD NOT invoke reasoning simply because an AI resource is av
 
 # 46. Multi-Resource Efficiency
 
-When multiple Execution Resources participate, VIAL SHOULD minimize duplicated context.
+When multiple execution resources participate, VIAL SHOULD minimize duplicated context.
 
 Instead of:
 
@@ -1057,7 +1083,7 @@ Otherwise, the Context SHOULD be rebuilt or revalidated.
 
 # 51. Context Mutation
 
-Execution Resources SHOULD NOT mutate shared Context in place.
+execution resources SHOULD NOT mutate shared Context in place.
 
 Instead:
 
@@ -1450,7 +1476,7 @@ RFC-004 does not define:
 
 RFC-002 defines the Organizational Cognition Protocol.
 
-RFC-004 defines how the information required by that protocol is efficiently provided to Execution Resources.
+RFC-004 defines how the information required by that protocol is efficiently provided to execution resources.
 
 ```text
 RFC-002

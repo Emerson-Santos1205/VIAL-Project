@@ -166,6 +166,14 @@ Markdown documents SHOULD:
 
 Documents MUST NOT contain undocumented architectural contradictions.
 
+### 8.1 Examples
+
+Examples demonstrate the canonical model; they are not a second specification.
+
+Examples MAY instantiate normative concepts, but MUST NOT introduce new normative states, fields, lifecycle values, identifiers or error codes unless explicitly marked as illustrative.
+
+Any illustrative-only element MUST be explicitly labeled as such and MUST NOT be referenced as canonical.
+
 ---
 
 ## 9. Tests

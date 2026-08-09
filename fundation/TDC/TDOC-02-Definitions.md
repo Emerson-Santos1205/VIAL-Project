@@ -164,7 +164,7 @@ Policies never execute actions.
 
 # 11. Definition: Decision
 
-A **Decision** is an authorized organizational transition that changes the Organizational Cognitive State.
+A **Decision** is an organizational determination that, when authorized and where required approved, changes the Organizational Cognitive State.
 
 Every Decision SHALL:
 
@@ -172,6 +172,8 @@ Every Decision SHALL:
 - satisfy Policies;
 - be supported by Evidence;
 - generate an auditable record.
+
+A Decision determines intent. Authorization grants permission; Approval is the explicit act when required; Execution realizes the operation (VCG-001 DEC-001, AUTH-001, APV-001, EXE-001).
 
 ---
 

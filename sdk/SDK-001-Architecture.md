@@ -440,6 +440,27 @@ tools.status()
 
 Tool invocation MUST respect authorization and governance rules.
 
+For a consequential operation, `tools.invoke()` SHOULD expose or preserve the
+following correlation fields:
+
+```text
+tool_id
+resource_id: RES-*
+context_id: CTX-*
+decision_id: DEC-*
+invocation_id: INV-*
+authorization
+approval (when required)
+outcome
+```
+
+The SDK MUST NOT treat a Decision as Authorization or Approval. Invocation is
+the governed request that connects an authorized Decision to Tool Execution.
+
+`tools.status()` SHOULD expose the canonical Tool lifecycle state defined by
+TOOLS-001 §71 so callers can distinguish an `ACTIVE` Tool from a Tool that is
+not eligible for normal invocation.
+
 ---
 
 # 24. Governance API
@@ -454,6 +475,29 @@ governance.authority()
 governance.permissions()
 governance.audit()
 ```
+
+The SDK audit surface SHOULD support a minimum auditable record for
+consequential operations:
+
+```text
+organization_id: ORG-*
+resource_id: RES-*
+context_id: CTX-*
+decision_id: DEC-*
+invocation_id: INV-*
+tool_id
+approval (when required)
+execution
+outcome
+timestamp
+provenance
+correlation_id
+```
+
+The record MUST preserve enough correlation to reconstruct the relationship
+between Context, Decision, Authorization, Approval, Invocation, Execution and
+Outcome. Implementations MAY add fields, but MUST NOT collapse these concepts
+into one field or status.
 
 ---
 

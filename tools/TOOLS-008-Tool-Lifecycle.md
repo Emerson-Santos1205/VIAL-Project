@@ -1,4 +1,4 @@
-# TOOLS-008 — Tool Lifecycle
+﻿# TOOLS-008 — Tool Lifecycle
 
 **Project:** VIAL
 **Version:** 1.0.0
@@ -39,27 +39,27 @@ The fundamental principle is:
 
 # 2. Lifecycle
 
-The canonical lifecycle is:
+The canonical lifecycle is defined in **TOOLS-001 §71**:
 
 ```text
 DRAFT
-  ↓
-VALIDATING
-  ↓
-PUBLISHED
-  ↓
+   ↓
+DEFINED
+   ↓
 ACTIVE
-  ↓
-SUSPENDED
-  ↓
-ACTIVE
-  ↓
+   ↓
 DEPRECATED
-  ↓
+   ↓
 RETIRED
 ```
 
 Not every Tool must pass through every state.
+
+SUSPENDED is a transient operational state, not a lifecycle stage. A suspended Tool MAY return to ACTIVE.
+
+DEGRADED reflects health, not lifecycle. EMERGENCY_DISABLED is a security override, not a lifecycle stage.
+
+This document defines the detailed semantics of the canonical lifecycle.
 
 ---
 
@@ -71,9 +71,13 @@ It MUST NOT be available for normal production invocation.
 
 ---
 
-# 4. VALIDATING
+# 4. DEFINED
 
-During validation, the Tool SHOULD undergo:
+A Defined Tool has a specified identity, Contract and owner.
+
+Definition does not yet make the Tool eligible for normal invocation.
+
+Between DRAFT and DEFINED, the Tool SHOULD undergo:
 
 ```text
 Contract Validation
@@ -85,21 +89,17 @@ Operational Testing
 
 ---
 
-# 5. PUBLISHED
-
-A Published Tool has a valid Registry entry and Contract.
-
-Publication does not necessarily mean the Tool is available for unrestricted execution.
-
----
-
-# 6. ACTIVE
+# 5. ACTIVE
 
 An Active Tool is eligible for normal invocation subject to authorization and policy.
 
+Registry publication and activation are events in the transition from DEFINED to ACTIVE, not separate lifecycle stages.
+
 ---
 
-# 7. SUSPENDED
+# 6. SUSPENDED
+
+SUSPENDED is a transient operational state, not a lifecycle stage.
 
 A Suspended Tool is temporarily unavailable for new invocations.
 
@@ -113,9 +113,11 @@ Operational Problem
 Policy Change
 ```
 
+A suspended Tool MAY return to ACTIVE.
+
 ---
 
-# 8. DEPRECATED
+# 7. DEPRECATED
 
 A Deprecated Tool remains available where explicitly permitted but SHOULD NOT be selected for new integrations.
 
@@ -123,7 +125,7 @@ A replacement SHOULD be identified when possible.
 
 ---
 
-# 9. RETIRED
+# 8. RETIRED
 
 A Retired Tool is no longer available for normal execution.
 
@@ -131,7 +133,7 @@ Its historical metadata SHOULD remain available for audit and reproducibility.
 
 ---
 
-# 10. Lifecycle Transition
+# 9. Lifecycle Transition
 
 Transitions MUST be controlled.
 
@@ -149,7 +151,7 @@ New State
 
 ---
 
-# 11. Transition Authority
+# 10. Transition Authority
 
 Lifecycle changes SHOULD require appropriate authority.
 
@@ -166,7 +168,7 @@ should be attributable to an authorized actor.
 
 ---
 
-# 12. Activation Requirements
+# 11. Activation Requirements
 
 Before activation, the Tool SHOULD have:
 
@@ -178,7 +180,7 @@ Before activation, the Tool SHOULD have:
 
 ---
 
-# 13. Suspension
+# 12. Suspension
 
 Suspension SHOULD immediately prevent new invocations according to operational requirements.
 
@@ -186,7 +188,7 @@ Already-running executions require explicit policy.
 
 ---
 
-# 14. Emergency Suspension
+# 13. Emergency Suspension
 
 The system SHOULD support emergency suspension of high-risk Tools.
 
@@ -194,7 +196,7 @@ Emergency actions MUST be audited.
 
 ---
 
-# 15. Deprecation
+# 14. Deprecation
 
 Deprecation SHOULD include:
 
@@ -207,7 +209,7 @@ migration_guidance
 
 ---
 
-# 16. Retirement
+# 15. Retirement
 
 Retirement SHOULD include:
 
@@ -220,7 +222,7 @@ final_version
 
 ---
 
-# 17. Version Lifecycle
+# 16. Version Lifecycle
 
 Different Tool versions MAY have independent lifecycle states.
 
@@ -233,7 +235,7 @@ Tool v2 → ACTIVE
 
 ---
 
-# 18. Contract Lifecycle
+# 17. Contract Lifecycle
 
 Contract lifecycle MUST remain consistent with Tool lifecycle.
 
@@ -241,19 +243,19 @@ An Active Tool MUST have a valid active Contract.
 
 ---
 
-# 19. Security Lifecycle
+# 18. Security Lifecycle
 
 Security configuration SHOULD be revalidated during significant lifecycle transitions.
 
 ---
 
-# 20. Ownership
+# 19. Ownership
 
 Ownership MUST remain identifiable throughout the lifecycle.
 
 ---
 
-# 21. Maintenance
+# 20. Maintenance
 
 A Tool MAY enter maintenance without necessarily becoming retired.
 
@@ -261,7 +263,7 @@ Maintenance SHOULD be represented through lifecycle or operational status as app
 
 ---
 
-# 22. Health vs Lifecycle
+# 21. Health vs Lifecycle
 
 Health and lifecycle are different concepts.
 
@@ -279,7 +281,7 @@ A degraded Tool is not automatically retired.
 
 ---
 
-# 23. Compatibility
+# 22. Compatibility
 
 Lifecycle transitions SHOULD consider consumer compatibility.
 
@@ -287,7 +289,7 @@ A Tool SHOULD NOT be retired without considering active dependencies unless emer
 
 ---
 
-# 24. Migration
+# 23. Migration
 
 When replacing a Tool, the system SHOULD provide a migration path.
 
@@ -301,19 +303,19 @@ Tool A v2
 
 ---
 
-# 25. Consumer Notification
+# 24. Consumer Notification
 
 Material lifecycle changes SHOULD be communicated to known consumers.
 
 ---
 
-# 26. Grace Period
+# 25. Grace Period
 
 Deprecation MAY include a grace period before retirement.
 
 ---
 
-# 27. Forced Retirement
+# 26. Forced Retirement
 
 A Tool MAY be retired immediately when required by:
 
@@ -326,7 +328,7 @@ Critical Failure
 
 ---
 
-# 28. Lifecycle Audit
+# 27. Lifecycle Audit
 
 Every lifecycle transition SHOULD record:
 
@@ -342,7 +344,7 @@ Reason
 
 ---
 
-# 29. Lifecycle Integrity
+# 28. Lifecycle Integrity
 
 Lifecycle state MUST be authoritative.
 
@@ -350,31 +352,31 @@ A Tool marked `RETIRED` MUST NOT be invoked through normal Runtime paths.
 
 ---
 
-# 30. Registry Integration
+# 29. Registry Integration
 
 The Registry MUST reflect the authoritative lifecycle state.
 
 ---
 
-# 31. Discovery Integration
+# 30. Discovery Integration
 
 Discovery SHOULD hide or clearly label Tools according to lifecycle state.
 
 ---
 
-# 32. Invocation Integration
+# 31. Invocation Integration
 
 Invocation MUST verify that the Tool is eligible for execution.
 
 ---
 
-# 33. Execution Integration
+# 32. Execution Integration
 
 Execution MUST NOT bypass lifecycle restrictions.
 
 ---
 
-# 34. Security Integration
+# 33. Security Integration
 
 Security policies MAY impose lifecycle restrictions.
 
@@ -392,14 +394,13 @@ The Tool remains registered but cannot execute.
 
 ---
 
-# 35. Lifecycle Events
+# 34. Lifecycle Events
 
 The system SHOULD expose lifecycle events such as:
 
 ```text
 TOOL_CREATED
-TOOL_VALIDATED
-TOOL_PUBLISHED
+TOOL_DEFINED
 TOOL_ACTIVATED
 TOOL_SUSPENDED
 TOOL_DEPRECATED
@@ -408,13 +409,13 @@ TOOL_RETIRED
 
 ---
 
-# 36. Lifecycle Event Integrity
+# 35. Lifecycle Event Integrity
 
 Lifecycle events SHOULD be attributable and protected from unauthorized modification.
 
 ---
 
-# 37. Lifecycle Rollback
+# 36. Lifecycle Rollback
 
 A suspended or deprecated Tool MAY return to an earlier state where policy permits.
 
@@ -430,13 +431,13 @@ Rollback MUST be authorized and audited.
 
 ---
 
-# 38. Retirement Reversal
+# 37. Retirement Reversal
 
 Reactivation of a retired Tool SHOULD generally require a new validation cycle and MAY require a new version.
 
 ---
 
-# 39. Tool Ownership Transfer
+# 38. Tool Ownership Transfer
 
 Ownership MAY be transferred.
 
@@ -452,19 +453,19 @@ Audit
 
 ---
 
-# 40. Ownership Change
+# 39. Ownership Change
 
 Ownership changes SHOULD themselves be auditable.
 
 ---
 
-# 41. Security Review
+# 40. Security Review
 
 High-risk Tools SHOULD undergo periodic security review while active.
 
 ---
 
-# 42. Contract Review
+# 41. Contract Review
 
 Contracts SHOULD be reviewed when:
 
@@ -477,7 +478,7 @@ Resource behavior changes
 
 ---
 
-# 43. Lifecycle Review
+# 42. Lifecycle Review
 
 The lifecycle MAY include periodic review of:
 
@@ -493,7 +494,7 @@ Risk
 
 ---
 
-# 44. Inactivity
+# 43. Inactivity
 
 Unused Tools MAY be candidates for deprecation.
 
@@ -501,7 +502,7 @@ Inactivity alone MUST NOT automatically retire a Tool when historical or contrac
 
 ---
 
-# 45. Usage Metrics
+# 44. Usage Metrics
 
 Lifecycle decisions MAY consider:
 
@@ -516,37 +517,37 @@ operational_cost
 
 ---
 
-# 46. Risk Changes
+# 45. Risk Changes
 
 A Tool whose risk profile changes SHOULD undergo security and Contract review.
 
 ---
 
-# 47. Breaking Changes
+# 46. Breaking Changes
 
 Breaking changes SHOULD normally result in a new Tool or Contract version rather than silent mutation.
 
 ---
 
-# 48. Lifecycle and Auditability
+# 47. Lifecycle and Auditability
 
 Historical lifecycle state MUST remain reconstructable where auditability requires it.
 
 ---
 
-# 49. Lifecycle and Provenance
+# 48. Lifecycle and Provenance
 
 Tool results SHOULD identify the Tool version active at execution time.
 
 ---
 
-# 50. Lifecycle Failure Principle
+# 49. Lifecycle Failure Principle
 
 The Runtime MUST NOT execute a Tool when its lifecycle state does not permit execution.
 
 ---
 
-# 51. Conformance
+# 50. Conformance
 
 A conforming lifecycle implementation MUST:
 
@@ -563,7 +564,9 @@ A conforming lifecycle implementation MUST:
 
 ---
 
-# 52. Canonical Lifecycle Model
+# 51. Canonical Lifecycle Model
+
+The canonical lifecycle is defined in **TOOLS-001 §71**:
 
 ```text
                  ┌─────────────┐
@@ -571,29 +574,27 @@ A conforming lifecycle implementation MUST:
                  └──────┬──────┘
                         ↓
                  ┌─────────────┐
-                 │ VALIDATING  │
+                 │  DEFINED    │
                  └──────┬──────┘
                         ↓
                  ┌─────────────┐
-                 │  PUBLISHED  │
-                 └──────┬──────┘
-                        ↓
-                 ┌─────────────┐
-                 │    ACTIVE   │◄─────────┐
-                 └───┬─────┬───┘          │
-                     │     │              │
-                     ↓     ↓              │
-              SUSPENDED  DEPRECATED       │
-                     │     │              │
-                     └──┐  ↓              │
-                        │ RETIRED          │
-                        │                 │
-                        └─────────────────┘
+                 │    ACTIVE   │
+                 └───┬─────┬───┘
+                     │     │
+                     ↓     ↓
+              SUSPENDED  DEPRECATED
+              (transient)   │
+                     │     ↓
+                     └───► RETIRED
 ```
+
+SUSPENDED is a transient operational state that may return to ACTIVE.
+
+DEGRADED reflects health, not lifecycle. EMERGENCY_DISABLED is a security override, not a lifecycle stage.
 
 ---
 
-# 53. Final Statement
+# 52. Final Statement
 
 Tool lifecycle management ensures that VIAL capabilities remain governable throughout their existence.
 

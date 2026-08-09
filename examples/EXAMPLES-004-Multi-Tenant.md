@@ -40,6 +40,8 @@ Depends On:
 
 This document demonstrates VIAL operating in a multi-tenant environment.
 
+Domain-specific values in this example are illustrative and MUST NOT be interpreted as introducing new normative states, fields, identifiers or error codes.
+
 The example shows how multiple independent Organizations can share infrastructure while maintaining strict isolation of identity, Resources, Context, authority, Tools and data.
 
 ---
@@ -64,9 +66,9 @@ Each tenant operates independently.
 Each tenant is represented by an Organization.
 
 ```text
-Tenant A → org.customer-a
-Tenant B → org.customer-b
-Tenant C → org.customer-c
+Tenant A → ORG-001
+Tenant B → ORG-002
+Tenant C → ORG-003
 ```
 
 A tenant MUST have a distinct Organization identity.
@@ -107,13 +109,13 @@ MUST NOT automatically obtain access to Tenant B.
 Tenant A may own:
 
 ```text
-resource.customer-a.machine-01
+RES-001
 ```
 
 Tenant B may own:
 
 ```text
-resource.customer-b.machine-01
+RES-002
 ```
 
 Identical Resource names MUST NOT imply identical Resources.
@@ -127,8 +129,8 @@ Context MUST contain sufficient tenant information to prevent ambiguity.
 Example:
 
 ```text
-organization: org.customer-a
-resource: resource.customer-a.machine-01
+organization: ORG-001
+resource: RES-001
 principal: principal.customer-a.operator
 ```
 
@@ -141,7 +143,7 @@ A Tool implementation MAY be shared across tenants.
 Example:
 
 ```text
-tool.sensor.read_temperature
+TOOL-001
 ```
 
 The shared implementation does not imply shared Resource authority.
@@ -182,10 +184,10 @@ An invocation MUST contain the tenant context.
 
 ```text
 Invocation:
-    tenant: org.customer-a
+    tenant: ORG-001
     principal: principal.customer-a.operator
-    tool: tool.sensor.read_temperature
-    resource: resource.customer-a.machine-01
+    tool: TOOL-001
+    resource: RES-001
 ```
 
 ---
@@ -270,14 +272,18 @@ Rate limits MAY be applied independently per tenant.
 
 # 20. Tenant Lifecycle
 
-A tenant MAY transition through:
+A tenant MAY follow the canonical Organization Lifecycle (SDK-002 §10):
 
 ```text
-PROVISIONING
+CREATED
+   ↓
 ACTIVE
+   ↓
+DEGRADED
+   ↓
 SUSPENDED
-DEPRECATED
-TERMINATED
+   ↓
+ARCHIVED
 ```
 
 Tenant lifecycle MUST affect access to its Resources and Tools.

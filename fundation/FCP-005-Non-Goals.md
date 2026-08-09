@@ -29,7 +29,7 @@ Better VIAL
 
 VIAL does not attempt to create the smallest possible number of agents.
 
-The number of Execution Resources is an implementation decision.
+The number of execution resources is an implementation decision.
 
 The objective is:
 
@@ -355,7 +355,7 @@ The architecture should remain interoperable across:
 
 VIAL does not attempt to define a mechanism for eliminating human organizational participation.
 
-Humans remain valid organizational actors and Execution Resources where appropriate.
+Humans remain valid organizational actors and execution resources where appropriate.
 
 ---
 

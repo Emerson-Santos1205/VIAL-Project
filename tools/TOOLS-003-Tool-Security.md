@@ -213,9 +213,9 @@ REQUIRE_APPROVAL
 
 ---
 
-# 10. Authorization Decision
+# 10. Authorization Evaluation
 
-An authorization decision SHOULD consider:
+An authorization evaluation SHOULD consider:
 
 ```text
 Principal
@@ -451,14 +451,14 @@ Context used for authorization MUST have an appropriate trust level.
 
 # 23. Decision-Based Authorization
 
-A Tool invocation MAY be authorized as part of a Decision.
+A Decision determines intent; Authorization grants permission.
 
-Example:
+A Tool invocation MAY be authorized in support of a Decision:
 
 ```text
 Decision
    │
-   ├── Authority
+   ├── Authorization
    │
    └── Tool Invocation
 ```

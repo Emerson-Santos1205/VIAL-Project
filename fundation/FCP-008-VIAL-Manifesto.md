@@ -73,7 +73,7 @@ Model
   ↓
 Agent
   ↓
-Execution Resource
+execution resource
   ↓
 Organization
   ↓
@@ -429,7 +429,7 @@ Organization Continues
 
 An Organization should not depend permanently on one model or one agent.
 
-Execution Resources should be replaceable.
+Execution resources should be replaceable.
 
 ```text
 Model A
@@ -660,7 +660,7 @@ Human Intent
       ↓
 Organization
       ↓
-Execution Resources
+execution resources
       ↓
 External World
 ```
@@ -991,7 +991,7 @@ without requiring every capability to live inside a single intelligent executor.
                      SELECTIVE CONTEXT
                               │
                               ↓
-                   EXECUTION RESOURCE
+                   execution resource
                               │
                               ↓
                          OBSERVATION

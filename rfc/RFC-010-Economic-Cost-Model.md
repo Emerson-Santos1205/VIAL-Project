@@ -65,6 +65,8 @@ RFC-010 fills that gap.
 
 **Token cost:** the token count of the context delivered to the executor (RFC-007 metric).
 
+When cost is evaluated for a consequential Decision or execution boundary, RFC-010 consumes the canonical Context model from RFC-002 through RFC-004: `CREATED → VALID → FROZEN → CONSUMED → ARCHIVED`. Once the relevant Context is FROZEN, its normative content MUST NOT change during that evaluation.
+
 **Inference cost:** the monetary cost of model execution, derived from input/output tokens and per-token prices.
 
 **Latency cost:** elapsed execution time, weighted by a configurable cost-per-unit-time.
@@ -173,6 +175,8 @@ This illustration is NOT a result. Results come only from actual runs.
 - The price table is configuration; a tampered table invalidates results and MUST be versioned with the workload.
 - Cost optimization MUST NOT override mandatory safety, authorization or correctness requirements (RFC-004 §55: Safety > Authority > Reliability > Efficiency).
 - Divergence findings MUST NOT be used to justify skipping validation.
+- This RFC consumes the canonical authority model from RFC-006. Authorization remains distinct from Decision, Approval, Invocation and Execution; economic selection logic MUST NOT redefine those concepts.
+- Review, escalation or revocation triggered by economic policy MUST be treated as events or governance processes, not as Decision lifecycle states.
 
 ---
 
