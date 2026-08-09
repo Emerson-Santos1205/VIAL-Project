@@ -9,9 +9,14 @@ from dataclasses import dataclass, field
 
 from .state import Organization
 from .tokenizer import count_tokens
+from .errors import VIALStateError
 
 # SDK-004 §17/§38 context status values
-CTX_VALID = "VALID"
+CTX_CREATED = "CREATED"
+CTX_VALID = "VALID"  # legacy validation state retained for compatibility
+CTX_FROZEN = "FROZEN"
+CTX_CONSUMED = "CONSUMED"
+CTX_ARCHIVED = "ARCHIVED"
 CTX_STALE = "STALE"
 CTX_EXPIRED = "EXPIRED"
 CTX_INVALIDATED = "INVALIDATED"
@@ -43,9 +48,16 @@ class Context:
     context_id: str = field(default_factory=lambda: f"CTX-{uuid.uuid4().hex[:12]}")
     objective: str = ""
     scope: str = ""
-    status: str = CTX_VALID
+    status: str = CTX_CREATED
     version: int = 1
     created_at: float = field(default_factory=time.time)
+    _frozen: bool = field(default=False, init=False, repr=False)
+
+    def __setattr__(self, name: str, value: object) -> None:
+        if getattr(self, "_frozen", False) and name not in {
+                "status", "_frozen"}:
+            raise VIALStateError("CONTEXT_FROZEN", "a frozen Context is immutable")
+        object.__setattr__(self, name, value)
 
     def to_row(self) -> dict:
         return {
@@ -67,12 +79,32 @@ class Context:
         self.status = CTX_INVALIDATED
         return self
 
+    def freeze(self) -> "Context":
+        """Freeze the assembled artifact before cognition or execution."""
+        if self.status in (CTX_CONSUMED, CTX_ARCHIVED, CTX_EXPIRED,
+                           CTX_INVALIDATED):
+            raise VIALStateError(
+                "CONTEXT_NOT_FREEZABLE",
+                f"cannot freeze Context in status {self.status}")
+        self.status = CTX_FROZEN
+        object.__setattr__(self, "_frozen", True)
+        return self
+
+    def consume(self) -> "Context":
+        """Record that this frozen Context was consumed."""
+        if self.status != CTX_FROZEN:
+            raise VIALStateError(
+                "CONTEXT_NOT_FROZEN", "only a frozen Context can be consumed")
+        self.status = CTX_CONSUMED
+        return self
+
     def refresh(self) -> "Context":
         """Derive a new valid Context version from this one (SDK-004 §68)."""
         import copy
         new = copy.copy(self)
+        object.__setattr__(new, "_frozen", False)
         new.version += 1
-        new.status = CTX_VALID
+        new.status = CTX_CREATED
         new.created_at = time.time()
         return new
 
@@ -97,7 +129,7 @@ class ContextBuilder:
             tokens=count_tokens(body),
             objective=task.prompt,
             scope="organization",
-        )
+        ).freeze()
 
     def build_selective(self, task: Task) -> Context:
         selected = self.org.select_fields(task.required)
@@ -124,4 +156,4 @@ class ContextBuilder:
             references=[f"state:{k}" for k in sorted(selected)],
             objective=task.prompt,
             scope="selective",
-        )
+        ).freeze()

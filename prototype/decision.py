@@ -19,17 +19,25 @@ from typing import Any
 from .errors import (VIALAuthorizationError, VIALConflictError,
                      VIALStateError, VIALValidationError)
 
-# SDK-005 decision lifecycle statuses
-STATUS_PROPOSED = "proposed"
-STATUS_APPROVED = "approved"
-STATUS_REJECTED = "rejected"
-STATUS_AUTHORIZED = "authorized"
-STATUS_EXECUTED = "executed"
-STATUS_SUPERSEDED = "superseded"
-STATUS_EXPIRED = "expired"
-STATUS_CANCELLED = "cancelled"
+# SDK-005 canonical Decision lifecycle statuses
+STATUS_DRAFT = "DRAFT"
+STATUS_PENDING = "PENDING"
+STATUS_AUTHORIZED = "AUTHORIZED"
+STATUS_EXECUTING = "EXECUTING"
+STATUS_COMPLETED = "COMPLETED"
+STATUS_REJECTED = "REJECTED"
+STATUS_SUPERSEDED = "SUPERSEDED"
+STATUS_EXPIRED = "EXPIRED"
+STATUS_CANCELLED = "CANCELLED"
+STATUS_REVOKED = "REVOKED"
+STATUS_FAILED = "FAILED"
 
-_EXECUTABLE = {STATUS_AUTHORIZED, STATUS_EXECUTED}
+# Compatibility names for callers using the earlier prototype vocabulary.
+STATUS_PROPOSED = STATUS_DRAFT
+STATUS_APPROVED = STATUS_PENDING
+STATUS_EXECUTED = STATUS_COMPLETED
+
+_EXECUTABLE = {STATUS_AUTHORIZED, STATUS_EXECUTING}
 
 
 @dataclass
@@ -62,7 +70,7 @@ class Decision:
     confidence: float = 1.0
     risk: str = ""
     priority: str = "normal"
-    status: str = STATUS_PROPOSED
+    status: str = STATUS_DRAFT
     version: int = 1
     execution_refs: list[str] = field(default_factory=list)
     supersedes: str | None = None
@@ -152,18 +160,18 @@ class DecisionEngine:
     def approve(self, decision_id: str, actor: str) -> Decision:
         """Approve a proposed decision (SDK-005 lifecycle)."""
         d = self._require(decision_id)
-        if d.status != STATUS_PROPOSED:
+        if d.status != STATUS_DRAFT:
             raise VIALConflictError(
                 "DECISION_NOT_PROPOSED",
                 f"decision '{decision_id}' is {d.status}, not proposed",
                 details={"decision_id": decision_id, "status": d.status})
-        d.status = STATUS_APPROVED
+        d.status = STATUS_PENDING
         d.updated_at = time.time()
         return d
 
     def reject(self, decision_id: str, actor: str) -> Decision:
         d = self._require(decision_id)
-        if d.status not in (STATUS_PROPOSED, STATUS_APPROVED):
+        if d.status not in (STATUS_DRAFT, STATUS_PENDING):
             raise VIALConflictError(
                 "DECISION_NOT_REJECTABLE",
                 f"decision '{decision_id}' is {d.status}",
@@ -183,7 +191,7 @@ class DecisionEngine:
                 f"'{decision_id}'",
                 details={"decision_id": decision_id,
                          "required_authority": d.authority.actor})
-        if d.status not in (STATUS_APPROVED, STATUS_PROPOSED):
+        if d.status not in (STATUS_PENDING, STATUS_DRAFT):
             raise VIALConflictError(
                 "DECISION_NOT_APPROVED",
                 f"decision '{decision_id}' is {d.status}, not approved",
@@ -201,7 +209,8 @@ class DecisionEngine:
                 f"decision '{decision_id}' is {d.status}, not authorized",
                 details={"decision_id": decision_id, "status": d.status})
         d.outcome = outcome
-        d.status = STATUS_EXECUTED
+        d.status = STATUS_EXECUTING
+        d.status = STATUS_COMPLETED
         d.updated_at = time.time()
         return d
 
@@ -233,6 +242,24 @@ class DecisionEngine:
                 f"actor '{actor}' lacks authority to cancel '{decision_id}'",
                 details={"decision_id": decision_id})
         d.status = STATUS_CANCELLED
+        d.updated_at = time.time()
+        return d
+
+    def revoke(self, decision_id: str, actor: str) -> Decision:
+        """Revoke an authorized decision, preventing execution (SDK-005 §44,
+        RUNTIME-002 §31)."""
+        d = self._require(decision_id)
+        if not self._authorized(d, actor):
+            raise VIALAuthorizationError(
+                "DECISION_UNAUTHORIZED",
+                f"actor '{actor}' lacks authority to revoke '{decision_id}'",
+                details={"decision_id": decision_id})
+        if d.status != STATUS_AUTHORIZED:
+            raise VIALConflictError(
+                "DECISION_NOT_REVOCABLE",
+                f"decision '{decision_id}' is {d.status}, not revocable",
+                details={"decision_id": decision_id, "status": d.status})
+        d.status = STATUS_REVOKED
         d.updated_at = time.time()
         return d
 
