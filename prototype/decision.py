@@ -1,7 +1,10 @@
 """Decision model and engine (SDK-005, RUNTIME-006).
 
 Implements a minimal Decision object with the SDK-005 lifecycle:
-    propose -> (approve/reject) -> authorize -> (execute/supersede/expire)
+    propose -> (approve/reject) -> authorize -> execute
+
+Expiration is a validity condition and supersession is a relationship; neither
+creates an additional Decision lifecycle state.
 
 Authority is validated explicitly before a Decision becomes executable
 (SDK-005 §34, RUNTIME-006 §73-74). Capability and authority are distinct:
@@ -26,6 +29,7 @@ STATUS_AUTHORIZED = "AUTHORIZED"
 STATUS_EXECUTING = "EXECUTING"
 STATUS_COMPLETED = "COMPLETED"
 STATUS_REJECTED = "REJECTED"
+# Compatibility conditions; neither is a Decision lifecycle state.
 STATUS_SUPERSEDED = "SUPERSEDED"
 STATUS_EXPIRED = "EXPIRED"
 STATUS_CANCELLED = "CANCELLED"
@@ -72,6 +76,7 @@ class Decision:
     priority: str = "normal"
     status: str = STATUS_DRAFT
     authorized_by: str = ""
+    validity: str = "VALID"
     version: int = 1
     execution_refs: list[str] = field(default_factory=list)
     supersedes: str | None = None
@@ -95,6 +100,7 @@ class Decision:
                           "policy": self.authority.policy},
             "status": self.status,
             "authorized_by": self.authorized_by,
+            "validity": self.validity,
             "version": self.version,
             "outcome": self.outcome,
             "confidence": self.confidence,
@@ -193,7 +199,7 @@ class DecisionEngine:
                 f"'{decision_id}'",
                 details={"decision_id": decision_id,
                          "required_authority": d.authority.actor})
-        if d.status not in (STATUS_PENDING, STATUS_DRAFT):
+        if d.status != STATUS_PENDING:
             raise VIALConflictError(
                 "DECISION_NOT_APPROVED",
                 f"decision '{decision_id}' is {d.status}, not approved",
@@ -206,6 +212,12 @@ class DecisionEngine:
     def execute(self, decision_id: str, actor: str, outcome: Any = None) -> Decision:
         """Mark an authorized decision as executed (SDK-005 lifecycle)."""
         d = self._require(decision_id)
+        if not self._authorized(d, actor):
+            raise VIALAuthorizationError(
+                "DECISION_UNAUTHORIZED",
+                f"actor '{actor}' lacks authority to execute decision "
+                f"'{decision_id}'",
+                details={"decision_id": decision_id})
         if d.status != STATUS_AUTHORIZED:
             raise VIALConflictError(
                 "DECISION_NOT_AUTHORIZED",
@@ -224,7 +236,6 @@ class DecisionEngine:
                 "DECISION_UNAUTHORIZED",
                 f"actor '{actor}' lacks authority to supersede '{decision_id}'",
                 details={"decision_id": decision_id})
-        d.status = STATUS_SUPERSEDED
         d.superseded_by = successor.id
         successor.supersedes = decision_id
         successor.updated_at = time.time()
@@ -233,7 +244,7 @@ class DecisionEngine:
     def expire(self, decision_id: str) -> Decision:
         d = self._require(decision_id)
         if d.expires_at is not None and time.time() > d.expires_at:
-            d.status = STATUS_EXPIRED
+            d.validity = STATUS_EXPIRED
             d.updated_at = time.time()
         return d
 

@@ -3,6 +3,7 @@
 # ADR-0006 — Canonical Models (Fase 3A)
 
 **Status:** Accepted
+**Version:** 1.0.0
 **Date:** 2026-08-08
 **Decision Type:** Architecture
 **Related:** ADR-0000, ADR-0003, ADR-0005, FCP-002A, RFC-006, SDK-005, RUNTIME-002, RUNTIME-004, TOOLS-001

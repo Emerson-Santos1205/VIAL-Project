@@ -79,10 +79,18 @@ class Context:
         self.status = CTX_INVALIDATED
         return self
 
+    def validate(self) -> "Context":
+        """Validate the assembled artifact before it can be frozen."""
+        if self.status != CTX_CREATED:
+            raise VIALStateError(
+                "CONTEXT_NOT_CREATED",
+                f"cannot validate Context in status {self.status}")
+        self.status = CTX_VALID
+        return self
+
     def freeze(self) -> "Context":
         """Freeze the assembled artifact before cognition or execution."""
-        if self.status in (CTX_CONSUMED, CTX_ARCHIVED, CTX_EXPIRED,
-                           CTX_INVALIDATED):
+        if self.status != CTX_VALID:
             raise VIALStateError(
                 "CONTEXT_NOT_FREEZABLE",
                 f"cannot freeze Context in status {self.status}")
@@ -129,7 +137,7 @@ class ContextBuilder:
             tokens=count_tokens(body),
             objective=task.prompt,
             scope="organization",
-        ).freeze()
+        ).validate().freeze()
 
     def build_selective(self, task: Task) -> Context:
         selected = self.org.select_fields(task.required)
@@ -156,4 +164,4 @@ class ContextBuilder:
             references=[f"state:{k}" for k in sorted(selected)],
             objective=task.prompt,
             scope="selective",
-        ).freeze()
+        ).validate().freeze()

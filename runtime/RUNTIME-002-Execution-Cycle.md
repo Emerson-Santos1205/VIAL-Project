@@ -6,7 +6,6 @@
 **Category:** Runtime Specification
 Depends On:
 - RUNTIME-001
-- RFC-002
 - RFC-003
 - RFC-004
 - RFC-005
@@ -86,7 +85,7 @@ Every execution cycle SHOULD have a unique identifier.
 Example:
 
 ```text
-Cycle ID: C-2026-000001
+Cycle ID: CYCLE-*
 ```
 
 The Cycle ID SHOULD remain associated with all significant artifacts produced during the cycle.
@@ -113,6 +112,17 @@ Audit Record
 ```
 
 These artifacts SHOULD be traceable to the same Cycle ID.
+
+Where entity identifiers are recorded, the Runtime MUST use the canonical
+patterns:
+
+```text
+Organization ORG-*
+Resource     RES-*
+Context      CTX-*
+Decision     DEC-*
+Invocation   INV-*
+```
 
 ---
 
@@ -282,6 +292,24 @@ If Context is insufficient, the cycle MAY:
 
 For consequential evaluation or execution, the Runtime SHOULD freeze the Context before proceeding beyond validation. Once FROZEN, the normative content of the Context MUST NOT change; later changes require a new Context.
 
+The Context lifecycle used by this cycle is:
+
+```text
+CREATED
+   ↓
+VALID
+   ↓
+FROZEN
+   ↓
+CONSUMED
+   ↓
+ARCHIVED
+```
+
+The Runtime MUST recognize `FROZEN`. After `FROZEN`, the normative content
+MUST NOT be changed. `EXPIRED` MAY be recorded as a validity condition without
+creating a competing Context lifecycle.
+
 ---
 
 # 15. Stage 5 — Memory Retrieval
@@ -436,6 +464,24 @@ Invalid Proposals SHOULD be rejected or returned for revision.
 
 A validated Proposal MAY become a Decision.
 
+The Decision MUST use the canonical lifecycle:
+
+```text
+DRAFT
+   ↓
+PENDING
+   ↓
+AUTHORIZED
+   ↓
+EXECUTING
+   ↓
+COMPLETED
+```
+
+Alternative or terminal states are `CANCELLED`, `REJECTED`, `FAILED` and
+`REVOKED`. A Decision in `PENDING` is not authorized and MUST NOT create an
+Invocation or produce an external effect.
+
 A Decision SHOULD identify:
 
 ```text
@@ -461,17 +507,54 @@ Conceptually:
 ```text
 Decision
    ↓
-Authority Check
+Identity + Authority + Policy + Context + Scope
+   ↓
+Authorization Evaluation
    ├── Authorization
    │      ↓
    │   Approval (when required)
    ├── Rejected
-   └── Escalation event
+   └── ESCALATION event
 ```
+
+The Authority Engine evaluates the authorization boundary; it does not
+replace or mutate the Decision into an authorization object.
 
 ---
 
-# 25. Authorized Decision
+# 25. Events and States
+
+Decision lifecycle states are persistent conditions:
+
+```text
+DRAFT
+PENDING
+AUTHORIZED
+EXECUTING
+COMPLETED
+CANCELLED
+REJECTED
+FAILED
+REVOKED
+```
+
+The following are Runtime events or process transitions, not Decision states:
+
+```text
+ESCALATION
+AUTHORIZATION_GRANTED
+AUTHORIZATION_REVOKED
+INVOCATION_CREATED
+EXECUTION_STARTED
+EXECUTION_COMPLETED
+```
+
+An `ESCALATION` event leads to additional authority or review and then to
+`AUTHORIZED` or `REJECTED`. It MUST NOT be added to the Decision state set.
+
+---
+
+# 26. Authorized Decision
 
 If authority is sufficient:
 
@@ -485,7 +568,7 @@ The Runtime MAY proceed toward Invocation and Execution.
 
 ---
 
-# 26. Rejected Decision
+# 27. Rejected Decision
 
 If authority is insufficient and no escalation mechanism applies:
 
@@ -501,7 +584,7 @@ No external effect SHOULD occur.
 
 ---
 
-# 27. Escalation Event
+# 28. Escalation Event
 
 If additional authority is required, the Runtime SHOULD raise an ESCALATION event:
 
@@ -521,7 +604,7 @@ The original analysis SHOULD be preserved.
 
 ---
 
-# 28. Stage 11 — Pre-Execution Validation
+# 29. Stage 11 — Pre-Execution Validation
 
 Immediately before execution, the Runtime SHOULD verify:
 
@@ -545,7 +628,7 @@ The Runtime MUST NOT create an Invocation or execute a Tool whose lifecycle stat
 
 ---
 
-# 29. State Revalidation
+# 30. State Revalidation
 
 For high-impact operations:
 
@@ -561,9 +644,9 @@ A stale Decision SHOULD NOT automatically execute.
 
 ---
 
-# 30. Decision Expiration
+# 31. Decision Validity Expiration
 
-If the Decision has expired:
+If the Decision validity period has expired:
 
 ```text
 Decision
@@ -571,11 +654,12 @@ Decision
 EXPIRED
 ```
 
-The Runtime MUST NOT execute it unless a new valid Decision is created.
+`EXPIRED` is a validity condition, not a Decision lifecycle state. The Runtime
+MUST NOT execute the Decision unless a new valid Decision is created.
 
 ---
 
-# 31. Decision Revocation
+# 32. Decision Revocation
 
 If a Decision has been revoked:
 
@@ -589,23 +673,24 @@ Execution MUST NOT proceed.
 
 ---
 
-# 32. Stage 12 — Invocation and Execution
+# 33. Stage 12 — Invocation and Execution
 
-The Runtime creates an Invocation and dispatches the authorized Decision to the appropriate execution resource.
+The Runtime creates an Invocation and dispatches the authorized Decision to the
+appropriate Resource.
 
 ```text
 Authorized Decision
        ↓
    Invocation
        ↓
-execution resource
+    Resource
        ↓
 External Effect
 ```
 
 ---
 
-# 33. Invocation Identity
+# 34. Invocation Identity
 
 Each Invocation SHOULD have a unique identifier.
 
@@ -624,7 +709,7 @@ The Invocation ID SHOULD be associated with:
 
 ---
 
-# 34. Execution Boundary
+# 35. Execution Boundary
 
 Execution is the boundary where VIAL can produce effects outside its internal cognitive process.
 
@@ -643,7 +728,7 @@ This boundary SHOULD receive stronger validation than ordinary internal computat
 
 ---
 
-# 35. Idempotent Execution
+# 36. Idempotent Execution
 
 Where possible, Execution SHOULD be idempotent.
 
@@ -665,7 +750,7 @@ Duplicate effect
 
 ---
 
-# 36. Stage 13 — Result Collection
+# 37. Stage 13 — Result Collection
 
 After Execution, the Runtime records the Result.
 
@@ -683,7 +768,7 @@ UNKNOWN
 
 ---
 
-# 37. Unknown Result
+# 38. Unknown Result
 
 The Runtime MUST distinguish:
 
@@ -715,7 +800,7 @@ until evidence establishes the actual result.
 
 ---
 
-# 38. Stage 14 — State Transition
+# 39. Stage 14 — State Transition
 
 If Execution changes organizational State, the Runtime applies an authorized State Transition.
 
@@ -731,13 +816,13 @@ The transition SHOULD reference:
 
 ```text
 Decision ID
-Execution ID
+Invocation ID
 Cycle ID
 ```
 
 ---
 
-# 39. State Conflict
+# 40. State Conflict
 
 If the State changed unexpectedly before transition:
 
@@ -759,7 +844,7 @@ Possible responses:
 
 ---
 
-# 40. Stage 15 — Memory Update
+# 41. Stage 15 — Memory Update
 
 The Runtime determines whether the cycle produced information worth retaining.
 
@@ -776,7 +861,7 @@ Not every event should become Memory.
 
 ---
 
-# 41. Memory Admission
+# 42. Memory Admission
 
 Memory admission SHOULD evaluate:
 
@@ -792,7 +877,7 @@ This prevents uncontrolled Memory growth.
 
 ---
 
-# 42. Stage 16 — Outcome Evaluation
+# 43. Stage 16 — Outcome Evaluation
 
 The Runtime SHOULD determine whether the outcome matched the intended result.
 
@@ -813,7 +898,7 @@ This provides feedback for future cognition.
 
 ---
 
-# 43. Stage 17 — Audit
+# 44. Stage 17 — Audit
 
 The Runtime records the cycle's significant events.
 
@@ -834,7 +919,7 @@ Memory
 
 ---
 
-# 44. Stage 18 — Cycle Completion
+# 45. Stage 18 — Cycle Completion
 
 The cycle becomes complete when:
 
@@ -851,7 +936,7 @@ CYCLE_COMPLETED
 
 ---
 
-# 45. Cycle Termination Without Execution
+# 46. Cycle Termination Without Execution
 
 Not every cycle requires execution.
 
@@ -874,7 +959,7 @@ This is a valid VIAL cycle.
 
 ---
 
-# 46. Cycle Termination Without Decision
+# 47. Cycle Termination Without Decision
 
 Some events may simply update State.
 
@@ -892,7 +977,7 @@ No Cognition or Decision is required.
 
 ---
 
-# 47. Cycle Escalation
+# 48. Cycle Escalation
 
 A cycle MAY raise an ESCALATION event when additional authority or review is required.
 
@@ -910,7 +995,7 @@ The original Cycle ID SHOULD remain unchanged.
 
 ---
 
-# 48. Cycle Pause
+# 49. Cycle Pause
 
 A cycle MAY be paused because:
 
@@ -924,7 +1009,7 @@ Paused cycles SHOULD preserve their current state.
 
 ---
 
-# 49. Cycle Cancellation
+# 50. Cycle Cancellation
 
 A cycle MAY be cancelled.
 
@@ -939,7 +1024,7 @@ Current Stage
 
 ---
 
-# 50. Cycle Failure
+# 51. Cycle Failure
 
 A cycle SHOULD explicitly identify its failure stage.
 
@@ -967,7 +1052,7 @@ This distinction is important for diagnosis and learning.
 
 ---
 
-# 51. Retry
+# 52. Retry
 
 Retries SHOULD resume from the earliest safe stage rather than automatically repeating the entire cycle.
 
@@ -989,7 +1074,7 @@ This reduces resource consumption.
 
 ---
 
-# 52. Recovery
+# 53. Recovery
 
 A failed cycle MAY enter:
 
@@ -1007,7 +1092,7 @@ The Recovery Manager SHOULD determine whether to:
 
 ---
 
-# 53. Cycle Cost
+# 54. Cycle Cost
 
 The Runtime SHOULD measure cost at each stage.
 
@@ -1025,7 +1110,7 @@ This enables optimization of the complete organizational process.
 
 ---
 
-# 54. Cognitive Cost Optimization
+# 55. Cognitive Cost Optimization
 
 If a cycle repeatedly produces the same result, the Runtime SHOULD consider whether the behavior can be converted into:
 
@@ -1038,7 +1123,7 @@ This is a key VIAL optimization mechanism.
 
 ---
 
-# 55. Context Reuse
+# 56. Context Reuse
 
 When appropriate, Context MAY be reused.
 
@@ -1051,7 +1136,7 @@ However, reuse MUST verify that:
 
 ---
 
-# 56. Decision Reuse
+# 57. Decision Reuse
 
 A previous Decision MUST NOT automatically be reused simply because a similar Event occurs.
 
@@ -1064,7 +1149,7 @@ The Runtime SHOULD determine whether the prior Decision is:
 
 ---
 
-# 57. Organizational Learning
+# 58. Organizational Learning
 
 The cycle creates a feedback loop:
 
@@ -1086,7 +1171,7 @@ This transforms repeated operation into organizational learning.
 
 ---
 
-# 58. Canonical Cycle Example
+# 59. Canonical Cycle Example
 
 Consider:
 
@@ -1117,7 +1202,7 @@ Runtime:
 
 ---
 
-# 59. Example Without AI
+# 60. Example Without AI
 
 The entire cycle MAY be deterministic:
 
@@ -1141,7 +1226,7 @@ This is intentional.
 
 ---
 
-# 60. Example With AI
+# 61. Example With AI
 
 A more complex situation MAY use AI:
 
@@ -1173,7 +1258,7 @@ Only the Cognition Resource changes.
 
 ---
 
-# 61. Example With Human Cognition
+# 62. Example With Human Cognition
 
 A human may be the Cognition Resource:
 
@@ -1195,7 +1280,7 @@ The Runtime does not require artificial cognition.
 
 ---
 
-# 62. Multi-Resource Cognition
+# 63. Multi-Resource Cognition
 
 Multiple Resources MAY participate:
 
@@ -1215,7 +1300,7 @@ The Runtime SHOULD preserve the provenance of each contribution.
 
 ---
 
-# 63. Parallel Cognition
+# 64. Parallel Cognition
 
 Independent analyses MAY run in parallel.
 
@@ -1234,7 +1319,7 @@ The synthesis stage SHOULD preserve the sources.
 
 ---
 
-# 64. Parallel Execution
+# 65. Parallel Execution
 
 Independent authorized executions MAY run concurrently.
 
@@ -1242,7 +1327,7 @@ The Runtime MUST verify that concurrent effects do not violate State or authorit
 
 ---
 
-# 65. Cycle Determinism
+# 66. Cycle Determinism
 
 The Runtime SHOULD keep deterministic orchestration wherever possible.
 
@@ -1250,7 +1335,7 @@ Probabilistic behavior should remain localized to Cognition Resources rather tha
 
 ---
 
-# 66. Cycle Contract
+# 67. Cycle Contract
 
 A conceptual Cycle Contract is:
 
@@ -1277,7 +1362,7 @@ This is a semantic model, not a required programming-language structure.
 
 ---
 
-# 67. Cycle Status
+# 68. Cycle Status
 
 A Cycle MAY have:
 
@@ -1295,7 +1380,7 @@ ESCALATION is an event or transition, not a Cycle status (ADR-0006 D-009).
 
 ---
 
-# 68. Conformance
+# 69. Conformance
 
 A Runtime conforming to RUNTIME-002 MUST:
 
@@ -1312,7 +1397,7 @@ A Runtime conforming to RUNTIME-002 MUST:
 
 ---
 
-# 69. Recommended Capabilities
+# 70. Recommended Capabilities
 
 A mature implementation SHOULD support:
 
@@ -1331,7 +1416,7 @@ A mature implementation SHOULD support:
 
 ---
 
-# 70. Relationship With RUNTIME-001
+# 71. Relationship With RUNTIME-001
 
 RUNTIME-001 defines the architecture.
 
@@ -1350,7 +1435,7 @@ Individual Runtime Engines
 
 ---
 
-# 71. Final Principle
+# 72. Final Principle
 
 The VIAL Execution Cycle is designed around one central idea:
 

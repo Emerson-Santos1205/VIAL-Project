@@ -3,6 +3,7 @@
 # ADR-0005 — Canonical Semantic and Lifecycle Models
 
 **Status:** Proposed
+**Version:** 1.0.0
 **Date:** 2026-08-08
 **Decision Type:** Architecture
 **Related:** ADR-0000, ADR-0001, ADR-0003, FCP-002A, SDK-004, SDK-005, RUNTIME-002, RUNTIME-004, TOOLS-001

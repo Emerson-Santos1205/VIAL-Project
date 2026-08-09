@@ -10,7 +10,6 @@ Depends On:
 - RUNTIME-003
 - RUNTIME-004
 - RFC-003
-- RFC-005
 - FCP-002A
 
 ---
@@ -62,6 +61,66 @@ Memory
 ```
 
 Memory therefore closes the organizational learning loop.
+
+## Efficiency Boundary
+
+The Memory Engine MAY optimize retrieval, selection, caching, throughput,
+latency and consumption. These optimizations MUST NOT alter the normative
+meaning of Decision, Context or Resource.
+
+```text
+Efficiency
+   ↓
+Optimize execution
+   ↓
+Preserve the normative contract
+```
+
+Efficiency MUST NOT turn a Decision into implicit Authorization.
+
+For consequential execution, the operational sequence remains:
+
+```text
+Decision
+   ↓
+Authorization
+   ↓
+Resource Selection
+   ↓
+Invocation
+   ↓
+Execution
+   ↓
+Outcome
+```
+
+Resource Selection is an operational step. It is not a separate normative
+Decision unless explicitly modeled as one.
+
+The canonical Decision lifecycle consumed by this Runtime remains:
+
+```text
+DRAFT → PENDING → AUTHORIZED → EXECUTING → COMPLETED
+```
+
+Alternative or terminal states are `CANCELLED`, `REJECTED`, `FAILED` and
+`REVOKED`. `ESCALATION` remains an event/process for review or additional
+authority, never a Decision state. Decision, Authorization, Approval,
+Invocation and Execution remain distinct.
+
+The Runtime MUST preserve the Events versus States boundary. Relevant events
+include:
+
+```text
+EXECUTION_STARTED
+EXECUTION_COMPLETED
+RESOURCE_SELECTED
+RESOURCE_RELEASED
+ESCALATION
+```
+
+These events describe occurrences in the operational process. They MUST NOT be
+placed in the Decision lifecycle state set.
 
 ---
 
@@ -128,7 +187,14 @@ Relevant Memory selected for the current task.
 
 The Context Engine retrieves Memory; it does not replace the Memory Engine.
 
-When Memory is materialized into a consequential Context, the Runtime consumes the canonical Context lifecycle from RFC-002 through RFC-004: `CREATED → VALID → FROZEN → CONSUMED → ARCHIVED`. Once the relevant Context is FROZEN, its normative content MUST NOT change.
+When Memory is materialized into a consequential Context, the Runtime consumes
+the canonical Context lifecycle: `CREATED → VALID → FROZEN → CONSUMED →
+ARCHIVED`. Once the relevant Context is FROZEN, its normative content MUST NOT
+change.
+
+An optimization MAY reuse a FROZEN Context when scope, State version,
+authority, evidence and validity remain compatible. Reuse MUST NOT modify the
+Context's normative content; changed inputs require a new Context.
 
 ---
 
@@ -243,6 +309,19 @@ Type: FAILURE
 Scope: Pump-A
 ```
 
+When Memory correlates normative entities, it MUST use:
+
+```text
+Organization ORG-*
+Resource     RES-*
+Context      CTX-*
+Decision     DEC-*
+Invocation   INV-*
+```
+
+The Memory identifier itself is a Memory record identifier and MUST NOT be
+used as a substitute for those entity identifiers.
+
 ---
 
 # 10. Memory Provenance
@@ -336,6 +415,9 @@ DEPRECATED
 REVOKED
 SUPERSEDED
 ```
+
+These are Memory conditions only. They MUST NOT redefine or replace the
+canonical Decision states, including `REVOKED`.
 
 ---
 

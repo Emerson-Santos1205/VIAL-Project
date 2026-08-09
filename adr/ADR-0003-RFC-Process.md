@@ -3,6 +3,7 @@
 # ADR-0003 - RFC Process
 
 **Status:** Proposed
+**Version:** 1.0.0
 **Date:** 2026-08-07
 **Decision Type:** Governance
 **Related:** ADR-0000, FCP-002, VCG-001

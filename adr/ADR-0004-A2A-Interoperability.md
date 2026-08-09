@@ -3,6 +3,7 @@
 # ADR-0004 — Positioning Against External Agent Interoperability Protocols (A2A)
 
 **Status:** Proposed
+**Version:** 1.0.0
 **Date:** 2026-08-07
 **Decision Type:** Architecture
 **Related:** ADR-0001, ADR-0002, FP-001, FCP-002, RFC-007 through RFC-010

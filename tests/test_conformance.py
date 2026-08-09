@@ -73,6 +73,7 @@ class ConformanceTests(unittest.TestCase):
             authority=Authority(actor="operator", scope="organization"),
             context_id="CTX-1",
         )
+        engine.approve(decision.id, "planner")
         engine.authorize(decision.id, "operator")
         tool = Tool(
             "TOOL-1", "reader", "reads data", "1.0", "read", "ORG-1",

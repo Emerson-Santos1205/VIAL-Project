@@ -1,4 +1,6 @@
 # FCP-005 — VIAL Efficiency Model
+Version: 1.0.0
+Status: Draft
 Depends On: None
 
 ## 13. Non-Goals

@@ -147,7 +147,6 @@ A State value MUST NOT automatically be assumed to apply outside its defined sco
 A State representation SHOULD contain:
 
 ```text
-State ID
 Organization ID
 Scope
 Version
@@ -159,12 +158,16 @@ Status
 Example:
 
 ```text
-State ID: ST-10052
 Organization: ORG-001
 Scope: Production-Line-03
 Version: 482
 Timestamp: 2026-08-07T10:00:00Z
 ```
+
+When the State Engine correlates other normative entities, it MUST use the
+canonical identifier patterns `ORG-*`, `RES-*`, `CTX-*`, `DEC-*` and `INV-*`.
+State versions and transition records MUST NOT introduce parallel identifiers
+for those entities.
 
 ---
 
@@ -617,6 +620,11 @@ Temperature = 85°C
 
 They are related but not identical.
 
+The State Engine MUST keep persistent conditions separate from Runtime events.
+Events such as `ESCALATION`, `EXECUTION_STARTED` and `EXECUTION_COMPLETED`
+record occurrences; they MUST NOT be placed in the Decision or Context
+lifecycle state sets.
+
 ---
 
 # 33. State vs Memory
@@ -655,6 +663,26 @@ Context
 
 Context SHOULD NOT modify State directly.
 
+For consequential evaluation or execution, the Runtime MUST consume the
+canonical Context lifecycle:
+
+```text
+CREATED
+   ↓
+VALID
+   ↓
+FROZEN
+   ↓
+CONSUMED
+   ↓
+ARCHIVED
+```
+
+The State Engine MUST preserve the Context reference and State version used to
+construct a Context. Once the Context is `FROZEN`, its normative content MUST
+NOT be modified. Additional State requires a new Context rather than mutation
+of the frozen one.
+
 ---
 
 # 35. State and Decision
@@ -671,6 +699,30 @@ State Version 482
 ```
 
 This enables later evaluation of whether the Decision was based on valid information.
+
+The State Engine recognizes the canonical Decision boundary but does not own
+Authorization, Approval, Invocation or Execution. A Decision is a
+determination, not permission to act.
+
+The canonical Decision lifecycle is:
+
+```text
+DRAFT
+   ↓
+PENDING
+   ↓
+AUTHORIZED
+   ↓
+EXECUTING
+   ↓
+COMPLETED
+```
+
+Alternative or terminal states are `CANCELLED`, `REJECTED`, `FAILED` and
+`REVOKED`. A Decision in `PENDING` MUST NOT be treated as authorized.
+
+`ESCALATION` is an event/process leading to review or additional authority,
+then to `AUTHORIZED` or `REJECTED`; it is never a Decision state.
 
 ---
 
@@ -1129,7 +1181,9 @@ But it MUST remain distinguishable from observed State.
 
 # 64. State Transition Lifecycle
 
-This lifecycle applies to the State Transition record managed by the State Engine. It is distinct from the canonical Decision lifecycle defined by RFC-006.
+This lifecycle applies only to the State Transition record managed by the State
+Engine. It is an operational record lifecycle, not a Decision or Context
+lifecycle, and MUST NOT replace or redefine either canonical model.
 
 ```text
 PROPOSED

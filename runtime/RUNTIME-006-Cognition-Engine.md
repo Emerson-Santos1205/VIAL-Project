@@ -90,7 +90,7 @@ Alternatives
     ↓
 Selection
     ↓
-Decision
+Decision Proposal
 ```
 
 ---
@@ -179,8 +179,8 @@ A critical VIAL distinction is:
 
 ```text
 Cognition
-   ↓
-Decision
+    ↓
+Decision Proposal
    ↓
 Execution
 ```
@@ -190,6 +190,28 @@ Cognition proposes, Decision evaluates, Execution acts.
 Reasoning does not automatically constitute authorization.
 
 The Cognition Engine produces a Decision proposal; it does not replace the Decision Engine, which represents and evaluates the Decision (RUNTIME-001 §15), nor the Authority Engine, which determines authorization (RFC-006).
+
+RUNTIME-006 consumes, but does not redefine, the canonical Decision model. The
+downstream boundary remains:
+
+```text
+Decision Proposal
+   ↓
+Decision
+   ↓
+Authorization
+   ↓
+Approval (when required)
+   ↓
+Invocation
+   ↓
+Execution
+```
+
+The canonical Decision states remain `DRAFT`, `PENDING`, `AUTHORIZED`,
+`EXECUTING`, `COMPLETED`, `CANCELLED`, `REJECTED`, `FAILED` and `REVOKED`.
+`ESCALATION` is an event/process for review or additional authority, never a
+Decision state.
 
 ---
 
@@ -608,8 +630,8 @@ Rule Engine
 AI Analysis
   ↓
 Human Review
-  ↓
-Decision
+   ↓
+Decision Proposal
 ```
 
 Each contribution SHOULD remain attributable.
@@ -740,6 +762,9 @@ A Decision Proposal SHOULD contain:
 ```text
 Proposed Decision ID (DEC-*)
 CTX-*
+ORG-*
+RES-* when Resources contribute
+INV-* when execution has occurred
 Objective
 Selected Action
 Alternatives
@@ -752,6 +777,17 @@ Expected Outcome
 ```
 
 A Decision Proposal is not yet an authorized Decision. Authorization, Approval, Invocation and Execution remain separate downstream concerns.
+
+The following are process events, not Cognition or Decision lifecycle states:
+
+```text
+ESCALATION
+AUTHORIZATION_GRANTED
+AUTHORIZATION_REVOKED
+INVOCATION_CREATED
+EXECUTION_STARTED
+EXECUTION_COMPLETED
+```
 
 ---
 
@@ -1385,7 +1421,7 @@ A conceptual result:
 
 ```text
 CognitionResult {
-    decision
+    decision_proposal
     alternatives
     evidence
     rationale

@@ -3,6 +3,7 @@
 # ADR-0002 — Adoption of Distributed Organizational Cognition
 
 **Status:** Accepted
+**Version:** 1.0.0
 **Date:** 2026-08-07
 **Decision Type:** Foundation Architecture
 **Related:** FCP-002A, TDOC-00 through TDOC-09

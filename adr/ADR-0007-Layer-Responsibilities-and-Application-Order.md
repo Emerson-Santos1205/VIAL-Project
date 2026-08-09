@@ -3,6 +3,7 @@
 # ADR-0007 — Layer Responsibilities and Application Order
 
 **Status:** Accepted
+**Version:** 1.0.0
 **Date:** 2026-08-08
 **Decision Type:** Architecture
 **Related:** ADR-0000, ADR-0003, ADR-0006, FCP-002A, VCG-001

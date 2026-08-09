@@ -54,7 +54,7 @@ class Capability:
 
 @dataclass
 class Resource:
-    """An execution resource with stable identity (SDK-003 §3-7, §14)."""
+    """A Resource with stable identity (SDK-003 §3-7, §14)."""
     resource_id: str
     type: str
     organization_id: str

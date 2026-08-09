@@ -9,7 +9,6 @@ Depends On:
 - RUNTIME-002
 - RUNTIME-003
 - RFC-003
-- RFC-004
 
 ---
 
@@ -60,6 +59,24 @@ Cognition
 It does not make the Decision itself.
 
 Its responsibility is to construct the information environment in which the Decision can be made.
+
+The Context Engine does not define or authorize a Decision. Downstream Runtime
+stages consume the Context through the already-defined boundary:
+
+```text
+Decision
+   ↓
+Authorization
+   ↓
+Invocation
+   ↓
+Execution
+```
+
+The canonical Decision states remain `DRAFT`, `PENDING`, `AUTHORIZED`,
+`EXECUTING`, `COMPLETED`, `CANCELLED`, `REJECTED`, `FAILED` and `REVOKED`.
+RUNTIME-004 MUST NOT add or reinterpret Decision states. `ESCALATION` remains
+an event/process for review or additional authority.
 
 ---
 
@@ -188,9 +205,12 @@ Example:
 
 ```text
 Context ID: CTX-000482
-Cycle ID: C-000921
+Cycle ID: CYCLE-*
 Scope: Production-Line-03
 ```
+
+Context records that correlate other normative entities MUST use the canonical
+patterns `ORG-*`, `RES-*`, `CTX-*`, `DEC-*` and `INV-*`.
 
 ---
 
@@ -997,6 +1017,26 @@ EXPIRED
 
 as a terminal condition. A Context that is EXPIRED is no longer valid for a new Decision but remains a stable record once FROZEN.
 
+## Context Consumption and Execution
+
+Consequential execution MUST consume a stable Context:
+
+```text
+Context
+   ↓
+VALID
+   ↓
+FROZEN
+   ↓
+Execution
+   ↓
+CONSUMED
+```
+
+The Runtime MUST NOT modify the normative content of a Context during
+execution. If additional information is required, the Context Engine MUST
+create a new Context rather than mutate a frozen one.
+
 ---
 
 # 55. Context Status
@@ -1018,6 +1058,24 @@ ARCHIVED
 ```
 
 FROZEN and ARCHIVED are lifecycle states (see §54). The other statuses are conditions that MAY apply without defining a competing lifecycle.
+
+`VALIDATING` is a processing activity, not a lifecycle state. `PARTIAL`,
+`CONFLICTED`, `STALE`, `INVALID` and `EXPIRED` are Context conditions, not
+additional lifecycle states.
+
+The Context Engine MUST emit or preserve the distinction between state and
+event. Relevant events include:
+
+```text
+CONTEXT_FROZEN
+CONTEXT_CONSUMED
+EXECUTION_STARTED
+EXECUTION_COMPLETED
+ESCALATION
+```
+
+These events may cause a lifecycle transition but MUST NOT be placed in the
+Context state set.
 
 ---
 

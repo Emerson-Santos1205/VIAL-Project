@@ -403,6 +403,24 @@ This directly supports VIAL's efficiency objective.
 
 The Decision Engine transforms Cognition output into an explicit Decision representation.
 
+The Runtime MUST implement the canonical Decision lifecycle:
+
+```text
+DRAFT
+   ↓
+PENDING
+   ↓
+AUTHORIZED
+   ↓
+EXECUTING
+   ↓
+COMPLETED
+```
+
+Alternative or terminal states are `CANCELLED`, `REJECTED`, `FAILED` and
+`REVOKED`. `ESCALATION` is an event or transition toward additional authority
+or review; it is not a Decision lifecycle state.
+
 It SHOULD verify:
 
 * Decision structure;
@@ -419,6 +437,11 @@ The Decision Engine does not itself grant authority.
 # 16. Authority Engine
 
 The Authority Engine evaluates whether a Decision is authorized according to RFC-006.
+
+Authorization and Approval are distinct concepts. Authorization determines
+whether the Decision may proceed; Approval is an additional authorization step
+required only when policy or workflow requires it. Neither Approval nor
+ESCALATION creates a competing Decision lifecycle.
 
 Conceptually:
 
@@ -439,7 +462,8 @@ Authorization
    ↓
 Approval (when required)
    ↓
-AUTHORIZED / REJECTED / ESCALATION event
+    AUTHORIZED / REJECTED
+    ESCALATION event when additional authority is required
 ```
 
 ---
@@ -678,14 +702,14 @@ The Runtime SHOULD maintain correlation across all components.
 Example:
 
 ```text
-Cycle C100
+Cycle CYCLE-*
 
-Event E10
-State S82
+Event EVENT-*
+State Version *
 Context CTX-042
 Decision DEC-018
 Invocation INV-090
-Outcome R55
+Outcome *
 ```
 
 This allows complete reconstruction.
@@ -1162,27 +1186,27 @@ Distributed clocks MAY require implementation-specific strategies.
 A complete trace MAY look like:
 
 ```text
-C100
+CYCLE-*
  │
- ├── E100 Trigger
+ ├── Trigger Event
  │
- ├── S200 State
+ ├── State Snapshot
  │
- ├── X300 Context
+ ├── Context CTX-*
  │
- ├── C400 Cognition
+ ├── Cognition
  │
- ├── D500 Decision
+ ├── Decision DEC-*
  │
- ├── A600 Authority
+ ├── Authorization
  │
- ├── E700 Execution
+ ├── Invocation INV-*
  │
- ├── R800 Result
+ ├── Execution Outcome
  │
- ├── S201 State Update
+ ├── State Update
  │
- └── M900 Memory Update
+ └── Memory Update
 ```
 
 This is the canonical operational trace.
