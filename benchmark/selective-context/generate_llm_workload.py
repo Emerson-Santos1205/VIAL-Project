@@ -41,7 +41,8 @@ def _entry(rng: random.Random, i: int, tag: str) -> dict:
     return {"key": f"k_{i:05d}", "value": text, "relevance": [tag]}
 
 
-def generate(n_entries: int, n_tasks: int, seed: int) -> dict:
+def generate(n_entries: int, n_tasks: int, seed: int,
+             difficulty: str = "direct") -> dict:
     rng = random.Random(seed)
     n_tags = max(4, n_entries // 10)
     tags = [f"domain_{t}" for t in range(n_tags)]
@@ -53,6 +54,28 @@ def generate(n_entries: int, n_tasks: int, seed: int) -> dict:
 
     tasks = []
     for i in range(n_tasks):
+        if difficulty == "hard":
+            selected = rng.sample(entries, 3)
+            numbers = [int(re.search(r"(\d+)", e["value"]).group(1))
+                       for e in selected]
+            total = sum(numbers)
+            if rng.random() < 0.5:
+                bound = total - rng.randint(1, 500)
+                expected = True
+            else:
+                bound = total + rng.randint(1, 500)
+                expected = False
+            keys = ", ".join(e["key"] for e in selected)
+            tasks.append({
+                "id": f"R{i:05d}",
+                "prompt": ("Using only entries " + keys + ", calculate the sum "
+                           f"of their numeric values. Is the sum greater than "
+                           f"or equal to {bound}? Answer true or false."),
+                "required": [tag for e in selected for tag in e["relevance"]],
+                "expected": expected,
+                "op": "llm_bool",
+            })
+            continue
         # pick one entry whose value contains a number we can ask about
         idx = rng.randrange(len(entries))
         e = entries[idx]
@@ -79,6 +102,7 @@ def generate(n_entries: int, n_tasks: int, seed: int) -> dict:
 
     return {
         "name": "reasoning-bench",
+        "difficulty": difficulty,
         "org_id": "reason-org",
         "seed": seed,
         "quality_tolerance": 0.10,
@@ -93,10 +117,12 @@ def main() -> int:
     ap.add_argument("--entries", type=int, default=200)
     ap.add_argument("--tasks", type=int, default=100)
     ap.add_argument("--seed", type=int, default=42)
+    ap.add_argument("--difficulty", choices=("direct", "hard"), default="direct")
     ap.add_argument("--out", default="workloads/reasoning.json")
     args = ap.parse_args()
 
-    wl = generate(n_entries=args.entries, n_tasks=args.tasks, seed=args.seed)
+    wl = generate(n_entries=args.entries, n_tasks=args.tasks, seed=args.seed,
+                  difficulty=args.difficulty)
     out = Path(__file__).resolve().parent / args.out
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(wl, indent=2), encoding="utf-8")

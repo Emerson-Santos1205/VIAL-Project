@@ -71,6 +71,7 @@ class Decision:
     risk: str = ""
     priority: str = "normal"
     status: str = STATUS_DRAFT
+    authorized_by: str = ""
     version: int = 1
     execution_refs: list[str] = field(default_factory=list)
     supersedes: str | None = None
@@ -93,6 +94,7 @@ class Decision:
                           "scope": self.authority.scope,
                           "policy": self.authority.policy},
             "status": self.status,
+            "authorized_by": self.authorized_by,
             "version": self.version,
             "outcome": self.outcome,
             "confidence": self.confidence,
@@ -197,6 +199,7 @@ class DecisionEngine:
                 f"decision '{decision_id}' is {d.status}, not approved",
                 details={"decision_id": decision_id, "status": d.status})
         d.status = STATUS_AUTHORIZED
+        d.authorized_by = actor
         d.updated_at = time.time()
         return d
 

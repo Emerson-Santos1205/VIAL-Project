@@ -1,0 +1,2072 @@
+{
+  "name": "reasoning-bench",
+  "difficulty": "hard",
+  "org_id": "reason-org",
+  "seed": 42,
+  "quality_tolerance": 0.1,
+  "cost_ratio_threshold": 2.0,
+  "state_fields": [
+    {
+      "key": "k_00000",
+      "value": "Server a power limit is 962 watts.",
+      "relevance": [
+        "domain_0"
+      ]
+    },
+    {
+      "key": "k_00001",
+      "value": "Line b monthly output target is 2303 units.",
+      "relevance": [
+        "domain_1"
+      ]
+    },
+    {
+      "key": "k_00002",
+      "value": "Sensor c alarm threshold is 1878.",
+      "relevance": [
+        "domain_2"
+      ]
+    },
+    {
+      "key": "k_00003",
+      "value": "Sensor d alarm threshold is 889.",
+      "relevance": [
+        "domain_3"
+      ]
+    },
+    {
+      "key": "k_00004",
+      "value": "Server e power limit is 4517 watts.",
+      "relevance": [
+        "domain_4"
+      ]
+    },
+    {
+      "key": "k_00005",
+      "value": "Line f monthly output target is 4887 units.",
+      "relevance": [
+        "domain_5"
+      ]
+    },
+    {
+      "key": "k_00006",
+      "value": "Pump g rated flow is 310 liters per hour.",
+      "relevance": [
+        "domain_6"
+      ]
+    },
+    {
+      "key": "k_00007",
+      "value": "Line h monthly output target is 817 units.",
+      "relevance": [
+        "domain_7"
+      ]
+    },
+    {
+      "key": "k_00008",
+      "value": "Sensor i alarm threshold is 1955.",
+      "relevance": [
+        "domain_8"
+      ]
+    },
+    {
+      "key": "k_00009",
+      "value": "Batch j temperature target is 4981 degrees.",
+      "relevance": [
+        "domain_9"
+      ]
+    },
+    {
+      "key": "k_00010",
+      "value": "Line a monthly output target is 4647 units.",
+      "relevance": [
+        "domain_10"
+      ]
+    },
+    {
+      "key": "k_00011",
+      "value": "Sensor b alarm threshold is 4514.",
+      "relevance": [
+        "domain_11"
+      ]
+    },
+    {
+      "key": "k_00012",
+      "value": "Pump c rated flow is 1855 liters per hour.",
+      "relevance": [
+        "domain_12"
+      ]
+    },
+    {
+      "key": "k_00013",
+      "value": "Pump d rated flow is 4877 liters per hour.",
+      "relevance": [
+        "domain_13"
+      ]
+    },
+    {
+      "key": "k_00014",
+      "value": "Vendor e quarterly budget is 103.",
+      "relevance": [
+        "domain_14"
+      ]
+    },
+    {
+      "key": "k_00015",
+      "value": "Sensor f alarm threshold is 3512.",
+      "relevance": [
+        "domain_15"
+      ]
+    },
+    {
+      "key": "k_00016",
+      "value": "Vendor g quarterly budget is 2326.",
+      "relevance": [
+        "domain_16"
+      ]
+    },
+    {
+      "key": "k_00017",
+      "value": "Sensor h alarm threshold is 1813.",
+      "relevance": [
+        "domain_17"
+      ]
+    },
+    {
+      "key": "k_00018",
+      "value": "Vendor i quarterly budget is 887.",
+      "relevance": [
+        "domain_18"
+      ]
+    },
+    {
+      "key": "k_00019",
+      "value": "Line j monthly output target is 3162 units.",
+      "relevance": [
+        "domain_19"
+      ]
+    },
+    {
+      "key": "k_00020",
+      "value": "Line a monthly output target is 2990 units.",
+      "relevance": [
+        "domain_0"
+      ]
+    },
+    {
+      "key": "k_00021",
+      "value": "Vendor b quarterly budget is 4995.",
+      "relevance": [
+        "domain_1"
+      ]
+    },
+    {
+      "key": "k_00022",
+      "value": "Vendor c quarterly budget is 405.",
+      "relevance": [
+        "domain_2"
+      ]
+    },
+    {
+      "key": "k_00023",
+      "value": "Server d power limit is 3813 watts.",
+      "relevance": [
+        "domain_3"
+      ]
+    },
+    {
+      "key": "k_00024",
+      "value": "Batch e temperature target is 1072 degrees.",
+      "relevance": [
+        "domain_4"
+      ]
+    },
+    {
+      "key": "k_00025",
+      "value": "Pump f rated flow is 695 liters per hour.",
+      "relevance": [
+        "domain_5"
+      ]
+    },
+    {
+      "key": "k_00026",
+      "value": "Batch g temperature target is 2451 degrees.",
+      "relevance": [
+        "domain_6"
+      ]
+    },
+    {
+      "key": "k_00027",
+      "value": "Server h power limit is 3012 watts.",
+      "relevance": [
+        "domain_7"
+      ]
+    },
+    {
+      "key": "k_00028",
+      "value": "Batch i temperature target is 1625 degrees.",
+      "relevance": [
+        "domain_8"
+      ]
+    },
+    {
+      "key": "k_00029",
+      "value": "Server j power limit is 619 watts.",
+      "relevance": [
+        "domain_9"
+      ]
+    },
+    {
+      "key": "k_00030",
+      "value": "Line a monthly output target is 1916 units.",
+      "relevance": [
+        "domain_10"
+      ]
+    },
+    {
+      "key": "k_00031",
+      "value": "Vendor b quarterly budget is 703.",
+      "relevance": [
+        "domain_11"
+      ]
+    },
+    {
+      "key": "k_00032",
+      "value": "Sensor c alarm threshold is 877.",
+      "relevance": [
+        "domain_12"
+      ]
+    },
+    {
+      "key": "k_00033",
+      "value": "Pump d rated flow is 2327 liters per hour.",
+      "relevance": [
+        "domain_13"
+      ]
+    },
+    {
+      "key": "k_00034",
+      "value": "Pump e rated flow is 3038 liters per hour.",
+      "relevance": [
+        "domain_14"
+      ]
+    },
+    {
+      "key": "k_00035",
+      "value": "Sensor f alarm threshold is 3082.",
+      "relevance": [
+        "domain_15"
+      ]
+    },
+    {
+      "key": "k_00036",
+      "value": "Vendor g quarterly budget is 1766.",
+      "relevance": [
+        "domain_16"
+      ]
+    },
+    {
+      "key": "k_00037",
+      "value": "Server h power limit is 2237 watts.",
+      "relevance": [
+        "domain_17"
+      ]
+    },
+    {
+      "key": "k_00038",
+      "value": "Server i power limit is 634 watts.",
+      "relevance": [
+        "domain_18"
+      ]
+    },
+    {
+      "key": "k_00039",
+      "value": "Batch j temperature target is 1451 degrees.",
+      "relevance": [
+        "domain_19"
+      ]
+    },
+    {
+      "key": "k_00040",
+      "value": "Batch a temperature target is 2055 degrees.",
+      "relevance": [
+        "domain_0"
+      ]
+    },
+    {
+      "key": "k_00041",
+      "value": "Sensor b alarm threshold is 3836.",
+      "relevance": [
+        "domain_1"
+      ]
+    },
+    {
+      "key": "k_00042",
+      "value": "Pump c rated flow is 2261 liters per hour.",
+      "relevance": [
+        "domain_2"
+      ]
+    },
+    {
+      "key": "k_00043",
+      "value": "Server d power limit is 4612 watts.",
+      "relevance": [
+        "domain_3"
+      ]
+    },
+    {
+      "key": "k_00044",
+      "value": "Sensor e alarm threshold is 2706.",
+      "relevance": [
+        "domain_4"
+      ]
+    },
+    {
+      "key": "k_00045",
+      "value": "Line f monthly output target is 1926 units.",
+      "relevance": [
+        "domain_5"
+      ]
+    },
+    {
+      "key": "k_00046",
+      "value": "Line g monthly output target is 2634 units.",
+      "relevance": [
+        "domain_6"
+      ]
+    },
+    {
+      "key": "k_00047",
+      "value": "Pump h rated flow is 2243 liters per hour.",
+      "relevance": [
+        "domain_7"
+      ]
+    },
+    {
+      "key": "k_00048",
+      "value": "Line i monthly output target is 1778 units.",
+      "relevance": [
+        "domain_8"
+      ]
+    },
+    {
+      "key": "k_00049",
+      "value": "Batch j temperature target is 2627 degrees.",
+      "relevance": [
+        "domain_9"
+      ]
+    },
+    {
+      "key": "k_00050",
+      "value": "Sensor a alarm threshold is 4139.",
+      "relevance": [
+        "domain_10"
+      ]
+    },
+    {
+      "key": "k_00051",
+      "value": "Pump b rated flow is 3808 liters per hour.",
+      "relevance": [
+        "domain_11"
+      ]
+    },
+    {
+      "key": "k_00052",
+      "value": "Sensor c alarm threshold is 2219.",
+      "relevance": [
+        "domain_12"
+      ]
+    },
+    {
+      "key": "k_00053",
+      "value": "Sensor d alarm threshold is 2070.",
+      "relevance": [
+        "domain_13"
+      ]
+    },
+    {
+      "key": "k_00054",
+      "value": "Server e power limit is 4648 watts.",
+      "relevance": [
+        "domain_14"
+      ]
+    },
+    {
+      "key": "k_00055",
+      "value": "Batch f temperature target is 2202 degrees.",
+      "relevance": [
+        "domain_15"
+      ]
+    },
+    {
+      "key": "k_00056",
+      "value": "Server g power limit is 4838 watts.",
+      "relevance": [
+        "domain_16"
+      ]
+    },
+    {
+      "key": "k_00057",
+      "value": "Pump h rated flow is 4830 liters per hour.",
+      "relevance": [
+        "domain_17"
+      ]
+    },
+    {
+      "key": "k_00058",
+      "value": "Pump i rated flow is 3015 liters per hour.",
+      "relevance": [
+        "domain_18"
+      ]
+    },
+    {
+      "key": "k_00059",
+      "value": "Sensor j alarm threshold is 1183.",
+      "relevance": [
+        "domain_19"
+      ]
+    },
+    {
+      "key": "k_00060",
+      "value": "Batch a temperature target is 4092 degrees.",
+      "relevance": [
+        "domain_0"
+      ]
+    },
+    {
+      "key": "k_00061",
+      "value": "Line b monthly output target is 435 units.",
+      "relevance": [
+        "domain_1"
+      ]
+    },
+    {
+      "key": "k_00062",
+      "value": "Line c monthly output target is 1302 units.",
+      "relevance": [
+        "domain_2"
+      ]
+    },
+    {
+      "key": "k_00063",
+      "value": "Server d power limit is 1360 watts.",
+      "relevance": [
+        "domain_3"
+      ]
+    },
+    {
+      "key": "k_00064",
+      "value": "Server e power limit is 3508 watts.",
+      "relevance": [
+        "domain_4"
+      ]
+    },
+    {
+      "key": "k_00065",
+      "value": "Batch f temperature target is 570 degrees.",
+      "relevance": [
+        "domain_5"
+      ]
+    },
+    {
+      "key": "k_00066",
+      "value": "Pump g rated flow is 3176 liters per hour.",
+      "relevance": [
+        "domain_6"
+      ]
+    },
+    {
+      "key": "k_00067",
+      "value": "Batch h temperature target is 3884 degrees.",
+      "relevance": [
+        "domain_7"
+      ]
+    },
+    {
+      "key": "k_00068",
+      "value": "Batch i temperature target is 2109 degrees.",
+      "relevance": [
+        "domain_8"
+      ]
+    },
+    {
+      "key": "k_00069",
+      "value": "Batch j temperature target is 144 degrees.",
+      "relevance": [
+        "domain_9"
+      ]
+    },
+    {
+      "key": "k_00070",
+      "value": "Server a power limit is 988 watts.",
+      "relevance": [
+        "domain_10"
+      ]
+    },
+    {
+      "key": "k_00071",
+      "value": "Server b power limit is 4448 watts.",
+      "relevance": [
+        "domain_11"
+      ]
+    },
+    {
+      "key": "k_00072",
+      "value": "Vendor c quarterly budget is 2836.",
+      "relevance": [
+        "domain_12"
+      ]
+    },
+    {
+      "key": "k_00073",
+      "value": "Line d monthly output target is 2454 units.",
+      "relevance": [
+        "domain_13"
+      ]
+    },
+    {
+      "key": "k_00074",
+      "value": "Pump e rated flow is 1345 liters per hour.",
+      "relevance": [
+        "domain_14"
+      ]
+    },
+    {
+      "key": "k_00075",
+      "value": "Pump f rated flow is 76 liters per hour.",
+      "relevance": [
+        "domain_15"
+      ]
+    },
+    {
+      "key": "k_00076",
+      "value": "Server g power limit is 2207 watts.",
+      "relevance": [
+        "domain_16"
+      ]
+    },
+    {
+      "key": "k_00077",
+      "value": "Batch h temperature target is 1513 degrees.",
+      "relevance": [
+        "domain_17"
+      ]
+    },
+    {
+      "key": "k_00078",
+      "value": "Batch i temperature target is 921 degrees.",
+      "relevance": [
+        "domain_18"
+      ]
+    },
+    {
+      "key": "k_00079",
+      "value": "Server j power limit is 2494 watts.",
+      "relevance": [
+        "domain_19"
+      ]
+    },
+    {
+      "key": "k_00080",
+      "value": "Server a power limit is 4208 watts.",
+      "relevance": [
+        "domain_0"
+      ]
+    },
+    {
+      "key": "k_00081",
+      "value": "Batch b temperature target is 1679 degrees.",
+      "relevance": [
+        "domain_1"
+      ]
+    },
+    {
+      "key": "k_00082",
+      "value": "Sensor c alarm threshold is 3113.",
+      "relevance": [
+        "domain_2"
+      ]
+    },
+    {
+      "key": "k_00083",
+      "value": "Sensor d alarm threshold is 4468.",
+      "relevance": [
+        "domain_3"
+      ]
+    },
+    {
+      "key": "k_00084",
+      "value": "Batch e temperature target is 54 degrees.",
+      "relevance": [
+        "domain_4"
+      ]
+    },
+    {
+      "key": "k_00085",
+      "value": "Batch f temperature target is 2705 degrees.",
+      "relevance": [
+        "domain_5"
+      ]
+    },
+    {
+      "key": "k_00086",
+      "value": "Pump g rated flow is 209 liters per hour.",
+      "relevance": [
+        "domain_6"
+      ]
+    },
+    {
+      "key": "k_00087",
+      "value": "Line h monthly output target is 3023 units.",
+      "relevance": [
+        "domain_7"
+      ]
+    },
+    {
+      "key": "k_00088",
+      "value": "Vendor i quarterly budget is 2011.",
+      "relevance": [
+        "domain_8"
+      ]
+    },
+    {
+      "key": "k_00089",
+      "value": "Line j monthly output target is 2023 units.",
+      "relevance": [
+        "domain_9"
+      ]
+    },
+    {
+      "key": "k_00090",
+      "value": "Batch a temperature target is 695 degrees.",
+      "relevance": [
+        "domain_10"
+      ]
+    },
+    {
+      "key": "k_00091",
+      "value": "Line b monthly output target is 4031 units.",
+      "relevance": [
+        "domain_11"
+      ]
+    },
+    {
+      "key": "k_00092",
+      "value": "Line c monthly output target is 4413 units.",
+      "relevance": [
+        "domain_12"
+      ]
+    },
+    {
+      "key": "k_00093",
+      "value": "Sensor d alarm threshold is 1101.",
+      "relevance": [
+        "domain_13"
+      ]
+    },
+    {
+      "key": "k_00094",
+      "value": "Server e power limit is 3943 watts.",
+      "relevance": [
+        "domain_14"
+      ]
+    },
+    {
+      "key": "k_00095",
+      "value": "Batch f temperature target is 1402 degrees.",
+      "relevance": [
+        "domain_15"
+      ]
+    },
+    {
+      "key": "k_00096",
+      "value": "Vendor g quarterly budget is 4372.",
+      "relevance": [
+        "domain_16"
+      ]
+    },
+    {
+      "key": "k_00097",
+      "value": "Batch h temperature target is 3516 degrees.",
+      "relevance": [
+        "domain_17"
+      ]
+    },
+    {
+      "key": "k_00098",
+      "value": "Sensor i alarm threshold is 4467.",
+      "relevance": [
+        "domain_18"
+      ]
+    },
+    {
+      "key": "k_00099",
+      "value": "Server j power limit is 1697 watts.",
+      "relevance": [
+        "domain_19"
+      ]
+    },
+    {
+      "key": "k_00100",
+      "value": "Server a power limit is 2603 watts.",
+      "relevance": [
+        "domain_0"
+      ]
+    },
+    {
+      "key": "k_00101",
+      "value": "Pump b rated flow is 3109 liters per hour.",
+      "relevance": [
+        "domain_1"
+      ]
+    },
+    {
+      "key": "k_00102",
+      "value": "Pump c rated flow is 4289 liters per hour.",
+      "relevance": [
+        "domain_2"
+      ]
+    },
+    {
+      "key": "k_00103",
+      "value": "Pump d rated flow is 1041 liters per hour.",
+      "relevance": [
+        "domain_3"
+      ]
+    },
+    {
+      "key": "k_00104",
+      "value": "Sensor e alarm threshold is 1890.",
+      "relevance": [
+        "domain_4"
+      ]
+    },
+    {
+      "key": "k_00105",
+      "value": "Line f monthly output target is 2819 units.",
+      "relevance": [
+        "domain_5"
+      ]
+    },
+    {
+      "key": "k_00106",
+      "value": "Line g monthly output target is 4869 units.",
+      "relevance": [
+        "domain_6"
+      ]
+    },
+    {
+      "key": "k_00107",
+      "value": "Batch h temperature target is 1935 degrees.",
+      "relevance": [
+        "domain_7"
+      ]
+    },
+    {
+      "key": "k_00108",
+      "value": "Batch i temperature target is 1854 degrees.",
+      "relevance": [
+        "domain_8"
+      ]
+    },
+    {
+      "key": "k_00109",
+      "value": "Line j monthly output target is 631 units.",
+      "relevance": [
+        "domain_9"
+      ]
+    },
+    {
+      "key": "k_00110",
+      "value": "Server a power limit is 532 watts.",
+      "relevance": [
+        "domain_10"
+      ]
+    },
+    {
+      "key": "k_00111",
+      "value": "Sensor b alarm threshold is 602.",
+      "relevance": [
+        "domain_11"
+      ]
+    },
+    {
+      "key": "k_00112",
+      "value": "Line c monthly output target is 2756 units.",
+      "relevance": [
+        "domain_12"
+      ]
+    },
+    {
+      "key": "k_00113",
+      "value": "Line d monthly output target is 4261 units.",
+      "relevance": [
+        "domain_13"
+      ]
+    },
+    {
+      "key": "k_00114",
+      "value": "Sensor e alarm threshold is 2331.",
+      "relevance": [
+        "domain_14"
+      ]
+    },
+    {
+      "key": "k_00115",
+      "value": "Server f power limit is 4026 watts.",
+      "relevance": [
+        "domain_15"
+      ]
+    },
+    {
+      "key": "k_00116",
+      "value": "Sensor g alarm threshold is 4467.",
+      "relevance": [
+        "domain_16"
+      ]
+    },
+    {
+      "key": "k_00117",
+      "value": "Sensor h alarm threshold is 4727.",
+      "relevance": [
+        "domain_17"
+      ]
+    },
+    {
+      "key": "k_00118",
+      "value": "Batch i temperature target is 3922 degrees.",
+      "relevance": [
+        "domain_18"
+      ]
+    },
+    {
+      "key": "k_00119",
+      "value": "Sensor j alarm threshold is 3924.",
+      "relevance": [
+        "domain_19"
+      ]
+    },
+    {
+      "key": "k_00120",
+      "value": "Pump a rated flow is 1609 liters per hour.",
+      "relevance": [
+        "domain_0"
+      ]
+    },
+    {
+      "key": "k_00121",
+      "value": "Line b monthly output target is 844 units.",
+      "relevance": [
+        "domain_1"
+      ]
+    },
+    {
+      "key": "k_00122",
+      "value": "Server c power limit is 3581 watts.",
+      "relevance": [
+        "domain_2"
+      ]
+    },
+    {
+      "key": "k_00123",
+      "value": "Vendor d quarterly budget is 3519.",
+      "relevance": [
+        "domain_3"
+      ]
+    },
+    {
+      "key": "k_00124",
+      "value": "Pump e rated flow is 3875 liters per hour.",
+      "relevance": [
+        "domain_4"
+      ]
+    },
+    {
+      "key": "k_00125",
+      "value": "Server f power limit is 493 watts.",
+      "relevance": [
+        "domain_5"
+      ]
+    },
+    {
+      "key": "k_00126",
+      "value": "Server g power limit is 856 watts.",
+      "relevance": [
+        "domain_6"
+      ]
+    },
+    {
+      "key": "k_00127",
+      "value": "Line h monthly output target is 3348 units.",
+      "relevance": [
+        "domain_7"
+      ]
+    },
+    {
+      "key": "k_00128",
+      "value": "Server i power limit is 2829 watts.",
+      "relevance": [
+        "domain_8"
+      ]
+    },
+    {
+      "key": "k_00129",
+      "value": "Line j monthly output target is 2086 units.",
+      "relevance": [
+        "domain_9"
+      ]
+    },
+    {
+      "key": "k_00130",
+      "value": "Sensor a alarm threshold is 1608.",
+      "relevance": [
+        "domain_10"
+      ]
+    },
+    {
+      "key": "k_00131",
+      "value": "Batch b temperature target is 3725 degrees.",
+      "relevance": [
+        "domain_11"
+      ]
+    },
+    {
+      "key": "k_00132",
+      "value": "Sensor c alarm threshold is 3506.",
+      "relevance": [
+        "domain_12"
+      ]
+    },
+    {
+      "key": "k_00133",
+      "value": "Sensor d alarm threshold is 2331.",
+      "relevance": [
+        "domain_13"
+      ]
+    },
+    {
+      "key": "k_00134",
+      "value": "Pump e rated flow is 2096 liters per hour.",
+      "relevance": [
+        "domain_14"
+      ]
+    },
+    {
+      "key": "k_00135",
+      "value": "Line f monthly output target is 3680 units.",
+      "relevance": [
+        "domain_15"
+      ]
+    },
+    {
+      "key": "k_00136",
+      "value": "Batch g temperature target is 852 degrees.",
+      "relevance": [
+        "domain_16"
+      ]
+    },
+    {
+      "key": "k_00137",
+      "value": "Line h monthly output target is 4478 units.",
+      "relevance": [
+        "domain_17"
+      ]
+    },
+    {
+      "key": "k_00138",
+      "value": "Line i monthly output target is 814 units.",
+      "relevance": [
+        "domain_18"
+      ]
+    },
+    {
+      "key": "k_00139",
+      "value": "Sensor j alarm threshold is 1412.",
+      "relevance": [
+        "domain_19"
+      ]
+    },
+    {
+      "key": "k_00140",
+      "value": "Pump a rated flow is 4028 liters per hour.",
+      "relevance": [
+        "domain_0"
+      ]
+    },
+    {
+      "key": "k_00141",
+      "value": "Pump b rated flow is 1801 liters per hour.",
+      "relevance": [
+        "domain_1"
+      ]
+    },
+    {
+      "key": "k_00142",
+      "value": "Pump c rated flow is 530 liters per hour.",
+      "relevance": [
+        "domain_2"
+      ]
+    },
+    {
+      "key": "k_00143",
+      "value": "Sensor d alarm threshold is 3154.",
+      "relevance": [
+        "domain_3"
+      ]
+    },
+    {
+      "key": "k_00144",
+      "value": "Line e monthly output target is 3248 units.",
+      "relevance": [
+        "domain_4"
+      ]
+    },
+    {
+      "key": "k_00145",
+      "value": "Vendor f quarterly budget is 3777.",
+      "relevance": [
+        "domain_5"
+      ]
+    },
+    {
+      "key": "k_00146",
+      "value": "Vendor g quarterly budget is 3515.",
+      "relevance": [
+        "domain_6"
+      ]
+    },
+    {
+      "key": "k_00147",
+      "value": "Server h power limit is 4602 watts.",
+      "relevance": [
+        "domain_7"
+      ]
+    },
+    {
+      "key": "k_00148",
+      "value": "Server i power limit is 4036 watts.",
+      "relevance": [
+        "domain_8"
+      ]
+    },
+    {
+      "key": "k_00149",
+      "value": "Sensor j alarm threshold is 1605.",
+      "relevance": [
+        "domain_9"
+      ]
+    },
+    {
+      "key": "k_00150",
+      "value": "Vendor a quarterly budget is 1833.",
+      "relevance": [
+        "domain_10"
+      ]
+    },
+    {
+      "key": "k_00151",
+      "value": "Line b monthly output target is 4794 units.",
+      "relevance": [
+        "domain_11"
+      ]
+    },
+    {
+      "key": "k_00152",
+      "value": "Server c power limit is 4491 watts.",
+      "relevance": [
+        "domain_12"
+      ]
+    },
+    {
+      "key": "k_00153",
+      "value": "Line d monthly output target is 2619 units.",
+      "relevance": [
+        "domain_13"
+      ]
+    },
+    {
+      "key": "k_00154",
+      "value": "Line e monthly output target is 460 units.",
+      "relevance": [
+        "domain_14"
+      ]
+    },
+    {
+      "key": "k_00155",
+      "value": "Batch f temperature target is 3955 degrees.",
+      "relevance": [
+        "domain_15"
+      ]
+    },
+    {
+      "key": "k_00156",
+      "value": "Batch g temperature target is 4400 degrees.",
+      "relevance": [
+        "domain_16"
+      ]
+    },
+    {
+      "key": "k_00157",
+      "value": "Sensor h alarm threshold is 515.",
+      "relevance": [
+        "domain_17"
+      ]
+    },
+    {
+      "key": "k_00158",
+      "value": "Batch i temperature target is 706 degrees.",
+      "relevance": [
+        "domain_18"
+      ]
+    },
+    {
+      "key": "k_00159",
+      "value": "Sensor j alarm threshold is 611.",
+      "relevance": [
+        "domain_19"
+      ]
+    },
+    {
+      "key": "k_00160",
+      "value": "Batch a temperature target is 606 degrees.",
+      "relevance": [
+        "domain_0"
+      ]
+    },
+    {
+      "key": "k_00161",
+      "value": "Server b power limit is 1976 watts.",
+      "relevance": [
+        "domain_1"
+      ]
+    },
+    {
+      "key": "k_00162",
+      "value": "Pump c rated flow is 1032 liters per hour.",
+      "relevance": [
+        "domain_2"
+      ]
+    },
+    {
+      "key": "k_00163",
+      "value": "Batch d temperature target is 2066 degrees.",
+      "relevance": [
+        "domain_3"
+      ]
+    },
+    {
+      "key": "k_00164",
+      "value": "Batch e temperature target is 4920 degrees.",
+      "relevance": [
+        "domain_4"
+      ]
+    },
+    {
+      "key": "k_00165",
+      "value": "Line f monthly output target is 721 units.",
+      "relevance": [
+        "domain_5"
+      ]
+    },
+    {
+      "key": "k_00166",
+      "value": "Pump g rated flow is 4831 liters per hour.",
+      "relevance": [
+        "domain_6"
+      ]
+    },
+    {
+      "key": "k_00167",
+      "value": "Batch h temperature target is 4332 degrees.",
+      "relevance": [
+        "domain_7"
+      ]
+    },
+    {
+      "key": "k_00168",
+      "value": "Vendor i quarterly budget is 2186.",
+      "relevance": [
+        "domain_8"
+      ]
+    },
+    {
+      "key": "k_00169",
+      "value": "Sensor j alarm threshold is 2623.",
+      "relevance": [
+        "domain_9"
+      ]
+    },
+    {
+      "key": "k_00170",
+      "value": "Sensor a alarm threshold is 2225.",
+      "relevance": [
+        "domain_10"
+      ]
+    },
+    {
+      "key": "k_00171",
+      "value": "Pump b rated flow is 1122 liters per hour.",
+      "relevance": [
+        "domain_11"
+      ]
+    },
+    {
+      "key": "k_00172",
+      "value": "Server c power limit is 2507 watts.",
+      "relevance": [
+        "domain_12"
+      ]
+    },
+    {
+      "key": "k_00173",
+      "value": "Pump d rated flow is 2640 liters per hour.",
+      "relevance": [
+        "domain_13"
+      ]
+    },
+    {
+      "key": "k_00174",
+      "value": "Line e monthly output target is 126 units.",
+      "relevance": [
+        "domain_14"
+      ]
+    },
+    {
+      "key": "k_00175",
+      "value": "Pump f rated flow is 4662 liters per hour.",
+      "relevance": [
+        "domain_15"
+      ]
+    },
+    {
+      "key": "k_00176",
+      "value": "Line g monthly output target is 650 units.",
+      "relevance": [
+        "domain_16"
+      ]
+    },
+    {
+      "key": "k_00177",
+      "value": "Batch h temperature target is 1796 degrees.",
+      "relevance": [
+        "domain_17"
+      ]
+    },
+    {
+      "key": "k_00178",
+      "value": "Batch i temperature target is 2222 degrees.",
+      "relevance": [
+        "domain_18"
+      ]
+    },
+    {
+      "key": "k_00179",
+      "value": "Sensor j alarm threshold is 2909.",
+      "relevance": [
+        "domain_19"
+      ]
+    },
+    {
+      "key": "k_00180",
+      "value": "Line a monthly output target is 2051 units.",
+      "relevance": [
+        "domain_0"
+      ]
+    },
+    {
+      "key": "k_00181",
+      "value": "Vendor b quarterly budget is 2384.",
+      "relevance": [
+        "domain_1"
+      ]
+    },
+    {
+      "key": "k_00182",
+      "value": "Sensor c alarm threshold is 3639.",
+      "relevance": [
+        "domain_2"
+      ]
+    },
+    {
+      "key": "k_00183",
+      "value": "Batch d temperature target is 2528 degrees.",
+      "relevance": [
+        "domain_3"
+      ]
+    },
+    {
+      "key": "k_00184",
+      "value": "Batch e temperature target is 4383 degrees.",
+      "relevance": [
+        "domain_4"
+      ]
+    },
+    {
+      "key": "k_00185",
+      "value": "Line f monthly output target is 4593 units.",
+      "relevance": [
+        "domain_5"
+      ]
+    },
+    {
+      "key": "k_00186",
+      "value": "Vendor g quarterly budget is 898.",
+      "relevance": [
+        "domain_6"
+      ]
+    },
+    {
+      "key": "k_00187",
+      "value": "Sensor h alarm threshold is 2216.",
+      "relevance": [
+        "domain_7"
+      ]
+    },
+    {
+      "key": "k_00188",
+      "value": "Line i monthly output target is 926 units.",
+      "relevance": [
+        "domain_8"
+      ]
+    },
+    {
+      "key": "k_00189",
+      "value": "Server j power limit is 4582 watts.",
+      "relevance": [
+        "domain_9"
+      ]
+    },
+    {
+      "key": "k_00190",
+      "value": "Sensor a alarm threshold is 2281.",
+      "relevance": [
+        "domain_10"
+      ]
+    },
+    {
+      "key": "k_00191",
+      "value": "Vendor b quarterly budget is 1775.",
+      "relevance": [
+        "domain_11"
+      ]
+    },
+    {
+      "key": "k_00192",
+      "value": "Server c power limit is 2858 watts.",
+      "relevance": [
+        "domain_12"
+      ]
+    },
+    {
+      "key": "k_00193",
+      "value": "Sensor d alarm threshold is 2212.",
+      "relevance": [
+        "domain_13"
+      ]
+    },
+    {
+      "key": "k_00194",
+      "value": "Batch e temperature target is 4052 degrees.",
+      "relevance": [
+        "domain_14"
+      ]
+    },
+    {
+      "key": "k_00195",
+      "value": "Vendor f quarterly budget is 466.",
+      "relevance": [
+        "domain_15"
+      ]
+    },
+    {
+      "key": "k_00196",
+      "value": "Line g monthly output target is 3519 units.",
+      "relevance": [
+        "domain_16"
+      ]
+    },
+    {
+      "key": "k_00197",
+      "value": "Vendor h quarterly budget is 411.",
+      "relevance": [
+        "domain_17"
+      ]
+    },
+    {
+      "key": "k_00198",
+      "value": "Line i monthly output target is 2782 units.",
+      "relevance": [
+        "domain_18"
+      ]
+    },
+    {
+      "key": "k_00199",
+      "value": "Sensor j alarm threshold is 2195.",
+      "relevance": [
+        "domain_19"
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "id": "R00000",
+      "prompt": "Using only entries k_00041, k_00189, k_00113, calculate the sum of their numeric values. Is the sum greater than or equal to 12898? Answer true or false.",
+      "required": [
+        "domain_1",
+        "domain_9",
+        "domain_13"
+      ],
+      "expected": false,
+      "op": "llm_bool"
+    },
+    {
+      "id": "R00001",
+      "prompt": "Using only entries k_00143, k_00002, k_00028, calculate the sum of their numeric values. Is the sum greater than or equal to 6204? Answer true or false.",
+      "required": [
+        "domain_3",
+        "domain_2",
+        "domain_8"
+      ],
+      "expected": true,
+      "op": "llm_bool"
+    },
+    {
+      "id": "R00002",
+      "prompt": "Using only entries k_00176, k_00038, k_00139, calculate the sum of their numeric values. Is the sum greater than or equal to 2506? Answer true or false.",
+      "required": [
+        "domain_16",
+        "domain_18",
+        "domain_19"
+      ],
+      "expected": true,
+      "op": "llm_bool"
+    },
+    {
+      "id": "R00003",
+      "prompt": "Using only entries k_00149, k_00141, k_00037, calculate the sum of their numeric values. Is the sum greater than or equal to 5621? Answer true or false.",
+      "required": [
+        "domain_9",
+        "domain_1",
+        "domain_17"
+      ],
+      "expected": true,
+      "op": "llm_bool"
+    },
+    {
+      "id": "R00004",
+      "prompt": "Using only entries k_00078, k_00093, k_00010, calculate the sum of their numeric values. Is the sum greater than or equal to 6777? Answer true or false.",
+      "required": [
+        "domain_18",
+        "domain_13",
+        "domain_10"
+      ],
+      "expected": false,
+      "op": "llm_bool"
+    },
+    {
+      "id": "R00005",
+      "prompt": "Using only entries k_00174, k_00063, k_00170, calculate the sum of their numeric values. Is the sum greater than or equal to 3311? Answer true or false.",
+      "required": [
+        "domain_14",
+        "domain_3",
+        "domain_10"
+      ],
+      "expected": true,
+      "op": "llm_bool"
+    },
+    {
+      "id": "R00006",
+      "prompt": "Using only entries k_00143, k_00104, k_00158, calculate the sum of their numeric values. Is the sum greater than or equal to 6224? Answer true or false.",
+      "required": [
+        "domain_3",
+        "domain_4",
+        "domain_18"
+      ],
+      "expected": false,
+      "op": "llm_bool"
+    },
+    {
+      "id": "R00007",
+      "prompt": "Using only entries k_00060, k_00041, k_00045, calculate the sum of their numeric values. Is the sum greater than or equal to 9867? Answer true or false.",
+      "required": [
+        "domain_0",
+        "domain_1",
+        "domain_5"
+      ],
+      "expected": false,
+      "op": "llm_bool"
+    },
+    {
+      "id": "R00008",
+      "prompt": "Using only entries k_00045, k_00188, k_00085, calculate the sum of their numeric values. Is the sum greater than or equal to 5768? Answer true or false.",
+      "required": [
+        "domain_5",
+        "domain_8",
+        "domain_5"
+      ],
+      "expected": false,
+      "op": "llm_bool"
+    },
+    {
+      "id": "R00009",
+      "prompt": "Using only entries k_00171, k_00188, k_00063, calculate the sum of their numeric values. Is the sum greater than or equal to 3004? Answer true or false.",
+      "required": [
+        "domain_11",
+        "domain_8",
+        "domain_3"
+      ],
+      "expected": true,
+      "op": "llm_bool"
+    },
+    {
+      "id": "R00010",
+      "prompt": "Using only entries k_00179, k_00027, k_00097, calculate the sum of their numeric values. Is the sum greater than or equal to 9877? Answer true or false.",
+      "required": [
+        "domain_19",
+        "domain_7",
+        "domain_17"
+      ],
+      "expected": false,
+      "op": "llm_bool"
+    },
+    {
+      "id": "R00011",
+      "prompt": "Using only entries k_00120, k_00056, k_00051, calculate the sum of their numeric values. Is the sum greater than or equal to 10491? Answer true or false.",
+      "required": [
+        "domain_0",
+        "domain_16",
+        "domain_11"
+      ],
+      "expected": false,
+      "op": "llm_bool"
+    },
+    {
+      "id": "R00012",
+      "prompt": "Using only entries k_00089, k_00078, k_00058, calculate the sum of their numeric values. Is the sum greater than or equal to 5621? Answer true or false.",
+      "required": [
+        "domain_9",
+        "domain_18",
+        "domain_18"
+      ],
+      "expected": true,
+      "op": "llm_bool"
+    },
+    {
+      "id": "R00013",
+      "prompt": "Using only entries k_00049, k_00102, k_00084, calculate the sum of their numeric values. Is the sum greater than or equal to 6934? Answer true or false.",
+      "required": [
+        "domain_9",
+        "domain_2",
+        "domain_4"
+      ],
+      "expected": true,
+      "op": "llm_bool"
+    },
+    {
+      "id": "R00014",
+      "prompt": "Using only entries k_00197, k_00071, k_00089, calculate the sum of their numeric values. Is the sum greater than or equal to 7087? Answer true or false.",
+      "required": [
+        "domain_17",
+        "domain_11",
+        "domain_9"
+      ],
+      "expected": false,
+      "op": "llm_bool"
+    },
+    {
+      "id": "R00015",
+      "prompt": "Using only entries k_00173, k_00137, k_00084, calculate the sum of their numeric values. Is the sum greater than or equal to 7232? Answer true or false.",
+      "required": [
+        "domain_13",
+        "domain_17",
+        "domain_4"
+      ],
+      "expected": false,
+      "op": "llm_bool"
+    },
+    {
+      "id": "R00016",
+      "prompt": "Using only entries k_00066, k_00045, k_00148, calculate the sum of their numeric values. Is the sum greater than or equal to 9274? Answer true or false.",
+      "required": [
+        "domain_6",
+        "domain_5",
+        "domain_8"
+      ],
+      "expected": false,
+      "op": "llm_bool"
+    },
+    {
+      "id": "R00017",
+      "prompt": "Using only entries k_00009, k_00027, k_00152, calculate the sum of their numeric values. Is the sum greater than or equal to 12110? Answer true or false.",
+      "required": [
+        "domain_9",
+        "domain_7",
+        "domain_12"
+      ],
+      "expected": true,
+      "op": "llm_bool"
+    },
+    {
+      "id": "R00018",
+      "prompt": "Using only entries k_00080, k_00111, k_00155, calculate the sum of their numeric values. Is the sum greater than or equal to 8825? Answer true or false.",
+      "required": [
+        "domain_0",
+        "domain_11",
+        "domain_15"
+      ],
+      "expected": false,
+      "op": "llm_bool"
+    },
+    {
+      "id": "R00019",
+      "prompt": "Using only entries k_00098, k_00147, k_00048, calculate the sum of their numeric values. Is the sum greater than or equal to 10484? Answer true or false.",
+      "required": [
+        "domain_18",
+        "domain_7",
+        "domain_8"
+      ],
+      "expected": true,
+      "op": "llm_bool"
+    },
+    {
+      "id": "R00020",
+      "prompt": "Using only entries k_00111, k_00000, k_00133, calculate the sum of their numeric values. Is the sum greater than or equal to 4171? Answer true or false.",
+      "required": [
+        "domain_11",
+        "domain_0",
+        "domain_13"
+      ],
+      "expected": false,
+      "op": "llm_bool"
+    },
+    {
+      "id": "R00021",
+      "prompt": "Using only entries k_00175, k_00184, k_00189, calculate the sum of their numeric values. Is the sum greater than or equal to 13728? Answer true or false.",
+      "required": [
+        "domain_15",
+        "domain_4",
+        "domain_9"
+      ],
+      "expected": false,
+      "op": "llm_bool"
+    },
+    {
+      "id": "R00022",
+      "prompt": "Using only entries k_00093, k_00110, k_00017, calculate the sum of their numeric values. Is the sum greater than or equal to 3918? Answer true or false.",
+      "required": [
+        "domain_13",
+        "domain_10",
+        "domain_17"
+      ],
+      "expected": false,
+      "op": "llm_bool"
+    },
+    {
+      "id": "R00023",
+      "prompt": "Using only entries k_00084, k_00159, k_00080, calculate the sum of their numeric values. Is the sum greater than or equal to 4937? Answer true or false.",
+      "required": [
+        "domain_4",
+        "domain_19",
+        "domain_0"
+      ],
+      "expected": false,
+      "op": "llm_bool"
+    },
+    {
+      "id": "R00024",
+      "prompt": "Using only entries k_00184, k_00076, k_00129, calculate the sum of their numeric values. Is the sum greater than or equal to 8466? Answer true or false.",
+      "required": [
+        "domain_4",
+        "domain_16",
+        "domain_9"
+      ],
+      "expected": true,
+      "op": "llm_bool"
+    },
+    {
+      "id": "R00025",
+      "prompt": "Using only entries k_00083, k_00103, k_00178, calculate the sum of their numeric values. Is the sum greater than or equal to 7665? Answer true or false.",
+      "required": [
+        "domain_3",
+        "domain_3",
+        "domain_18"
+      ],
+      "expected": true,
+      "op": "llm_bool"
+    },
+    {
+      "id": "R00026",
+      "prompt": "Using only entries k_00049, k_00107, k_00170, calculate the sum of their numeric values. Is the sum greater than or equal to 7134? Answer true or false.",
+      "required": [
+        "domain_9",
+        "domain_7",
+        "domain_10"
+      ],
+      "expected": false,
+      "op": "llm_bool"
+    },
+    {
+      "id": "R00027",
+      "prompt": "Using only entries k_00191, k_00044, k_00157, calculate the sum of their numeric values. Is the sum greater than or equal to 5204? Answer true or false.",
+      "required": [
+        "domain_11",
+        "domain_4",
+        "domain_17"
+      ],
+      "expected": false,
+      "op": "llm_bool"
+    },
+    {
+      "id": "R00028",
+      "prompt": "Using only entries k_00140, k_00000, k_00077, calculate the sum of their numeric values. Is the sum greater than or equal to 6282? Answer true or false.",
+      "required": [
+        "domain_0",
+        "domain_0",
+        "domain_17"
+      ],
+      "expected": true,
+      "op": "llm_bool"
+    },
+    {
+      "id": "R00029",
+      "prompt": "Using only entries k_00148, k_00155, k_00167, calculate the sum of their numeric values. Is the sum greater than or equal to 12096? Answer true or false.",
+      "required": [
+        "domain_8",
+        "domain_15",
+        "domain_7"
+      ],
+      "expected": true,
+      "op": "llm_bool"
+    },
+    {
+      "id": "R00030",
+      "prompt": "Using only entries k_00113, k_00172, k_00054, calculate the sum of their numeric values. Is the sum greater than or equal to 11823? Answer true or false.",
+      "required": [
+        "domain_13",
+        "domain_12",
+        "domain_14"
+      ],
+      "expected": false,
+      "op": "llm_bool"
+    },
+    {
+      "id": "R00031",
+      "prompt": "Using only entries k_00188, k_00043, k_00168, calculate the sum of their numeric values. Is the sum greater than or equal to 7460? Answer true or false.",
+      "required": [
+        "domain_8",
+        "domain_3",
+        "domain_8"
+      ],
+      "expected": true,
+      "op": "llm_bool"
+    },
+    {
+      "id": "R00032",
+      "prompt": "Using only entries k_00169, k_00162, k_00158, calculate the sum of their numeric values. Is the sum greater than or equal to 3941? Answer true or false.",
+      "required": [
+        "domain_9",
+        "domain_2",
+        "domain_18"
+      ],
+      "expected": true,
+      "op": "llm_bool"
+    },
+    {
+      "id": "R00033",
+      "prompt": "Using only entries k_00192, k_00060, k_00172, calculate the sum of their numeric values. Is the sum greater than or equal to 9044? Answer true or false.",
+      "required": [
+        "domain_12",
+        "domain_0",
+        "domain_12"
+      ],
+      "expected": true,
+      "op": "llm_bool"
+    },
+    {
+      "id": "R00034",
+      "prompt": "Using only entries k_00050, k_00037, k_00006, calculate the sum of their numeric values. Is the sum greater than or equal to 6442? Answer true or false.",
+      "required": [
+        "domain_10",
+        "domain_17",
+        "domain_6"
+      ],
+      "expected": true,
+      "op": "llm_bool"
+    },
+    {
+      "id": "R00035",
+      "prompt": "Using only entries k_00156, k_00196, k_00018, calculate the sum of their numeric values. Is the sum greater than or equal to 8352? Answer true or false.",
+      "required": [
+        "domain_16",
+        "domain_16",
+        "domain_18"
+      ],
+      "expected": true,
+      "op": "llm_bool"
+    },
+    {
+      "id": "R00036",
+      "prompt": "Using only entries k_00161, k_00147, k_00049, calculate the sum of their numeric values. Is the sum greater than or equal to 9402? Answer true or false.",
+      "required": [
+        "domain_1",
+        "domain_7",
+        "domain_9"
+      ],
+      "expected": false,
+      "op": "llm_bool"
+    },
+    {
+      "id": "R00037",
+      "prompt": "Using only entries k_00126, k_00102, k_00062, calculate the sum of their numeric values. Is the sum greater than or equal to 6094? Answer true or false.",
+      "required": [
+        "domain_6",
+        "domain_2",
+        "domain_2"
+      ],
+      "expected": true,
+      "op": "llm_bool"
+    },
+    {
+      "id": "R00038",
+      "prompt": "Using only entries k_00001, k_00192, k_00197, calculate the sum of their numeric values. Is the sum greater than or equal to 5971? Answer true or false.",
+      "required": [
+        "domain_1",
+        "domain_12",
+        "domain_17"
+      ],
+      "expected": false,
+      "op": "llm_bool"
+    },
+    {
+      "id": "R00039",
+      "prompt": "Using only entries k_00108, k_00056, k_00045, calculate the sum of their numeric values. Is the sum greater than or equal to 8975? Answer true or false.",
+      "required": [
+        "domain_8",
+        "domain_16",
+        "domain_5"
+      ],
+      "expected": false,
+      "op": "llm_bool"
+    },
+    {
+      "id": "R00040",
+      "prompt": "Using only entries k_00132, k_00118, k_00012, calculate the sum of their numeric values. Is the sum greater than or equal to 9753? Answer true or false.",
+      "required": [
+        "domain_12",
+        "domain_18",
+        "domain_12"
+      ],
+      "expected": false,
+      "op": "llm_bool"
+    },
+    {
+      "id": "R00041",
+      "prompt": "Using only entries k_00031, k_00116, k_00034, calculate the sum of their numeric values. Is the sum greater than or equal to 8550? Answer true or false.",
+      "required": [
+        "domain_11",
+        "domain_16",
+        "domain_14"
+      ],
+      "expected": false,
+      "op": "llm_bool"
+    },
+    {
+      "id": "R00042",
+      "prompt": "Using only entries k_00135, k_00143, k_00152, calculate the sum of their numeric values. Is the sum greater than or equal to 10938? Answer true or false.",
+      "required": [
+        "domain_15",
+        "domain_3",
+        "domain_12"
+      ],
+      "expected": true,
+      "op": "llm_bool"
+    },
+    {
+      "id": "R00043",
+      "prompt": "Using only entries k_00113, k_00156, k_00184, calculate the sum of their numeric values. Is the sum greater than or equal to 13263? Answer true or false.",
+      "required": [
+        "domain_13",
+        "domain_16",
+        "domain_4"
+      ],
+      "expected": false,
+      "op": "llm_bool"
+    },
+    {
+      "id": "R00044",
+      "prompt": "Using only entries k_00140, k_00114, k_00040, calculate the sum of their numeric values. Is the sum greater than or equal to 8658? Answer true or false.",
+      "required": [
+        "domain_0",
+        "domain_14",
+        "domain_0"
+      ],
+      "expected": false,
+      "op": "llm_bool"
+    },
+    {
+      "id": "R00045",
+      "prompt": "Using only entries k_00115, k_00066, k_00192, calculate the sum of their numeric values. Is the sum greater than or equal to 9733? Answer true or false.",
+      "required": [
+        "domain_15",
+        "domain_6",
+        "domain_12"
+      ],
+      "expected": true,
+      "op": "llm_bool"
+    },
+    {
+      "id": "R00046",
+      "prompt": "Using only entries k_00070, k_00196, k_00199, calculate the sum of their numeric values. Is the sum greater than or equal to 7023? Answer true or false.",
+      "required": [
+        "domain_10",
+        "domain_16",
+        "domain_19"
+      ],
+      "expected": false,
+      "op": "llm_bool"
+    },
+    {
+      "id": "R00047",
+      "prompt": "Using only entries k_00061, k_00070, k_00112, calculate the sum of their numeric values. Is the sum greater than or equal to 4032? Answer true or false.",
+      "required": [
+        "domain_1",
+        "domain_10",
+        "domain_12"
+      ],
+      "expected": true,
+      "op": "llm_bool"
+    },
+    {
+      "id": "R00048",
+      "prompt": "Using only entries k_00060, k_00069, k_00085, calculate the sum of their numeric values. Is the sum greater than or equal to 6664? Answer true or false.",
+      "required": [
+        "domain_0",
+        "domain_9",
+        "domain_5"
+      ],
+      "expected": true,
+      "op": "llm_bool"
+    },
+    {
+      "id": "R00049",
+      "prompt": "Using only entries k_00020, k_00035, k_00038, calculate the sum of their numeric values. Is the sum greater than or equal to 6350? Answer true or false.",
+      "required": [
+        "domain_0",
+        "domain_15",
+        "domain_18"
+      ],
+      "expected": true,
+      "op": "llm_bool"
+    },
+    {
+      "id": "R00050",
+      "prompt": "Using only entries k_00039, k_00180, k_00054, calculate the sum of their numeric values. Is the sum greater than or equal to 7941? Answer true or false.",
+      "required": [
+        "domain_19",
+        "domain_0",
+        "domain_14"
+      ],
+      "expected": true,
+      "op": "llm_bool"
+    },
+    {
+      "id": "R00051",
+      "prompt": "Using only entries k_00084, k_00138, k_00119, calculate the sum of their numeric values. Is the sum greater than or equal to 4686? Answer true or false.",
+      "required": [
+        "domain_4",
+        "domain_18",
+        "domain_19"
+      ],
+      "expected": true,
+      "op": "llm_bool"
+    },
+    {
+      "id": "R00052",
+      "prompt": "Using only entries k_00107, k_00099, k_00197, calculate the sum of their numeric values. Is the sum greater than or equal to 4400? Answer true or false.",
+      "required": [
+        "domain_7",
+        "domain_19",
+        "domain_17"
+      ],
+      "expected": false,
+      "op": "llm_bool"
+    },
+    {
+      "id": "R00053",
+      "prompt": "Using only entries k_00005, k_00195, k_00147, calculate the sum of their numeric values. Is the sum greater than or equal to 9951? Answer true or false.",
+      "required": [
+        "domain_5",
+        "domain_15",
+        "domain_7"
+      ],
+      "expected": true,
+      "op": "llm_bool"
+    },
+    {
+      "id": "R00054",
+      "prompt": "Using only entries k_00090, k_00076, k_00192, calculate the sum of their numeric values. Is the sum greater than or equal to 5303? Answer true or false.",
+      "required": [
+        "domain_10",
+        "domain_16",
+        "domain_12"
+      ],
+      "expected": true,
+      "op": "llm_bool"
+    },
+    {
+      "id": "R00055",
+      "prompt": "Using only entries k_00107, k_00137, k_00191, calculate the sum of their numeric values. Is the sum greater than or equal to 8598? Answer true or false.",
+      "required": [
+        "domain_7",
+        "domain_17",
+        "domain_11"
+      ],
+      "expected": false,
+      "op": "llm_bool"
+    },
+    {
+      "id": "R00056",
+      "prompt": "Using only entries k_00154, k_00056, k_00124, calculate the sum of their numeric values. Is the sum greater than or equal to 8949? Answer true or false.",
+      "required": [
+        "domain_14",
+        "domain_16",
+        "domain_4"
+      ],
+      "expected": true,
+      "op": "llm_bool"
+    },
+    {
+      "id": "R00057",
+      "prompt": "Using only entries k_00124, k_00007, k_00099, calculate the sum of their numeric values. Is the sum greater than or equal to 6041? Answer true or false.",
+      "required": [
+        "domain_4",
+        "domain_7",
+        "domain_19"
+      ],
+      "expected": true,
+      "op": "llm_bool"
+    },
+    {
+      "id": "R00058",
+      "prompt": "Using only entries k_00103, k_00185, k_00042, calculate the sum of their numeric values. Is the sum greater than or equal to 8366? Answer true or false.",
+      "required": [
+        "domain_3",
+        "domain_5",
+        "domain_2"
+      ],
+      "expected": false,
+      "op": "llm_bool"
+    },
+    {
+      "id": "R00059",
+      "prompt": "Using only entries k_00032, k_00159, k_00136, calculate the sum of their numeric values. Is the sum greater than or equal to 2138? Answer true or false.",
+      "required": [
+        "domain_12",
+        "domain_19",
+        "domain_16"
+      ],
+      "expected": true,
+      "op": "llm_bool"
+    }
+  ]
+}

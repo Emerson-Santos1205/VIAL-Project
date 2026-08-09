@@ -17,7 +17,9 @@ import uuid
 from dataclasses import dataclass, field
 from typing import Any, Callable
 
-from .errors import VIALConflictError, VIALStateError, VIALValidationError
+from .authorization import AuthorizationGate
+from .errors import (VIALAuthorizationError, VIALConflictError,
+                     VIALStateError, VIALValidationError)
 
 # TOOLS-001 §18 ToolResult status values
 STATUS_SUCCESS = "SUCCESS"
@@ -101,13 +103,18 @@ class Tool:
     status: str = TOOL_ACTIVE
     invocation: Callable | None = None
     audit_records: list[AuditRecord] = field(default_factory=list, repr=False)
+    authorization_gate: AuthorizationGate = field(
+        default_factory=AuthorizationGate, repr=False)
 
     def invoke(self, input: dict[str, Any], *, organization_id: str = "",
                actor: str = "", decision_id: str = "",
-               context_id: str = "") -> ToolResult:
+               context_id: str = "", decision: Any = None) -> ToolResult:
         """Invoke the tool, producing a ToolResult (TOOLS-001 §20)."""
         invocation_id = f"INV-{uuid.uuid4().hex[:12]}"
+        effective_decision_id = decision_id or getattr(decision, "id", "")
         metadata = {"tool_id": self.tool_id, "invocation_id": invocation_id}
+        if effective_decision_id:
+            metadata["decision_id"] = effective_decision_id
 
         def record(result: ToolResult) -> ToolResult:
             self.audit_records.append(AuditRecord(
@@ -116,10 +123,20 @@ class Tool:
                 organization_id=organization_id or self.owner,
                 status=result.status,
                 actor=actor,
-                decision_id=decision_id,
+                decision_id=effective_decision_id,
                 context_id=context_id,
             ))
             return result
+
+        try:
+            self.authorization_gate.validate(
+                self, decision, actor, organization_id, context_id)
+        except VIALAuthorizationError as exc:
+            return record(ToolResult(
+                status=STATUS_REJECTED,
+                error=exc.message,
+                metadata={**metadata, "error_code": exc.code},
+                invocation_id=invocation_id))
 
         if self.status != TOOL_ACTIVE:
             return record(ToolResult(

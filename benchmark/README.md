@@ -115,6 +115,7 @@ Benchmarks SHALL measure success according to the dimensions defined in FCP-004 
 | Cognitive Reuse | Validates RFC-008 hypothesis (reuse + invalidation) | Active |
 | Failure & Recovery | Validates RFC-009 hypothesis (atomicity + idempotency + recovery) | Active |
 | Economic Cost | Validates RFC-010 hypothesis (token vs total-cost divergence, deterministic-first) | Active |
+| Supplemental Model Comparison | Repeated multi-model validation using opencode and harder workloads | Supplemental |
 | Conformance (planned) | RFC-003/004 conformance checks | Planned |
 
 ---
