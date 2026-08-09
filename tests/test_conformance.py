@@ -13,11 +13,49 @@ from prototype.decision import (
     DecisionEngine,
 )
 from prototype.errors import VIALConflictError, VIALStateError
+from prototype.identity import Authenticator
+from prototype.persistence import JsonRepository
 from prototype.state import Organization
 from prototype.tool import STATUS_REJECTED, STATUS_SUCCESS, Tool, ToolRegistry
 
 
 class ConformanceTests(unittest.TestCase):
+    def test_end_to_end_authenticated_authorized_invocation(self) -> None:
+        organization = Organization("ORG-1")
+        organization.add_field("temperature", 21, ["temperature"])
+        task = Task("TASK-1", "read temperature", ["temperature"], 21, "read")
+        context = ContextBuilder(organization).build_selective(task)
+        identity = Authenticator()
+        identity.register("operator", "ORG-1", "secret")
+        principal = identity.authenticate("operator", "secret")
+        engine = DecisionEngine("ORG-1")
+        decision = engine.propose(
+            objective=task.prompt,
+            actor="planner",
+            authority=Authority(actor=principal.actor),
+            context_id=context.context_id,
+            context_version=context.version,
+        )
+        engine.approve(decision.id, "planner")
+        engine.authorize(decision.id, principal.actor)
+        tool = Tool(
+            "TOOL-1", "reader", "reads data", "1.0", "read", "ORG-1",
+            invocation=lambda value: value["key"],
+        )
+        result = tool.invoke(
+            {"key": "temperature"}, actor=principal.actor,
+            organization_id=principal.organization_id,
+            context_id=context.context_id, decision=decision,
+        )
+        self.assertEqual(result.status, STATUS_SUCCESS)
+        self.assertEqual(tool.audit_records[0].decision_id, decision.id)
+
+    def test_json_repository_round_trip_is_atomic(self) -> None:
+        import tempfile
+        with tempfile.TemporaryDirectory() as directory:
+            repository = JsonRepository(directory)
+            repository.save("state.json", {"version": 1, "value": "ok"})
+            self.assertEqual(repository.load("state.json")["version"], 1)
     def test_context_is_frozen_and_refresh_is_new_version(self) -> None:
         organization = Organization("ORG-1")
         organization.add_field("temperature", 21, ["temperature"])

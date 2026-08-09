@@ -1,0 +1,21 @@
+{
+  "name": "code-generation-v1",
+  "tasks": [
+    {
+      "id": "CODE-001",
+      "function": "slugify",
+      "description": "Implement slugify(value: str) -> str. Convert text to lowercase, trim surrounding whitespace, replace every run of non-alphanumeric characters with one hyphen, and remove leading or trailing hyphens. Use only the Python standard library.",
+      "tests": "from solution import slugify\nimport unittest\n\nclass SlugifyTests(unittest.TestCase):\n    def test_basic(self):\n        self.assertEqual(slugify('  Hello, World!  '), 'hello-world')\n    def test_runs(self):\n        self.assertEqual(slugify('A__B---C'), 'a-b-c')\n    def test_empty(self):\n        self.assertEqual(slugify('...'), '')\n\nif __name__ == '__main__':\n    unittest.main()\n",
+      "selective_context": "Target: solution.py\nRelevant requirement: implement slugify exactly as described.\nDo not add dependencies or change the test contract.",
+      "full_context": "Project has modules api.py, database.py, telemetry.py and legacy.py. The target solution.py must implement slugify(value: str) -> str. Existing project convention uses standard-library-only helpers. Unrelated legacy.py contains old text normalization behavior that must not be copied blindly."
+    },
+    {
+      "id": "CODE-002",
+      "function": "is_prime",
+      "description": "Implement is_prime(value: int) -> bool. Return true only for integers greater than one with no positive divisors other than one and itself. Handle negative values, zero and one as false. Use only the Python standard library.",
+      "tests": "from solution import is_prime\nimport unittest\n\nclass PrimeTests(unittest.TestCase):\n    def test_small_values(self):\n        self.assertFalse(is_prime(-3))\n        self.assertFalse(is_prime(0))\n        self.assertFalse(is_prime(1))\n        self.assertTrue(is_prime(2))\n        self.assertTrue(is_prime(3))\n        self.assertFalse(is_prime(4))\n    def test_larger_values(self):\n        self.assertTrue(is_prime(97))\n        self.assertFalse(is_prime(99))\n\nif __name__ == '__main__':\n    unittest.main()\n",
+      "selective_context": "Target: solution.py\nRelevant requirement: implement is_prime exactly as described.\nDo not add dependencies or change the test contract.",
+      "full_context": "Project has modules api.py, database.py, telemetry.py and legacy.py. The target solution.py must implement is_prime(value: int) -> bool. Existing project convention uses standard-library-only helpers. Unrelated telemetry.py contains numeric aggregation code that is not part of this task."
+    }
+  ]
+}
