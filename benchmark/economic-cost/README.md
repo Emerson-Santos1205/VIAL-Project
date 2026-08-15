@@ -43,6 +43,8 @@ Per RFC-010:
 | `generate_workload.py` | Deterministic workload generator (operations + price table) |
 | `workloads/economic.json` | Declared workload fixture |
 | `run_benchmark.py` | Validation harness |
+| `run_opencode.py` | Supplemental two-model validation harness |
+| `workloads/economic-real.json` | Small real-model workload with expected answers |
 | `results/<run-id>/report.json` | Full artifacts per run |
 | `prototype/cost.py` | CostModel / CostComponents / ResourceSelector |
 
@@ -54,6 +56,20 @@ Per RFC-010:
 python benchmark/economic-cost/generate_workload.py --operations 80 --deterministic-fraction 0.5 --out workloads/economic.json
 python benchmark/economic-cost/run_benchmark.py
 ```
+
+### Real-model validation
+
+The real-model harness performs calibration first, freezes policy choices, and
+then evaluates the four policies on a fresh pass. It requires exactly two
+models and records actual model tokens, latency, inference cost and quality.
+
+```text
+python benchmark/economic-cost/run_opencode.py --models openai/gpt-5.4 openai/gpt-5.6-luna --limit 8 --timeout 60
+```
+
+This is supplemental evidence. The declared price table is still part of the
+experiment, and results must not be generalized beyond the tested models,
+workload and configuration.
 
 ---
 
@@ -85,6 +101,7 @@ Verdict: **H1 + H2 supported** — the token-minimal policy is NOT the total-cos
 - **Deterministic First is cost-optimal here:** deterministic_first and total_cost_optimal produce identical cost (0.114290). RFC-010 §2.4's cheapest-capable-tier rule reproduces the total-cost optimum on this workload; it is not merely a heuristic.
 - **Deterministic First saves ~26%** over reason_everything (0.114290 vs 0.154995).
 - **Scope of validity:** cost model is workload-declared and uses synthetic token volumes; real-model quality parity is not asserted here (RFC-010 treats correctness as preserved by all policies; divergence is about cost, not correctness). Real API pricing and latency are out of scope for this benchmark.
+- Real-model results, when available, are reported separately from this deterministic baseline and do not replace it.
 - **Negative results are valid** (benchmark/README.md, Principle 2).
 
 ---

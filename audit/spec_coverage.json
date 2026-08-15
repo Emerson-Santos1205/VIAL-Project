@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "scope": "Implemented prototype surfaces only",
+  "requirements": [
+    {
+      "id": "SDK-005-51-propose",
+      "document": "sdk/SDK-005-Decision-API.md",
+      "section": "51",
+      "status": "covered",
+      "tests": ["test_decision_uses_canonical_lifecycle"]
+    },
+    {
+      "id": "SDK-005-34-authority",
+      "document": "sdk/SDK-005-Decision-API.md",
+      "section": "34",
+      "status": "covered",
+      "tests": ["test_decision_uses_canonical_lifecycle"]
+    },
+    {
+      "id": "TOOLS-001-18-result-status",
+      "document": "tools/TOOLS-001-Tool-Model.md",
+      "section": "18",
+      "status": "covered",
+      "tests": ["test_tool_rejects_invocation_without_authorized_decision"]
+    },
+    {
+      "id": "TOOLS-001-20-invoke",
+      "document": "tools/TOOLS-001-Tool-Model.md",
+      "section": "20",
+      "status": "covered",
+      "tests": ["test_tool_executes_only_with_matching_authorized_decision"]
+    },
+    {
+      "id": "TOOLS-001-lifecycle",
+      "document": "tools/TOOLS-001-Tool-Model.md",
+      "section": "71",
+      "status": "covered",
+      "tests": ["test_tool_registry_rejects_invalid_transition"]
+    },
+    {
+      "id": "TOOLS-003-organization-boundary",
+      "document": "tools/TOOLS-003-Tool-Security.md",
+      "section": "4",
+      "status": "covered",
+      "tests": ["test_rejects_organization_mismatch"]
+    },
+    {
+      "id": "TOOLS-003-context-boundary",
+      "document": "tools/TOOLS-003-Tool-Security.md",
+      "section": "22",
+      "status": "covered",
+      "tests": ["test_rejects_context_mismatch"]
+    },
+    {
+      "id": "TOOLS-003-actor-boundary",
+      "document": "tools/TOOLS-003-Tool-Security.md",
+      "section": "9",
+      "status": "covered",
+      "tests": ["test_rejects_actor_not_authorized_by_decision"]
+    },
+    {
+      "id": "TOOLS-003-scope-boundary",
+      "document": "tools/TOOLS-003-Tool-Security.md",
+      "section": "16",
+      "status": "covered",
+      "tests": ["test_rejects_insufficient_scope"]
+    },
+    {
+      "id": "TOOLS-003-expiration",
+      "document": "tools/TOOLS-003-Tool-Security.md",
+      "section": "63",
+      "status": "covered",
+      "tests": ["test_rejects_expired_decision"]
+    },
+    {
+      "id": "RUNTIME-003-state-versioning",
+      "document": "runtime/RUNTIME-003-State-Engine.md",
+      "section": "8",
+      "status": "partial",
+      "tests": ["test_context_is_frozen_and_refresh_is_new_version"]
+    },
+    {
+      "id": "RUNTIME-003-recovery",
+      "document": "runtime/RUNTIME-003-State-Engine.md",
+      "section": "50",
+      "status": "uncovered",
+      "tests": []
+    }
+  ]
+}

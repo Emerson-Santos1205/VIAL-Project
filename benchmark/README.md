@@ -116,6 +116,7 @@ Benchmarks SHALL measure success according to the dimensions defined in FCP-004 
 | Failure & Recovery | Validates RFC-009 hypothesis (atomicity + idempotency + recovery) | Active |
 | Economic Cost | Validates RFC-010 hypothesis (token vs total-cost divergence, deterministic-first) | Active |
 | Supplemental Model Comparison | Repeated multi-model validation using opencode and harder workloads | Supplemental |
+| Economic Cost (real-model) | RFC-010 calibration and policy comparison with two models | Supplemental |
 | Conformance (planned) | RFC-003/004 conformance checks | Planned |
 
 ---
