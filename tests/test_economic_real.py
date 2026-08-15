@@ -19,6 +19,7 @@ class EconomicRealHarnessTests(unittest.TestCase):
             "context_tokens": 100,
             "input_tokens": 100,
             "output_tokens": 20,
+            "execution_tokens": 120,
             "latency_s": 2.0,
         }
         prices = {

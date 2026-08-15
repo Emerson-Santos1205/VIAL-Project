@@ -62,6 +62,11 @@ python benchmark/economic-cost/run_benchmark.py
 The real-model harness performs calibration first, freezes policy choices, and
 then evaluates the four policies on a fresh pass. It requires exactly two
 models and records actual model tokens, latency, inference cost and quality.
+For this supplemental real-model extension, `token_cost` is based on
+`input_tokens + output_tokens` from the model event stream; `context_tokens`
+remains a separate diagnostic metric. This avoids treating identical VIAL
+contexts as different token policies solely because different models were
+selected.
 
 ```text
 python benchmark/economic-cost/run_opencode.py --models openai/gpt-5.4 openai/gpt-5.6-luna --limit 8 --timeout 60

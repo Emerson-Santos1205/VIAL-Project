@@ -54,6 +54,7 @@ def run_model(model: str, task: Task, builder: ContextBuilder,
         "context_tokens": context.tokens,
         "input_tokens": input_tokens,
         "output_tokens": output_tokens,
+        "execution_tokens": input_tokens + output_tokens,
         "total_model_tokens": row.get("total_tokens"),
         "latency_s": round(elapsed, 4),
         "answer": row.get("outcome"),
@@ -63,7 +64,7 @@ def run_model(model: str, task: Task, builder: ContextBuilder,
 
 
 def cost(row: dict[str, Any], prices: dict[str, float]) -> dict[str, float]:
-    tokens = row["context_tokens"]
+    tokens = row["execution_tokens"]
     inference = (
         row["input_tokens"] / 1000 * prices["inference_input_per_1k"]
         + row["output_tokens"] / 1000 * prices["inference_output_per_1k"]
@@ -121,8 +122,7 @@ def main() -> int:
     estimates = {
         model: summarize(rows, prices) for model, rows in calibration.items()
     }
-    token_model = min(args.models, key=lambda m: estimates[m]["tokens"] +
-                      estimates[m]["inference"] / prices["inference_input_per_1k"])
+    token_model = min(args.models, key=lambda m: estimates[m]["tokens"])
     total_model = min(args.models, key=lambda m: estimates[m]["total"])
     expensive_model = max(args.models, key=lambda m: estimates[m]["total"])
     policy_models = {
@@ -141,7 +141,8 @@ def main() -> int:
                 rows.append({
                     "task_id": task.id, "model": "deterministic",
                     "context_tokens": 0, "input_tokens": 0,
-                    "output_tokens": 0, "total_model_tokens": 0,
+                    "output_tokens": 0, "execution_tokens": 0,
+                    "total_model_tokens": 0,
                     "latency_s": 0.0, "answer": op["deterministic_answer"],
                     "quality": 1.0, "status": "SUCCESS",
                 })
@@ -151,13 +152,25 @@ def main() -> int:
 
     summaries = {policy: summarize(rows, prices)
                  for policy, rows in policy_rows.items()}
-    token_cheapest = min(summaries, key=lambda p: summaries[p]["tokens"])
-    total_cheapest = min(summaries, key=lambda p: summaries[p]["total"])
+    min_tokens = min(summary["tokens"] for summary in summaries.values())
+    min_total = min(summary["total"] for summary in summaries.values())
+    token_optimal_set = [
+        policy for policy, summary in summaries.items()
+        if abs(summary["tokens"] - min_tokens) <= 1e-12
+    ]
+    total_optimal_set = [
+        policy for policy, summary in summaries.items()
+        if abs(summary["total"] - min_total) <= 1e-12
+    ]
+    token_cheapest = token_optimal_set[0]
+    total_cheapest = total_optimal_set[0]
     tolerance = workload.get("quality_tolerance", 0.1)
     verdict = {
         "token_cheapest_policy": token_cheapest,
         "total_cheapest_policy": total_cheapest,
-        "divergence_exists": token_cheapest != total_cheapest,
+        "token_optimal_set": token_optimal_set,
+        "total_optimal_set": total_optimal_set,
+        "divergence_exists": not set(token_optimal_set).intersection(total_optimal_set),
         "det_first_total": summaries["deterministic_first"]["total"],
         "reason_total": summaries["reason_everything"]["total"],
         "det_first_le_reason": summaries["deterministic_first"]["total"] <= summaries["reason_everything"]["total"],
@@ -175,6 +188,7 @@ def main() -> int:
         "models": args.models, "workload": workload["name"],
         "limit": args.limit, "timeout": args.timeout,
         "environment": {"python": platform.python_version(), "platform": platform.platform()},
+        "token_definition": "input_tokens + output_tokens from the model event stream",
         "calibration": estimates, "policy_models": policy_models,
         "policies": summaries, "verdict": verdict,
         "per_policy": policy_rows,
