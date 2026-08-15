@@ -113,6 +113,8 @@ def main() -> int:
     ap.add_argument("--workload", default="workloads/reuse.json")
     ap.add_argument("--limit", type=int, default=0, help="max tasks (0 = all)")
     ap.add_argument("--model", default=None, help="provider/model override")
+    ap.add_argument("--timeout", type=float, default=180.0,
+                    help="per-task subprocess timeout in seconds")
     ap.add_argument("--out", default="results")
     args = ap.parse_args()
 
@@ -134,7 +136,7 @@ def main() -> int:
 
     org = build_org(wl)
     builder = ContextBuilder(org)
-    executor = OpencodeExecutor(model=args.model)
+    executor = OpencodeExecutor(model=args.model, timeout=args.timeout)
     evaluator = OpencodeEvaluator()
 
     print(f"model: {executor.model} | tasks: {n} | expected_invalidations: {expected_invalidations}")

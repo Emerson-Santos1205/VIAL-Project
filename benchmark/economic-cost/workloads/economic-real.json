@@ -1,0 +1,38 @@
+{
+  "name": "economic-cost-real-smoke",
+  "org_id": "eco-real-org",
+  "quality_tolerance": 0.1,
+  "price_table": {
+    "tokens_per_1k": 0.0002,
+    "inference_input_per_1k": 0.0015,
+    "inference_output_per_1k": 0.002,
+    "latency_per_second": 0.001,
+    "retrieval_per_op": 0.0001,
+    "construction_per_context": 0.0002,
+    "validation_per_op": 0.0003
+  },
+  "operations": [
+    {"id":"op_0000","prompt":"Is 18 greater than 7?","required":["f_0000"],"expected":true,"deterministic_solvable":true,"deterministic_answer":true},
+    {"id":"op_0001","prompt":"Is the temperature safe when the threshold is 70 and the current reading is 82? Return true only if it is safe.","required":["f_0001","f_0002"],"expected":false,"deterministic_solvable":false},
+    {"id":"op_0002","prompt":"Is 4 less than 9?","required":["f_0003"],"expected":true,"deterministic_solvable":true,"deterministic_answer":true},
+    {"id":"op_0003","prompt":"Should the organization escalate when pressure is 91 and the escalation limit is 80? Return true if escalation is required.","required":["f_0004","f_0005"],"expected":true,"deterministic_solvable":false},
+    {"id":"op_0004","prompt":"Is 25 equal to 25?","required":["f_0006"],"expected":true,"deterministic_solvable":true,"deterministic_answer":true},
+    {"id":"op_0005","prompt":"Is the machine healthy when health is 0 and the minimum healthy value is 1? Return true only if healthy.","required":["f_0007","f_0008"],"expected":false,"deterministic_solvable":false},
+    {"id":"op_0006","prompt":"Is 3 greater than 10?","required":["f_0009"],"expected":false,"deterministic_solvable":true,"deterministic_answer":false},
+    {"id":"op_0007","prompt":"Should maintenance be scheduled when the current cycle is 120 and the maintenance interval is 100? Return true if it should be scheduled.","required":["f_0010","f_0011"],"expected":true,"deterministic_solvable":false}
+  ],
+  "state": {
+    "f_0000": 18,
+    "f_0001": 82,
+    "f_0002": 70,
+    "f_0003": 4,
+    "f_0004": 91,
+    "f_0005": 80,
+    "f_0006": 25,
+    "f_0007": 0,
+    "f_0008": 1,
+    "f_0009": 3,
+    "f_0010": 120,
+    "f_0011": 100
+  }
+}
