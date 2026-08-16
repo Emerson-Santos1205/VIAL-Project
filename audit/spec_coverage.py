@@ -25,7 +25,8 @@ def main() -> int:
     parser.add_argument("--min", type=float, default=0.0,
                         help="minimum percentage of requirements marked covered")
     args = parser.parse_args()
-    requirements = json.loads(MATRIX.read_text(encoding="utf-8"))["requirements"]
+    matrix = json.loads(MATRIX.read_text(encoding="utf-8"))
+    requirements = matrix["requirements"]
     known_tests = test_names()
     invalid = [
         f"{item['id']}: {test}"
@@ -39,6 +40,7 @@ def main() -> int:
         print("Unknown test references: " + "; ".join(invalid))
         return 1
     print(f"spec_requirements={len(requirements)}")
+    print(f"out_of_scope_documents={len(matrix.get('out_of_scope_documents', []))}")
     print(f"covered={covered}")
     print(f"coverage_percent={percentage:.1f}")
     return 0 if percentage >= args.min else 1

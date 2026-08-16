@@ -17,7 +17,7 @@ import subprocess
 import sys
 
 from .context import Context, Task
-from .errors import wrap_network_error
+from .errors import VIALTimeoutError, wrap_network_error
 
 # RUNTIME-002 §37 outcome status values
 OUTCOME_SUCCESS = "SUCCESS"
@@ -67,9 +67,9 @@ class OpencodeExecutor:
                 encoding="utf-8", errors="replace",
             )
         except subprocess.TimeoutExpired as exc:
-            raise wrap_network_error(
-                exc, f"opencode timed out after {self.timeout}s",
-                details={"model": self.model})
+            raise VIALTimeoutError(
+                "TIMEOUT", f"opencode timed out after {self.timeout}s",
+                details={"model": self.model}) from exc
         except OSError as exc:
             raise wrap_network_error(
                 exc, f"failed to start opencode CLI: {exc}",
