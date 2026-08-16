@@ -1,6 +1,18 @@
 {
   "version": 1,
   "scope": "Implemented prototype surfaces only",
+  "out_of_scope_documents": [
+    "rfc/RFC-002-Organizational-Cognition-Protocol.md",
+    "rfc/RFC-003-Organizational-State-Model.md",
+    "rfc/RFC-004-Context-Cognitive-Efficiency.md",
+    "rfc/RFC-005-Memory-Knowledge.md",
+    "rfc/RFC-006-Decision-Authority.md",
+    "runtime/RUNTIME-001-Architecture.md",
+    "runtime/RUNTIME-002-Execution-Cycle.md",
+    "runtime/RUNTIME-004-Context-Engine.md",
+    "runtime/RUNTIME-005-Memory-Engine.md",
+    "runtime/RUNTIME-006-Cognition-Engine.md"
+  ],
   "requirements": [
     {
       "id": "SDK-005-51-propose",
