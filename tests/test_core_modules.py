@@ -215,6 +215,14 @@ class ExecutorTests(unittest.TestCase):
 
 # ── llm_executor.py ────────────────────────────────────────────────────
 
+_httpx = None
+try:
+    import httpx as _httpx  # noqa: F401
+except ImportError:
+    pass
+
+
+@unittest.skipUnless(_httpx, "httpx not installed")
 class LLMExecutorTests(unittest.TestCase):
     def test_missing_api_key_raises(self) -> None:
         with patch.dict("os.environ", {}, clear=True):
