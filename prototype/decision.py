@@ -129,7 +129,8 @@ class DecisionEngine:
                 rationale: str = "", evidence: list[str] | None = None,
                 constraints: list[str] | None = None,
                 confidence: float = 1.0, risk: str = "",
-                priority: str = "normal") -> Decision:
+                priority: str = "normal",
+                expires_at: float | None = None) -> Decision:
         """Record a proposed Decision (SDK-005 §51: create/propose)."""
         decision_id = f"DEC-{uuid.uuid4().hex[:12]}"
         decision = Decision(
@@ -148,6 +149,7 @@ class DecisionEngine:
             confidence=confidence,
             risk=risk,
             priority=priority,
+            expires_at=expires_at,
         )
         self.decisions[decision_id] = decision
         return decision
