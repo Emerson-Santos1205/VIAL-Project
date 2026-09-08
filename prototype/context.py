@@ -2,6 +2,7 @@
 SDK-004)."""
 from __future__ import annotations
 
+import hashlib
 import json
 import time
 import uuid
@@ -51,6 +52,7 @@ class Context:
     status: str = CTX_CREATED
     version: int = 1
     created_at: float = field(default_factory=time.time)
+    context_fingerprint: str = ""
     _frozen: bool = field(default=False, init=False, repr=False)
 
     def __setattr__(self, name: str, value: object) -> None:
@@ -72,6 +74,7 @@ class Context:
             "scope": self.scope,
             "tokens": self.tokens,
             "references": self.references,
+            "context_fingerprint": self.context_fingerprint,
         }
 
     def invalidate(self) -> "Context":
@@ -165,3 +168,40 @@ class ContextBuilder:
             objective=task.prompt,
             scope="selective",
         ).validate().freeze()
+
+
+def compute_context_fingerprint(
+    base_commit: str = "",
+    dependency_hash: str = "",
+    toolchain_id: str = "",
+    workspace_digest: str = "",
+) -> str:
+    """Compute an execution context fingerprint (extension to Core identity).
+
+    This fingerprint captures the execution environment without replacing
+    the Core identity (context_id). It enables cognitive reuse by allowing
+    the system to recognize when the same task is executed in the same
+    environment, even across different contexts.
+
+    The fingerprint is deterministic: the same inputs always produce the
+    same fingerprint, enabling cache invalidation and reuse decisions.
+
+    Components:
+    - base_commit: git commit hash of the repository baseline
+    - dependency_hash: hash of dependency lock file (e.g., requirements.txt)
+    - toolchain_id: toolchain identifier (e.g., "python3.11-linux-x64")
+    - workspace_digest: SHA256 of workspace files
+    """
+    parts = []
+    if base_commit:
+        parts.append(f"commit:{base_commit}")
+    if dependency_hash:
+        parts.append(f"deps:{dependency_hash}")
+    if toolchain_id:
+        parts.append(f"toolchain:{toolchain_id}")
+    if workspace_digest:
+        parts.append(f"workspace:{workspace_digest}")
+    if not parts:
+        return ""
+    payload = "|".join(parts)
+    return hashlib.sha256(payload.encode("utf-8")).hexdigest()

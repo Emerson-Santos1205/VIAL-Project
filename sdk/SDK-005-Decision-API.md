@@ -349,6 +349,14 @@ decision.approve()
 
 Approval MUST require appropriate authority.
 
+> **Note on Approval semantics:** `decision.approve()` is an internal system
+> approval that records acceptance of a proposal. It is part of the standard
+> `propose → approve → authorize` flow and does NOT constitute human approval.
+> Human approval is a separate, explicit step recorded via
+> `approve_decision()` and stored as an `ApprovalRecord`. For medium-risk
+> operations, the system approval in `propose_decision()` is sufficient. For
+> high/critical risks, an additional `ApprovalRecord` is required (see §67).
+
 ---
 
 # 18. Decision Rejection
@@ -1104,14 +1112,23 @@ AI Cognition
      ↓
 Decision Proposal
      ↓
+System Approval (internal)
+     ↓
 Authorization
      ↓
- Human Approval
+Human Approval (explicit, if required)
      ↓
- Invocation
+Invocation
      ↓
 Execution
 ```
+
+> **Important:** The standard `propose → approve → authorize` flow in
+> `propose_decision()` includes only *system approval* (internal acceptance).
+> *Human approval* is a separate, explicit step recorded via
+> `approve_decision()` and stored as an `ApprovalRecord`. For medium-risk
+> operations, system approval is sufficient. For high/critical risks, an
+> additional `ApprovalRecord` is required before invocation.
 
 ---
 

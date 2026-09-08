@@ -51,6 +51,19 @@ benchmark/   Hypothesis validation harnesses + workloads (Python)
 - **Architectural changes** go through the FCP/ADR mechanism (see `adr/ADR-0003`).
 - **Breaking changes** must be documented and follow ADR-0000.
 
+## Core Contract Boundary
+
+- **No improvement to vial-code-agent may directly modify the VIAL Core contract
+  or semantics without an explicit compatibility test.**
+- The Agent Runtime (`vial_runtime.py`) is a **composition layer** over Core
+  components (state, decision, authorization, tools, resources, identity,
+  persistence, coordination). Extensions must be additive, not substitutive.
+- New backends (e.g., PostgreSQL persistence, N-model consensus) implement
+  existing Core interfaces — they do not replace or alter the interface itself.
+- Core identity (context_id, resource_id, decision_id) is immutable. Contextual
+  extensions (context_fingerprint, execution_fingerprint) are separate fields,
+  not modifications to Core identity semantics.
+
 ## Examples Are Not a Second Specification
 
 - Examples MAY instantiate normative concepts, but MUST NOT introduce new

@@ -18,10 +18,38 @@ from .context import Context, Task
 from .state import Organization
 
 
-def reuse_signature(task: Task) -> str:
-    """Deterministic key from operation semantics (type + params), excluding
-    state values (RFC-008 §2.2)."""
-    return json.dumps({"op": task.op, "args": task.args}, sort_keys=True)
+def reuse_signature(task: Task, base_commit: str = "",
+                    workspace_digest: str = "",
+                    dependency_hash: str = "",
+                    toolchain_id: str = "",
+                    context_fingerprint: str = "") -> str:
+    """Deterministic key from operation semantics (type + params) and
+    workspace context (RFC-008 §2.2).
+
+    Includes workspace context to prevent reuse from semantically different
+    workspaces that happen to have the same task and file set.
+
+    If context_fingerprint is provided, it is included in the signature
+    to ensure consistency with the Context's fingerprint. This enables
+    cognitive reuse by allowing the system to recognize when the same
+    task is executed in the same environment.
+    """
+    sig_data = {
+        "op": task.op,
+        "args": task.args,
+    }
+    # Add workspace context if provided (non-empty)
+    if base_commit:
+        sig_data["base_commit"] = base_commit
+    if workspace_digest:
+        sig_data["workspace_digest"] = workspace_digest
+    if dependency_hash:
+        sig_data["dependency_hash"] = dependency_hash
+    if toolchain_id:
+        sig_data["toolchain"] = toolchain_id
+    if context_fingerprint:
+        sig_data["context_fingerprint"] = context_fingerprint
+    return json.dumps(sig_data, sort_keys=True)
 
 
 @dataclass
@@ -46,12 +74,16 @@ class ReuseEngine:
         self.recomputes = 0
         self.invalidations = 0
 
-    def lookup(self, task: Task) -> tuple[CachedResult | None, str]:
+    def lookup(self, task: Task, base_commit: str = "",
+               workspace_digest: str = "", dependency_hash: str = "",
+               toolchain_id: str = "",
+               context_fingerprint: str = "") -> tuple[CachedResult | None, str]:
         """Return (cached_result, outcome). outcome in {hit, miss, stale}.
 
         A stale entry is invalidated and treated as a miss (RFC-008 §2.3.5).
         """
-        sig = reuse_signature(task)
+        sig = reuse_signature(task, base_commit, workspace_digest,
+                              dependency_hash, toolchain_id, context_fingerprint)
         entry = self.cache.get(sig)
         if entry is None:
             return None, "miss"
@@ -71,7 +103,10 @@ class ReuseEngine:
         return True
 
     def store(self, task: Task, outcome: Any, quality: float,
-              ctx: Context, provenance: str) -> CachedResult:
+              ctx: Context, provenance: str, base_commit: str = "",
+              workspace_digest: str = "", dependency_hash: str = "",
+              toolchain_id: str = "",
+              context_fingerprint: str = "") -> CachedResult:
         """Store a validated result with references to the State it used."""
         fields = {
             key: self.org.fields[key].value
@@ -79,7 +114,9 @@ class ReuseEngine:
             if key in self.org.fields
         }
         entry = CachedResult(
-            signature=reuse_signature(task),
+            signature=reuse_signature(task, base_commit, workspace_digest,
+                                      dependency_hash, toolchain_id,
+                                      context_fingerprint),
             outcome=outcome,
             quality=quality,
             state_version=self.org.state_version,
