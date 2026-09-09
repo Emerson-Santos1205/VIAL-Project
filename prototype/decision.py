@@ -65,6 +65,7 @@ class Decision:
     context_id: str = ""
     context_version: int = 0
     context_fingerprint: str = ""
+    execution_fingerprint: str = ""
     alternatives: list[Any] = field(default_factory=list)
     rationale: str = ""
     evidence: list[str] = field(default_factory=list)
@@ -95,6 +96,7 @@ class Decision:
             "context_id": self.context_id,
             "context_version": self.context_version,
             "context_fingerprint": self.context_fingerprint,
+            "execution_fingerprint": self.execution_fingerprint,
             "actor": self.actor,
             "authority": {"actor": self.authority.actor,
                           "role": self.authority.role,
@@ -128,6 +130,7 @@ class DecisionEngine:
     def propose(self, objective: str, actor: str, authority: Authority,
                 type: str = "operation", context_id: str = "",
                 context_version: int = 0, context_fingerprint: str = "",
+                execution_fingerprint: str = "",
                 alternatives: list[Any] | None = None,
                 rationale: str = "", evidence: list[str] | None = None,
                 constraints: list[str] | None = None,
@@ -146,6 +149,7 @@ class DecisionEngine:
             context_id=context_id,
             context_version=context_version,
             context_fingerprint=context_fingerprint,
+            execution_fingerprint=execution_fingerprint,
             alternatives=alternatives or [],
             rationale=rationale,
             evidence=evidence or [],
